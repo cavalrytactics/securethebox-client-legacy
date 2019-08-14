@@ -1,6 +1,6 @@
 {
-    "name": "fuse-react-app",
-    "version": "3.2.2",
+    "name": "securethebox-client",
+    "fuse-react-app-version": "3.2.2",
     "private": true,
     "dependencies": {
         "@date-io/date-fns": "1.3.9",
@@ -76,6 +76,14 @@
         "webpack-bundle-analyzer": "3.4.1"
     },
     "scripts": {
+        "update":"run-s -c update1 update2 update3 update4 update5 update6 update7",
+        "update1":"git remote add upstream https://github.com:withinpixels/fuse-react.git",
+        "update2":"git fetch upstream",
+        "update3":"git checkout master",
+        "update4":"git rebase upstream/master",
+        "update5":"rm -rf node_modules/",
+        "update6":"yarn install",
+        "update7":"yarn start",
         "commit": "git add --all && git commit -m \"Deploy\" && git push",
         "start": "yarn run tailwind && react-scripts start",
         "build": "yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-scripts build",
