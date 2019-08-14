@@ -3,7 +3,25 @@ import {Redirect} from 'react-router-dom';
 
 export const AcademyAppConfig = {
     settings: {
-        layout: {}
+        layout: {
+            config: {
+                navbar        : {
+                    display: false
+                },
+                toolbar       : {
+                    display: true
+                },
+                footer        : {
+                    display: false
+                },
+                leftSidePanel : {
+                    display: false
+                },
+                rightSidePanel: {
+                    display: false
+                }
+            }
+        }
     },
     routes  : [
         {
