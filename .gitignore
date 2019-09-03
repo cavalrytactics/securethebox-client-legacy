@@ -24,3 +24,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/fuse-react/updater/github-access-token.txt
+github-access-token.txt

@@ -9,3 +9,5 @@ if __name__ == "__main__":
     if fuse.current_fuse_version != fuse.latest_fuse_version:
         fuse.update_current_fuse_version_package_json(fuse.latest_fuse_version)
         print("Updated from",fuse.current_fuse_version,"to",fuse.latest_fuse_version)
+    else:
+        print("Project is already using",fuse.current_fuse_version)

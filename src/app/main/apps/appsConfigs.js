@@ -10,9 +10,13 @@ import {ECommerceAppConfig} from './e-commerce/ECommerceAppConfig';
 import {ScrumboardAppConfig} from './scrumboard/ScrumboardAppConfig';
 import {AcademyAppConfig} from './academy/AcademyAppConfig';
 import {NotesAppConfig} from './notes/NotesAppConfig';
+import {ChallengeCreatorAppConfig} from './securethebox/challenge-creator/ChallengeCreatorAppConfig';
+import {AppCreatorAppConfig} from './securethebox/app-creator/AppCreatorAppConfig';
 
 export const appsConfigs = [
     AnalyticsDashboardAppConfig,
+    ChallengeCreatorAppConfig,
+    AppCreatorAppConfig,
     ProjectDashboardAppConfig,
     MailAppConfig,
     TodoAppConfig,
