@@ -1,39 +1,30 @@
 import React, { Component } from "react";
+// import defaultsDeep from "lodash/fp/defaultsDeep";
 import isEqual from "lodash/isEqual";
 import differenceWith from "lodash/differenceWith";
 import vis from "vis-network";
+// import uuid from "uuid";
 import PropTypes from "prop-types";
 import "./STBVisGraph/vis-network.min.css";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 
-class STBGraph extends Component {
+class STBVisNetwork extends Component {
   constructor(props) {
     super(props);
+    // const { identifier } = props;
     this.updateGraph = this.updateGraph.bind(this);
-    this.saveData = this.saveData.bind(this)
-    this.cancelEdit = this.cancelEdit.bind(this);
     this.state = {
+      // identifier: identifier !== undefined ? identifier : uuid.v4(),
       identifier: "mynetwork",
-      network: {},
-      id: "",
-      label: "",
-      dialog: true,
-      loading: false
+      network: {}
     };
   }
 
   componentDidMount() {
-    this.setState({
-      loading: true
-    })
     this.edges = new vis.DataSet();
     this.edges.add(this.props.graph.edges);
     this.nodes = new vis.DataSet();
     this.nodes.add(this.props.graph.nodes);
     this.updateGraph();
-
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -96,34 +87,10 @@ class STBGraph extends Component {
 
   updateGraph() {
     let container = document.getElementById("mynetwork");
+
     let defaultOptions = {
       manipulation: {
-        enabled: true,
-        initiallyActive: true,
-        addNode: (data, callback) => {
-          // filling in the popup DOM elements
-          document.getElementById('operation').innerHTML = "Add Node";
-          document.getElementById('node-id').value = this.props.graph.nodes.length + 1;
-          document.getElementById('node-label').value = data.label;
-          document.getElementById('saveButton').onclick = () => this.saveData(data, callback);
-          document.getElementById('cancelButton').onclick = () => this.clearPopUp();
-          document.getElementById('network-popUp').style.display = 'block';
-        },
-        addEdge: true,
-        editNode: (data, callback) => {
-          document.getElementById('operation').innerHTML = "Edit Node";
-          document.getElementById('node-id').value = data.id;
-          document.getElementById('node-label').value = data.label;
-          document.getElementById('saveButton').onclick = () => this.saveData(data, callback);
-          document.getElementById('cancelButton').onclick = () => this.cancelEdit(callback);
-          document.getElementById('network-popUp').style.display = 'block';
-        },
-        editEdge: true,
-        deleteNode: true,
-        deleteEdge: true,
-        controlNodeStyle: {
-          // all node options are valid.
-        }
+        enabled: true
       },
       autoResize: true,
       layout: {
@@ -184,7 +151,7 @@ class STBGraph extends Component {
       width: '100%',
       height: '500px',
       nodes: {
-
+        
         shape: "dot",
         fixed: {
           y: true,
@@ -195,7 +162,7 @@ class STBGraph extends Component {
         },
         chosen: true,
         borderWidth: 1,
-        borderWidthSelected: 3,
+        borderWidthSelected:3,
         color: {
           border: 'black',
           background: '#97C2FC',
@@ -224,7 +191,7 @@ class STBGraph extends Component {
     );
 
     // somenet.addEdgeMode();
-    somenet.on('click', function (params) {
+    somenet.on('click', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>Click event:</h2>' + JSON.stringify(params, null, 4)
@@ -232,17 +199,17 @@ class STBGraph extends Component {
         'click event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM)
       )
     })
-    somenet.on('doubleClick', function (params) {
+    somenet.on('doubleClick', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>doubleClick event:</h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('oncontext', function (params) {
+    somenet.on('oncontext', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>oncontext (right click) event:</h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('dragStart', function (params) {
+    somenet.on('dragStart', function(params) {
       // There's no point in displaying this event on screen, it gets immediately overwritten
       params.event = '[original event]'
       console.log('dragStart Event:', params)
@@ -250,12 +217,12 @@ class STBGraph extends Component {
         'dragStart event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM)
       )
     })
-    somenet.on('dragging', function (params) {
+    somenet.on('dragging', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>dragging event:</h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('dragEnd', function (params) {
+    somenet.on('dragEnd', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>dragEnd event:</h2>' + JSON.stringify(params, null, 4)
@@ -264,56 +231,56 @@ class STBGraph extends Component {
         'dragEnd event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM)
       )
     })
-    somenet.on('controlNodeDragging', function (params) {
+    somenet.on('controlNodeDragging', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>control node dragging event:</h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('controlNodeDragEnd', function (params) {
+    somenet.on('controlNodeDragEnd', function(params) {
       params.event = '[original event]'
       document.getElementById('eventSpan').innerHTML =
         '<h2>control node drag end event:</h2>' + JSON.stringify(params, null, 4)
       console.log('controlNodeDragEnd Event:', params)
     })
-    somenet.on('zoom', function (params) {
+    somenet.on('zoom', function(params) {
       document.getElementById('eventSpan').innerHTML =
         '<h2>zoom event:</h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('showPopup', function (params) {
+    somenet.on('showPopup', function(params) {
       document.getElementById('eventSpan').innerHTML =
         '<h2>showPopup event: </h2>' + JSON.stringify(params, null, 4)
     })
-    somenet.on('hidePopup', function () {
+    somenet.on('hidePopup', function() {
       console.log('hidePopup Event')
     })
-    somenet.on('select', function (params) {
+    somenet.on('select', function(params) {
       console.log('select Event:', params)
     })
-    somenet.on('selectNode', function (params) {
+    somenet.on('selectNode', function(params) {
       console.log('selectNode Event:', params)
     })
-    somenet.on('selectEdge', function (params) {
+    somenet.on('selectEdge', function(params) {
       console.log('selectEdge Event:', params)
     })
-    somenet.on('deselectNode', function (params) {
+    somenet.on('deselectNode', function(params) {
       console.log('deselectNode Event:', params)
     })
-    somenet.on('deselectEdge', function (params) {
+    somenet.on('deselectEdge', function(params) {
       console.log('deselectEdge Event:', params)
     })
-    somenet.on('hoverNode', function (params) {
+    somenet.on('hoverNode', function(params) {
       console.log('hoverNode Event:', params)
     })
-    somenet.on('hoverEdge', function (params) {
+    somenet.on('hoverEdge', function(params) {
       console.log('hoverEdge Event:', params)
     })
-    somenet.on('blurNode', function (params) {
+    somenet.on('blurNode', function(params) {
       console.log('blurNode Event:', params)
     })
-    somenet.on('blurEdge', function (params) {
+    somenet.on('blurEdge', function(params) {
       console.log('blurEdge Event:', params)
     })
-
+    
 
     if (this.props.getNetwork) {
       this.props.getNetwork(somenet);
@@ -338,26 +305,7 @@ class STBGraph extends Component {
     }
   }
 
-  clearPopUp() {
-    document.getElementById('saveButton').onclick = null;
-    document.getElementById('cancelButton').onclick = null;
-    document.getElementById('network-popUp').style.display = 'none';
-  }
-  cancelEdit(callback) {
-    this.clearPopUp();
-    callback(null);
-  }
-
-  saveData(data, callback) {
-    console.log("NETWORK:", this.props.graph.nodes)
-    console.log(this.state.id, this.state.label)
-    data.id = document.getElementById('node-id').value;
-    data.label = document.getElementById('node-label').value;
-    this.clearPopUp();
-    callback(data);
-  }
-
-  renderGraph() {
+  renderGraph(){
     const { identifier } = this.state;
     const { style } = this.props;
     return React.createElement(
@@ -369,7 +317,7 @@ class STBGraph extends Component {
       identifier
     );
   }
-  renderToolbar() {
+  renderToolbar(){
     return React.createElement(
       "pre",
       {
@@ -378,46 +326,9 @@ class STBGraph extends Component {
     );
   }
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value }, () => { console.log(this.state[name]) })
-  }
-
-  renderPopup() {
-    return (
-      <div id="network-popUp">
-        <span id="operation">node</span>
-        <Grid container spacing={3}>
-          <Grid item xs>
-            <TextField
-              disabled
-              id="node-id"
-              onChange={this.handleChange('id')}
-              margin="dense"
-              variant="filled"
-            />
-          </Grid>
-          <Grid item xs>
-            <TextField
-              autoFocus
-              id="node-label"
-              onChange={this.handleChange('label')}
-              margin="dense"
-              variant="filled"
-            />
-          </Grid>
-          <Grid item xs>
-            <Button id="saveButton" >Save</Button>
-            <Button id="cancelButton" >Cancel</Button>
-          </Grid>
-        </Grid>
-      </div>
-    )
-  }
-
   render() {
-    return (
+    return(
       <div>
-        {this.renderPopup()}
         {this.renderGraph()}
         {this.renderToolbar()}
       </div>
@@ -425,11 +336,11 @@ class STBGraph extends Component {
   }
 }
 
-STBGraph.defaultProps = {
+STBVisNetwork.defaultProps = {
   graph: {},
   style: { width: "100%", height: "100%" }
 };
-STBGraph.propTypes = {
+STBVisNetwork.propTypes = {
   graph: PropTypes.object,
   style: PropTypes.object,
   addEdgeMode: PropTypes.func,
@@ -438,4 +349,4 @@ STBGraph.propTypes = {
   getEdges: PropTypes.func,
 };
 
-export default STBGraph;
+export default STBVisNetwork;

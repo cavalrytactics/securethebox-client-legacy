@@ -1,10 +1,10 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: jenkins-charles
+  name: pod-name-username
 spec:
   selector:
-    app: jenkins-charles
+    app: pod-name-username
   ports:
   - name: http
     targetPort: 8080

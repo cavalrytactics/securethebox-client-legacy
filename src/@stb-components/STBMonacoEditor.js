@@ -25,7 +25,7 @@ class STBMonacoEditor extends Component {
         return (
             <MonacoEditor
                 width="auto"
-                height="500"
+                height="700"
                 language="yaml"
                 theme="vs-light"
                 value={this.props.code}

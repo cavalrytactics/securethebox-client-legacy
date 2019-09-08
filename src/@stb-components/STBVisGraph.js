@@ -1,46 +1,70 @@
 import React, { Component } from 'react';
-// import Graph from 'react-graph-vis';
-import options from './STBVisGraph/graphOptions';
-import Grid from '@material-ui/core/Grid'
-import STBMaterialUiTabs from './STBMaterialUiTabs'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import STBGraph from './STBGraph'
+import Grid from '@material-ui/core/Grid';
+import STBMaterialUiTabs from './STBMaterialUiTabs';
+import STBGraph from './STBGraph';
+import connect from 'react-redux/es/connect/connect';
+import withReducer from 'app/store/withReducer';
+import { selectNode } from './STBVisGraph/store/actions/nodes.actions'
+import reducer from './STBVisGraph/store/reducers';
+import default_deploy_yaml from './STBMaterialUiTabs/default_deploy.yaml';
+import default_ingress_yaml from './STBMaterialUiTabs/default_ingress.yaml';
+import default_service_yaml from './STBMaterialUiTabs/default_service.yaml';
+import YAML from 'yaml'
+import STBMonacoEditor from './STBMonacoEditor';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import MonacoEditor from 'react-monaco-editor';
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            <Box p={3}>{children}</Box>
+        </Typography>
+    );
+}
 
 class STBVisGraph extends Component {
     constructor(props) {
         super(props);
-
-        // our state object
         this.state = {
-            // graph represents our component
-            addNodeLabel: '',
-            addNodeTitle: '',
             graph: {},
             events: {},
-            loading: false
+            loading: false,
+            value: 0
         };
-        this.handleChangeLabel = this.handleChangeLabel.bind(this);
-        this.handleChangeTitle = this.handleChangeTitle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
+
         this.setState({
             loading: true,
+            selected: { id: 1, label: "Pod-Label", title: "Pod-Title", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
             network: {},
             graph: {
                 nodes: [
-                    { id: 1, label: "Nginx-ModSecurity", title: "Load-Balancer + Web App Firewall" },
-                    { id: 2, label: "Vulnerable-App", title: "Juice-Shop Mono Application" },
-                    { id: 3, label: "Splunk", title: "SIEM" },
-                    { id: 4, label: "Jenkins", title: "CI/CD" },
-                    { id: 5, label: "Hashicorp-Vault", title: "Secrets Management/PKI" },
-                    { id: 6, label: "Gitlab", title: "Git Repository" },
-                    { id: 7, label: "Suricata", title: "IDS/IPS" },
-                    { id: 8, label: "Google-GRR", title: "Forensic Acquisition" },
-                    { id: 9, label: "Wazuh", title: "Endpoint Security Agent" },
-                    { id: 10, label: "Kali-Linux", title: "node 5 tootip text" }
+                    { id: 1, label: "Pod-Name", title: "Pod-Title", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 2, label: "Vulnerable-App", title: "Juice-Shop Mono Application", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 3, label: "Splunk", title: "SIEM", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 4, label: "Jenkins", title: "CI/CD", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 5, label: "Hashicorp-Vault", title: "Secrets Management/PKI", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 6, label: "Gitlab", title: "Git Repository", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 7, label: "Suricata", title: "IDS/IPS", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 8, label: "Google-GRR", title: "Forensic Acquisition", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 9, label: "Wazuh", title: "Endpoint Security Agent", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
+                    // { id: 10, label: "Kali-Linux", title: "Attacker Server", code_deploy: YAML.stringify(default_deploy_yaml), code_ingress: YAML.stringify(default_ingress_yaml), code_service: YAML.stringify(default_service_yaml) },
                 ],
                 edges: [
                     { from: 1, to: 2 },
@@ -53,96 +77,172 @@ class STBVisGraph extends Component {
 
     }
 
+    a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
+    handleChange(event, newValue) {
+        console.log(newValue)
+        this.setState({
+            value: newValue
+        })
+    }
+
+    renderTab(value) {
+        if (value === 0) {
+            return (
+                <TabPanel value={value} index={0}>
+                    {this.renderMonacoEditor("deploy", this.state.selected.code_deploy)}
+                </TabPanel>
+            )
+        } else if (value === 1) {
+            return (
+                <TabPanel value={value} index={1}>
+                    {this.renderMonacoEditor("ingress", this.state.selected.code_ingress)}
+                </TabPanel>
+            )
+        } else if (value === 2) {
+            return (
+                <TabPanel value={value} index={2}>
+                    {this.renderMonacoEditor("service", this.state.selected.code_service)}
+                </TabPanel>
+            )
+        }
+    }
+
     trackEvents = {
-        controlNodeDragging: (event) => {
-            // console.log("DRAGGING",event)
-        },
-        controlNodeDragEnd: (event) => {
-            if (event.controlEdge) {
-                console.log("DRAG END", event.controlEdge)
-                if (event.controlEdge["to"] && event.controlEdge["from"]) {
-                    var nodesCopy = this.state.graph.nodes.slice()
-                    var edgesCopy = this.state.graph.edges.slice()
-                    edgesCopy.push(event.controlEdge)
-                    
-                    this.setState({ graph: { nodes: nodesCopy, edges: edgesCopy } });
-                    console.log(this.state.graph)
-                }
-
+        click: (event) => {
+            if (event.nodes[0] !== undefined) {
+                console.log("SELECTED NODE:", event.nodes[0])
+                // this.setState({
+                //     selected: this.state.graph.nodes[event.nodes[0] - 1]
+                // })
             }
-
-        },
-        select: (event) => {
-            var { edges } = event;
-            // // console.log("EVENT:", event)
-            let prevGraph = this.state.graph
-            console.log("select:",event)
-            console.log("this graph",this.state.graph)
-            prevGraph.edges.map((v, i) => {
-               
-                if (v.id === edges[0]) {
-                    console.log("FOUND",edges[0])
-                    var nodesCopy = prevGraph.nodes.slice()
-                    var edgesCopy = prevGraph.edges.slice()
-                    edgesCopy.pop(i)
-                    this.setState({ graph: { nodes: nodesCopy, edges: edgesCopy } });
-                    console.log("New Graph:", this.state.graph)
-                }
-            })
         }
     };
 
-    addNode(nodeLabel, nodeTitle) {
-
+    handleMonacoEditorChangeDeploy(newValue) {
+        let prevSelected = this.state.selected
+        prevSelected.code_deploy = newValue
+        console.log(prevSelected)
+        this.setState({
+            selected: prevSelected
+        })
         let prevGraph = this.state.graph
-        let graphLength = prevGraph.nodes.length
-        console.log(prevGraph.nodes, graphLength)
-        var nodesCopy = this.state.graph.nodes.slice()
-        var edgesCopy = this.state.graph.edges.slice()
-        nodesCopy.push({
-            id: graphLength + 1,
-            label: nodeLabel,
-            title: nodeTitle,
-        });
-        this.setState({ graph: { nodes: nodesCopy, edges: edgesCopy } });
-
-        // this.setState({
-        //     graph: prevGraph
-        // })
-    }
-
-    handleChangeLabel = name => event => {
-        this.setState({
-            addNodeLabel: event.target.value
+        prevGraph.nodes.map((v, index) => {
+            if (v.id === prevSelected.id) {
+                prevGraph.nodes[index].code_deploy = prevSelected.code_deploy
+                this.setState({
+                    graph: prevGraph
+                })
+            }
         })
     }
 
-    handleChangeTitle = name => event => {
+    handleMonacoEditorChangeIngress(newValue) {
+        let prevSelected = this.state.selected
+        prevSelected.code_ingress = newValue
+        console.log(prevSelected)
         this.setState({
-            addNodeTitle: event.target.value
+            selected: prevSelected
+        })
+        let prevGraph = this.state.graph
+        prevGraph.nodes.map((v, index) => {
+            if (v.id === prevSelected.id) {
+                prevGraph.nodes[index].code_ingress = prevSelected.code_ingress
+                this.setState({
+                    graph: prevGraph
+                })
+            }
         })
     }
+
+    handleMonacoEditorChangeService(newValue) {
+        let prevSelected = this.state.selected
+        prevSelected.code_service = newValue
+        console.log(prevSelected)
+        this.setState({
+            selected: prevSelected
+        })
+        let prevGraph = this.state.graph
+        prevGraph.nodes.map((v, index) => {
+            if (v.id === prevSelected.id) {
+                prevGraph.nodes[index].code_service = prevSelected.code_service
+                this.setState({
+                    graph: prevGraph
+                })
+            }
+        })
+    }
+
+    renderMonacoEditor(type, code) {
+        const options = {
+            selectOnLineNumbers: true,
+            scrollBeyondLastLine: false
+        };
+        if (type === "deploy") {
+            return (
+                <MonacoEditor
+                    width="auto"
+                    height="700"
+                    language="yaml"
+                    theme="vs-light"
+                    value={code}
+                    options={options}
+                    onChange={(v) => this.handleMonacoEditorChangeDeploy(v)}
+                />
+            );
+        } else if (type === "ingress") {
+            return (
+                <MonacoEditor
+                    width="auto"
+                    height="700"
+                    language="yaml"
+                    theme="vs-light"
+                    value={code}
+                    options={options}
+                    onChange={(v) => this.handleMonacoEditorChangeIngress(v)}
+                />
+            );
+        } else if (type === "service") {
+            return (
+                <MonacoEditor
+                    width="auto"
+                    height="700"
+                    language="yaml"
+                    theme="vs-light"
+                    value={code}
+                    options={options}
+                    onChange={(v) => this.handleMonacoEditorChangeService(v)}
+                />
+            );
+        }
+    }
+
+
 
     render() {
         return (
             <div>
                 <Grid container style={{ flexGrow: 1, margin: "0 auto", width: '100%' }} >
-                    <Grid item xs style={{ textTransform: 'none', width: '100%' }}>
-                        <TextField
-                            label="Label"
-                            value={this.state.addNodeLabel}
-                            onChange={this.handleChangeLabel()}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            label="Title"
-                            value={this.state.addNodeTitle}
-                            onChange={this.handleChangeTitle()}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <Button onClick={() => this.addNode(this.state.addNodeLabel, this.state.addNodeTitle)}>Add Node</Button>
+                    <Grid item xs={6} style={{ textTransform: 'none', width: '100%' }}>
+                        <AppBar position="static">
+                            <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example" centered>
+                                <Tab style={{ textTransform: 'none'}} label="deploy.yaml" {...this.a11yProps(0)} />
+                                <Tab style={{ textTransform: 'none'}} label="ingress.yaml" {...this.a11yProps(1)} />
+                                <Tab style={{ textTransform: 'none'}} label="service.yaml" {...this.a11yProps(2)} />
+                            </Tabs>
+                        </AppBar>
+                        {this.state.loading ?
+                            this.renderTab(this.state.value)
+                            :
+                            <div>loading</div>
+                        }
+                    </Grid>
+                    <Grid item xs={6} style={{ textTransform: 'none', width: '100%' }}>
                         {this.state.loading ?
                             <STBGraph graph={this.state.graph} events={this.trackEvents} getNetwork={network => {
                                 this.setState({ network: network })
@@ -151,14 +251,18 @@ class STBVisGraph extends Component {
                             <div>loading</div>
                         }
                     </Grid>
-                    <Grid item xs style={{ textTransform: 'none', width: '100%' }}>
-                        <STBMaterialUiTabs />
-                    </Grid>
-
                 </Grid>
             </div>
         )
     }
 }
 
-export default STBVisGraph;
+function mapStateToProps({ nodes }) {
+    return {
+        nodes
+    }
+}
+
+export default withReducer("nodes", reducer)(connect(mapStateToProps, {
+    selectNode
+})(STBVisGraph));

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -59,9 +57,7 @@ class STBMaterialUiTabs extends Component {
         };
     }
 
-
     handleChange(event, newValue) {
-        // setValue(newValue);
         console.log(newValue)
         this.setState({
             value: newValue
@@ -72,19 +68,19 @@ class STBMaterialUiTabs extends Component {
         if (value === 0) {
             return (
                 <TabPanel value={value} index={0}>
-                    <STBMonacoEditor code={this.state.code_deploy.toString()} />
+                    <STBMonacoEditor code={this.props.code_deploy} />
                 </TabPanel>
             )
         } else if (value === 1) {
             return (
                 <TabPanel value={value} index={1}>
-                    <STBMonacoEditor code={this.state.code_ingress.toString()} />
+                    <STBMonacoEditor code={this.props.code_ingress} />
                 </TabPanel>
             )
         } else if (value === 2) {
             return (
                 <TabPanel value={value} index={2}>
-                    <STBMonacoEditor code={this.state.code_service.toString()} />
+                    <STBMonacoEditor code={this.props.code_service} />
                 </TabPanel>
             )
         }
@@ -92,9 +88,6 @@ class STBMaterialUiTabs extends Component {
 
 
     render() {
-
-
-
         return (
             <div>
                 <AppBar position="static">

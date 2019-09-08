@@ -5,14 +5,14 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import STBRubrik from './STBRubrik';
+import STBRubrik from './STBRubrikCategories/STBRubrik';
 import STBSliderCompetency from './STBSliderCompetency'
 import STBTreeSelect from './STBTreeSelect'
-import category_blue_team from './category_blue_team';
-import category_red_team from './category_red_team';
-import category_security_engineering from './category_security_engineering';
-import category_software_engineering from './category_software_engineering';
-import category_systems_engineering from './category_systems_engineering';
+import category_blue_team from './STBRubrikCategories/category_blue_team';
+import category_red_team from './STBRubrikCategories/category_red_team';
+import category_security_engineering from './STBRubrikCategories/category_security_engineering';
+import category_software_engineering from './STBRubrikCategories/category_software_engineering';
+import category_systems_engineering from './STBRubrikCategories/category_systems_engineering';
 
 
 class STBMaterialUiGrid extends Component {

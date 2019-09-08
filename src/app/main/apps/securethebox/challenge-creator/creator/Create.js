@@ -9,7 +9,7 @@ import {
     // Button,
     // TextField
 } from '@material-ui/core'; 
-import STBReactQuill from '../../../../../../@stb-components/STBReactQuill';
+import STBReactQuill from '../../../../../../@stb-components/STBReactQuill/STBReactQuill';
 import STBRubrikCategories from '../../../../../../@stb-components/STBRubrikCategories';
 // import STBScenarioEditor from '../../../../../../@stb-components/STBScenarioEditor';
 import STBSliderIndividualContributerLevel from '../../../../../../@stb-components/STBSliderIndividualContributerLevel'
