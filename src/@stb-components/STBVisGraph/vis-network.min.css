@@ -3,13 +3,14 @@
   }
   #network-popUp {
     display:none;
-    width:"100%";
+    width:"80%";
     height:120px;
     background-color: #f9f9f9;
     border-style:solid;
     border-width:3px;
     border-color: #5394ed;
-    padding:10px;
+	padding:10px;
+	margin:10px;
     text-align: center;
   }
 .vis .overlay {

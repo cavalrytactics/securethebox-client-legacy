@@ -1,0 +1,4 @@
+{
+    "schema": "DEFAULT_FULL_SCHEMA",
+    "ignore": "/src/@stb-components/STBHelmChart/templates/*.yaml"
+}

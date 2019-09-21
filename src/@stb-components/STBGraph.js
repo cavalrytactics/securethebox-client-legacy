@@ -102,16 +102,20 @@ class STBGraph extends Component {
         initiallyActive: true,
         addNode: (data, callback) => {
           // filling in the popup DOM elements
-          document.getElementById('operation').innerHTML = "Add Node";
-          document.getElementById('node-id').value = this.props.graph.nodes.length + 1;
-          document.getElementById('node-label').value = data.label;
+          document.getElementById('operation').innerHTML = "Add Pod";
+          document.getElementById('node-id').value = data.id;
+          document.getElementById('node-label').value = "pod-name-username";
           document.getElementById('saveButton').onclick = () => this.saveData(data, callback);
           document.getElementById('cancelButton').onclick = () => this.clearPopUp();
           document.getElementById('network-popUp').style.display = 'block';
+          this.props.graph.nodes.push({
+            id: data.id,
+            label: "pod-name-username"
+          })
         },
         addEdge: true,
         editNode: (data, callback) => {
-          document.getElementById('operation').innerHTML = "Edit Node";
+          document.getElementById('operation').innerHTML = "Edit Pod";
           document.getElementById('node-id').value = data.id;
           document.getElementById('node-label').value = data.label;
           document.getElementById('saveButton').onclick = () => this.saveData(data, callback);
@@ -129,9 +133,9 @@ class STBGraph extends Component {
       layout: {
         hierarchical: {
           enabled: true,
-          levelSeparation: 100,
+          levelSeparation: 150,
           nodeSpacing: 150,
-          treeSpacing: 100,
+          treeSpacing: 150,
           blockShifting: true,
           edgeMinimization: true,
           parentCentralization: true,
@@ -158,13 +162,13 @@ class STBGraph extends Component {
       physics: {
         enabled: true,
         repulsion: {
-          nodeDistance: 100,
+          nodeDistance: 400,
         },
         hierarchicalRepulsion: {
           centralGravity: 0.0,
-          springLength: 100,
+          springLength: 300,
           springConstant: 0.01,
-          nodeDistance: 100,
+          nodeDistance: 300,
           damping: 0.09
         },
       },
@@ -184,7 +188,6 @@ class STBGraph extends Component {
       width: '100%',
       height: '500px',
       nodes: {
-
         shape: "dot",
         fixed: {
           y: true,
