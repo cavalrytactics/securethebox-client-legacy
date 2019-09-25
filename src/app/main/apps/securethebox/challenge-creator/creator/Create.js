@@ -23,9 +23,40 @@ class Create extends Component {
         super(props);
         this.state = {
             loading: false,
+            course_payload: {},
+            course_id: "",
+            course_title: "",
+            course_slug: "",
+            course_description: "",
+            course_category: "",
+            course_length: "",
+            course_totalSteps: "",
+            course_activeStep: 0,
+            course_steps: [],
+            challenge_course_example: {
+                'id': '15459251a6d6b39756511', 
+                'title': 'Challenge 1', 
+                'slug': 'challenge-1', 
+                'description': 'Defense Scenario', 
+                'category': 'web', 
+                'length': 121, 
+                'totalSteps': 11, 
+                'activeStep': 0, 
+                'steps': [
+                    {
+                        'id': '0', 
+                        'title': 'Overview', 
+                        'content': '<h1>Overview</h1>'
+                    }
+                ]
+            },
             step_overview: 'Write a high-level overview about this challenge at the perspective of the company/interview process',
             step_grading_criteria: 'Write details of the job expectations and requirements.<br/></br> Use the Target Individual Contributer Level measurements',
             step_scenario: 'Write details of the simulated scenario',
+            step_start: '',
+            step_resources: '',
+            step_submission: '',
+            step_scoring: '',
             step_ic_level: 0,
             step_blueTeam_level: 0,
             step_blueTeam_categories: [],
@@ -37,10 +68,6 @@ class Create extends Component {
             step_softwareEngineering_categories: [],
             step_systemsEngineering_level: 0,
             step_systemsEngineering_categories: [],
-            step_start: '',
-            step_resources: '',
-            step_submission: '',
-            step_scoring: '',
             grading_criteria_choices: [''],
             appList: [
                 { 'id': 0, 'name': 'nginx', 'selected': false },
@@ -64,10 +91,10 @@ class Create extends Component {
         // Get Application List
         axios.get('/api/applications')
             .then((r) => {
-                var listApps = new Array()
-                r.data.map((v, i) => {
+                var listApps = []
+                r.data.map((v, i) => (
                     listApps.push({ 'id': i, 'name': v, 'selected': false })
-                })
+                ))
                 this.setState({
                     appList: listApps
                 })
@@ -98,6 +125,56 @@ class Create extends Component {
                 console.log(r)
             })
     }
+
+    createPayloadChallenge(){
+        let prevCourse = this.state.course_payload
+        prevCourse["id"] = "123"
+        prevCourse['title'] = ""
+        prevCourse['slug'] = ""
+        prevCourse['description'] = ""
+        prevCourse['category'] = ""
+        prevCourse['length'] = ""
+        prevCourse['totalSteps'] = ""
+        prevCourse['activeStep'] = ""
+        prevCourse['steps'] = this.state.course_steps
+        this.setState({
+            course_payload: prevCourse
+        })
+    }
+
+
+
+    createPayloadAllSteps(){
+        let steps = []
+        let step1_overview = this.payloadStep(0, 'Overview', this.state.step_overview)
+        let step2_grading_criteria = this.payloadStep(1, 'Grading Criteria', this.state.step_grading_criteria)
+        let step3_scenario = this.payloadStep(2, 'Scenario', this.state.step_scenario)
+        let step4_start = this.payloadStep(3, 'Start Challenge', this.state.step_start)
+        let step5_resources = this.payloadStep(4, 'Resources', this.state.step_resources)
+        let step6_scoring = this.payloadStep(5, 'Scoring', this.state.step_scoring)
+        steps.push(step1_overview)
+        steps.push(step2_grading_criteria)
+        steps.push(step3_scenario)
+        steps.push(step4_start)
+        steps.push(step5_resources)
+        steps.push(step6_scoring)
+        this.setState({
+            course_steps: steps
+        })
+        return steps
+        
+    }
+
+    payloadStep(stepId, stepTitle, stepContent){
+        let payload = {
+            id: stepId,
+            title: stepTitle,
+            content: stepContent
+        }
+        return payload
+    }
+
+
 
     handleChangeStepOverview = (value) => {
         this.setState({

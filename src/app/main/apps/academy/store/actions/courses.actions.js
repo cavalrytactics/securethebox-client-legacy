@@ -6,9 +6,12 @@ export const GET_CATEGORIES = '[ACADEMY APP] GET CATEGORIES';
 export function getCourses()
 {
     const request = axios.get('/api/academy-app/courses');
+    request.then((response) => 
+            console.log(response)
+        );
 
     return (dispatch) =>
-        request.then((response) =>
+        request.then((response) => 
             dispatch({
                 type   : GET_COURSES,
                 payload: response.data

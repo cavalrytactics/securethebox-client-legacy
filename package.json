@@ -19,6 +19,7 @@
         "firebase": "6.6.0",
         "formsy-react": "1.1.5",
         "google-map-react": "1.1.4",
+        "http-proxy-middleware": "^0.20.0",
         "js-yaml": "^3.13.1",
         "jsonwebtoken": "8.5.1",
         "jss": "10.0.0-alpha.24",
@@ -100,7 +101,7 @@
         "webpack-bundle-analyzer": "3.4.1"
     },
     "scripts": {
-        "commit": "git add --all && git commit -m \"Deploy\" && git push",
+        "commit": "git add --all && git cz && git push",
         "start": "yarn run tailwind && react-app-rewired start",
         "build": "yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-app-rewired build",
         "tailwind": "./node_modules/.bin/tailwind build ./src/styles/tailwind.base.css -c ./tailwind.js -o ./src/styles/tailwind.css",
