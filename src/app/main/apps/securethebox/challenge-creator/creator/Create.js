@@ -7,7 +7,7 @@ import {
     Paper,
     // Grid,
     Button,
-    // TextField
+    TextField
 } from '@material-ui/core';
 import STBReactQuill from '../../../../../../@stb-components/STBReactQuill/STBReactQuill';
 import STBRubrikCategories from '../../../../../../@stb-components/STBRubrikCategories';
@@ -24,28 +24,34 @@ class Create extends Component {
         this.state = {
             loading: false,
             course_payload: {},
-            course_id: "",
-            course_title: "",
-            course_slug: "",
-            course_description: "",
-            course_category: "",
-            course_length: "",
-            course_totalSteps: "",
+            course_id: "1",
+            course_title: "title",
+            course_slug: "slug",
+            course_description: "description",
+            course_category: "web",
+            course_length: 121,
+            course_totalSteps: 1,
             course_activeStep: 0,
-            course_steps: [],
+            course_steps: [
+                {
+                    'id': '0',
+                    'title': 'Overview',
+                    'content': '<h1>Overview</h1>'
+                }
+            ],
             challenge_course_example: {
-                'id': '15459251a6d6b39756511', 
-                'title': 'Challenge 1', 
-                'slug': 'challenge-1', 
-                'description': 'Defense Scenario', 
-                'category': 'web', 
-                'length': 121, 
-                'totalSteps': 11, 
-                'activeStep': 0, 
+                'id': '15459251a6d6b39756511',
+                'title': 'Challenge 1',
+                'slug': 'challenge-1',
+                'description': 'Defense Scenario',
+                'category': 'web',
+                'length': 121,
+                'totalSteps': 11,
+                'activeStep': 0,
                 'steps': [
                     {
-                        'id': '0', 
-                        'title': 'Overview', 
+                        'id': '0',
+                        'title': 'Overview',
                         'content': '<h1>Overview</h1>'
                     }
                 ]
@@ -75,6 +81,12 @@ class Create extends Component {
             ],
             challenge_payload: {}
         };
+        this.handleChangeCourseId = this.handleChangeCourseId.bind(this)
+        this.handleChangeCourseTitle = this.handleChangeCourseTitle.bind(this)
+        this.handleChangeCourseSlug = this.handleChangeCourseSlug.bind(this)
+        this.handleChangeCourseDescription = this.handleChangeCourseDescription.bind(this)
+        this.handleChangeCourseLength = this.handleChangeCourseLength.bind(this)
+        
         this.handleChangeStepOverview = this.handleChangeStepOverview.bind(this);
         this.handleChangeStepGradingCriteria = this.handleChangeStepGradingCriteria.bind(this);
         this.handleChangeStepScenario = this.handleChangeStepScenario.bind(this);
@@ -102,70 +114,75 @@ class Create extends Component {
     }
 
     submitChallengePayload() {
-        let payload = {
-            'challenge': {
-                'overview': this.state.step_overview,
-                'grading_criteria': this.state.step_grading_criteria,
-                'ic_level': this.state.step_ic_level,
-                'blueTeam_level': this.state.step_blueTeam_level,
-                'blueTeam_categories': this.state.step_blueTeam_categories,
-                'redTeam_level': this.state.step_redTeam_level,
-                'redTeam_categories': this.state.step_redTeam_categories,
-                'securityEngineering_level': this.state.step_securityEngineering_level,
-                'securityEngineering_categories': this.state.step_securityEngineering_categories,
-                'softwareEngineering_level': this.state.step_softwareEngineering_level,
-                'softwareEngineering_categories': this.state.step_softwareEngineering_level,
-                'systemsEngineering_level': this.state.step_systemsEngineering_level,
-                'systemsEngineering_categories': this.state.step_systemsEngineering_categories,
-                'scenario': this.state.step_scenario
-            }
-        }
-        axios.post('/api/challenges', payload)
+        // let payload = {
+        //     'challenge': {
+        //         'overview': this.state.step_overview,
+        //         'grading_criteria': this.state.step_grading_criteria,
+        //         'ic_level': this.state.step_ic_level,
+        //         'blueTeam_level': this.state.step_blueTeam_level,
+        //         'blueTeam_categories': this.state.step_blueTeam_categories,
+        //         'redTeam_level': this.state.step_redTeam_level,
+        //         'redTeam_categories': this.state.step_redTeam_categories,
+        //         'securityEngineering_level': this.state.step_securityEngineering_level,
+        //         'securityEngineering_categories': this.state.step_securityEngineering_categories,
+        //         'softwareEngineering_level': this.state.step_softwareEngineering_level,
+        //         'softwareEngineering_categories': this.state.step_softwareEngineering_level,
+        //         'systemsEngineering_level': this.state.step_systemsEngineering_level,
+        //         'systemsEngineering_categories': this.state.step_systemsEngineering_categories,
+        //         'scenario': this.state.step_scenario
+        //     }
+        // }
+        this.createPayloadChallenge()
+        axios.post('/api/challenges', this.state.course_payload)
             .then((r) => {
                 console.log(r)
             })
     }
 
-    createPayloadChallenge(){
-        let prevCourse = this.state.course_payload
-        prevCourse["id"] = "123"
-        prevCourse['title'] = ""
-        prevCourse['slug'] = ""
-        prevCourse['description'] = ""
-        prevCourse['category'] = ""
-        prevCourse['length'] = ""
-        prevCourse['totalSteps'] = ""
-        prevCourse['activeStep'] = ""
+    createPayloadChallenge() {
+        let prevCourse = {}
+        prevCourse["id"] = this.state.course_id
+        prevCourse['title'] = this.state.course_title
+        prevCourse['slug'] = this.state.course_slug
+        prevCourse['description'] = this.state.course_description
+        prevCourse['category'] = this.state.course_category
+        prevCourse['length'] = this.state.course_length
+        prevCourse['totalSteps'] = this.state.course_totalSteps
+        prevCourse['activeStep'] = this.state.course_activeStep
         prevCourse['steps'] = this.state.course_steps
         this.setState({
-            course_payload: prevCourse
+            course_payload: { 'challenge': prevCourse }
+        }, () => {
+            console.log(this.state.course_payload)
         })
     }
 
 
 
-    createPayloadAllSteps(){
+    createPayloadAllSteps() {
         let steps = []
         let step1_overview = this.payloadStep(0, 'Overview', this.state.step_overview)
         let step2_grading_criteria = this.payloadStep(1, 'Grading Criteria', this.state.step_grading_criteria)
         let step3_scenario = this.payloadStep(2, 'Scenario', this.state.step_scenario)
         let step4_start = this.payloadStep(3, 'Start Challenge', this.state.step_start)
         let step5_resources = this.payloadStep(4, 'Resources', this.state.step_resources)
-        let step6_scoring = this.payloadStep(5, 'Scoring', this.state.step_scoring)
+        let step6_submission = this.payloadStep(5, 'Submission', this.state.step_resources)
+        let step7_scoring = this.payloadStep(6, 'Scoring', this.state.step_scoring)
         steps.push(step1_overview)
         steps.push(step2_grading_criteria)
         steps.push(step3_scenario)
         steps.push(step4_start)
         steps.push(step5_resources)
-        steps.push(step6_scoring)
+        steps.push(step6_submission)
+        steps.push(step7_scoring)
         this.setState({
             course_steps: steps
         })
         return steps
-        
+
     }
 
-    payloadStep(stepId, stepTitle, stepContent){
+    payloadStep(stepId, stepTitle, stepContent) {
         let payload = {
             id: stepId,
             title: stepTitle,
@@ -174,7 +191,32 @@ class Create extends Component {
         return payload
     }
 
-
+    handleChangeCourseId = (event) => {
+        this.setState({
+            course_id: event.target.value
+        });
+    };
+    handleChangeCourseTitle = (event) => {
+        this.setState({
+            course_title: event.target.value
+        });
+    };
+    handleChangeCourseDescription = (event) => {
+        this.setState({
+            course_description: event.target.value
+        });
+    };
+    handleChangeCourseSlug = (event) => {
+        this.setState({
+            course_slug: event.target.value
+        });
+    };
+    handleChangeCourseLength = (event) => {
+        this.setState({
+            course_length: event.target.value
+        });
+    };
+    
 
     handleChangeStepOverview = (value) => {
         this.setState({
@@ -218,10 +260,50 @@ class Create extends Component {
         });
     };
 
+    // course_title: "title",
+    // course_slug: "slug",
+    // course_description: "description",
+    // course_category: "web",
+    // course_length: 121,
     render() {
         return (
             <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64">
                 <Paper className="w-full rounded-8 p-16 md:p-24" elevation={1}>
+                    <TextField
+                        id="standard-name"
+                        label="Course Id"
+                        value={this.state.course_id}
+                        onChange={this.handleChangeCourseId}
+                        margin="normal"
+                    />
+                    <TextField
+                        id="standard-name"
+                        label="Course Title"
+                        value={this.state.course_title}
+                        onChange={this.handleChangeCourseTitle}
+                        margin="normal"
+                    />
+                    <TextField
+                        id="standard-name"
+                        label="Course Description"
+                        value={this.state.course_description}
+                        onChange={this.handleChangeCourseDescription}
+                        margin="normal"
+                    />
+                    <TextField
+                        id="standard-name"
+                        label="Course Slug"
+                        value={this.state.course_slug}
+                        onChange={this.handleChangeCourseSlug}
+                        margin="normal"
+                    />
+                    <TextField
+                        id="standard-name"
+                        label="Course Length"
+                        value={this.state.course_length}
+                        onChange={this.handleChangeCourseLength}
+                        margin="normal"
+                    />
                     <h1>Overview</h1>
                     <STBReactQuill context={this.state.step_overview} handleChangeContext={(value) => this.handleChangeStepOverview(value)} />
                     <br />
