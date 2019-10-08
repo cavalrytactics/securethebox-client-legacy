@@ -29,7 +29,7 @@ const marks = [
     }
   ];
 
-class STBSliderIndividualContributerLevel extends Component {
+class STBSliderIndividualContributorLevel extends Component {
 
     constructor(props) {
         super(props);
@@ -52,7 +52,7 @@ class STBSliderIndividualContributerLevel extends Component {
     render(){
         return(
             <div style={{width: '90%', marginLeft:'auto', marginRight:'auto'}} >
-                <h3>Target Individual Contributer Level</h3>
+                <h3>Target Individual Contributor Level</h3>
             <Slider
                 defaultValue={0}
                 valueLabelFormat={(value) => this.valueLabelFormat(value)}
@@ -68,4 +68,4 @@ class STBSliderIndividualContributerLevel extends Component {
 }
 
 
-export default STBSliderIndividualContributerLevel;
+export default STBSliderIndividualContributorLevel;

@@ -27,7 +27,7 @@ export const ChallengeCreatorAppConfig = {
     routes  : [
         {
             path     : '/apps/challenge-creator/create',
-            component: React.lazy(() => import('./creator/Create'))
+            component: React.lazy(() => import('./creator/Create2'))
         }
     ]
 };
