@@ -1,0 +1,35 @@
+[
+    {
+        "id": 0,
+        "title": "Overview",
+        "content": "<p>Write a high-level overview about this challenge at the perspective of the company/interview process</p>"
+    },
+    {
+        "id": 1,
+        "title": "Grading Criteria",
+        "content": "<p>Write details of the job expectations and requirements.<br/></br> Use the Target Individual Contributor Level measurements</p>"
+    },
+    {
+        "id": 2,
+        "title": "Scenario",
+        "content": "Write details of the simulated scenario"
+    },
+    {
+        "id": 3,
+        "title": "Start Challenge",
+        "content": "<ul><li>When you are ready, click the \"Start Challenge\" button to begin.</li><li>You challenge environment will take 2 minutes to deploy.</li><li>When the environment is ready, a timer will start a 2 hour countdown.</li><li>The next page \"Scope & Resources\" will contain all the information you need for this challenge.</li><li>After your time is over, or you complete the challenge, the environment will be analyzed and destroyed.</li><li>If you're stuck, review the \"Scope & Resources\" page for tips.</li><li>If you would like to end the challenge and destroy the environment, click on \"End Challenge\" button.</li></ul>"
+    }, {
+        "id": 4,
+        "title": "Resources",
+        "content": "<p>Expand the row for details containing Credentials and Tips of each resource.<br/><br/>Click on URL button to view Resource.</p>"
+    }, {
+        "id": 5,
+        "title": "Submission",
+        "content": "<p>List of CTF questions the candidate will answer</p>"
+    },
+    {
+        "id": 6,
+        "title": "Scoring",
+        "content": "<h3>Health of your services</h3></br>Using Zipkin and Wavefront"
+    }
+]

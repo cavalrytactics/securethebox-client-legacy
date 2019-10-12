@@ -1,0 +1,57 @@
+[
+    {
+        "label": "Title",
+        "name": "title",
+        "component": "textfull",
+        "type": "text"
+    },
+    {
+        "label": "Description",
+        "name": "description",
+        "component": "textfull",
+        "type": "text"
+    },
+    {
+        "label": "Select a Category",
+        "name": "category",
+        "component": "select",
+        "items": [
+            {
+                "value": "web",
+                "label": "Web"
+            },
+            {
+                "value": "incident_response",
+                "label": "Incident Response"
+            },
+            {
+                "value": "threat_detection",
+                "label": "Threat Detection"
+            },
+            {
+                "value": "vulnerability_management",
+                "label": "Vulnerability Management"
+            }
+        ]
+    },
+    {
+        "label": "Select a Course Duration",
+        "name": "length",
+        "component": "select",
+        "placeholder": "Select a Course Duration",
+        "items": [
+            {
+                "value": 0,
+                "label": "No Timer"
+            },
+            {
+                "value": 30,
+                "label": "30 Minutes"
+            },
+            {
+                "value": 60,
+                "label": "1 Hour"
+            }
+        ]
+    }
+]
