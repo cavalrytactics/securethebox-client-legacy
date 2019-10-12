@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 import default_deploy_yaml from '../../../../../../@stb-components/STBHelmChart/templates/deployment.yaml';
 import default_ingress_yaml from '../../../../../../@stb-components/STBHelmChart/templates/ingress.yaml';
 import default_service_yaml from '../../../../../../@stb-components/STBHelmChart/templates/service.yaml';
+// import STBSubmissions from '../../../../../../@stb-components/STBSubmissions/STBSubmissions';
+import STBFinalFormArrays from '../../../../../../@stb-components/STBFinalFormArrays/STBFinalFormArrays';
 import withReducer from 'app/store/withReducer';
 import connect from 'react-redux/es/connect/connect';
 import reducer from '../../../../../auth/store/reducers';
@@ -28,7 +30,7 @@ import {
     // TextField
 } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-import AddIcon from '@material-ui/icons/Add';
+// import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios'
 
 function TabPanel(props) {
@@ -256,6 +258,10 @@ class Create extends Component {
         // axios.post('http://localhost:5000/api/apps/app/1', yamlDataService);
     }
 
+    renderSubmissionQuestions(){
+        return <STBFinalFormArrays/>
+    }
+
 
     render() {
         return (
@@ -268,6 +274,7 @@ class Create extends Component {
                     URL
                     App Name:
                     Type:
+                    {this.renderSubmissionQuestions()}
 
                     <Grid item xs style={{ textTransform: 'none' }}>
                         <Button onClick={() => this.createYaml()} style={{ backgroundColor: '#2196f3', color: "white", textTransform: 'none' }}>Save <SaveIcon fontSize={'small'} style={{ marginLeft: 12 }} /></Button>
@@ -276,7 +283,6 @@ class Create extends Component {
                                 <Tab style={{ textTransform: 'none' }} label="deploy.yaml" {...this.a11yProps(0)} />
                                 <Tab style={{ textTransform: 'none' }} label="ingress.yaml" {...this.a11yProps(1)} />
                                 <Tab style={{ textTransform: 'none' }} label="service.yaml" {...this.a11yProps(2)} />
-                                <Button ><AddIcon style={{ color: 'white' }} /></Button>
                             </Tabs>
 
                         </AppBar>

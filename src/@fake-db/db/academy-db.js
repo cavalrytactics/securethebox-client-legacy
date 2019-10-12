@@ -659,54 +659,54 @@ const academyDB = {
     ]
 };
 
-mock.onGet('/api/academy-app/categories').reply(() => {
-    return [200, academyDB.categories];
-});
+// mock.onGet('/api/academy-app/categories').reply(() => {
+//     return [200, academyDB.categories];
+// });
 
-mock.onGet('/api/academy-app/courses').reply(() => {
-    return [200, academyDB.courses.map((_course) => _.omit(_course, ['steps']))];
-});
+// mock.onGet('/api/academy-app/courses').reply(() => {
+//     return [200, academyDB.courses.map((_course) => _.omit(_course, ['steps']))];
+// });
 
-mock.onGet('/api/academy-app/course').reply((request) => {
-    const {courseId} = request.params;
-    const response = _.find(academyDB.courses, {id: courseId});
-    return [200, response];
-});
+// mock.onGet('/api/academy-app/course').reply((request) => {
+//     const {courseId} = request.params;
+//     const response = _.find(academyDB.courses, {id: courseId});
+//     return [200, response];
+// });
 
-mock.onPost('/api/academy-app/course/save').reply((request) => {
-    const data = JSON.parse(request.data);
-    let course = null;
+// mock.onPost('/api/academy-app/course/save').reply((request) => {
+//     const data = JSON.parse(request.data);
+//     let course = null;
 
-    academyDB.courses = academyDB.courses.map(_course => {
-        if ( _course.id === data.id )
-        {
-            course = data;
-            return course
-        }
-        return _course;
-    });
+//     academyDB.courses = academyDB.courses.map(_course => {
+//         if ( _course.id === data.id )
+//         {
+//             course = data;
+//             return course
+//         }
+//         return _course;
+//     });
 
-    if ( !course )
-    {
-        course = data;
-        academyDB.courses = [
-            ...academyDB.courses,
-            course
-        ]
-    }
+//     if ( !course )
+//     {
+//         course = data;
+//         academyDB.courses = [
+//             ...academyDB.courses,
+//             course
+//         ]
+//     }
 
-    return [200, course];
-});
+//     return [200, course];
+// });
 
-mock.onPost('/api/academy-app/course/update').reply((request) => {
-    const data = JSON.parse(request.data);
-    academyDB.courses = academyDB.courses.map(_course => {
-        if ( _course.id === data.id )
-        {
-            return _.merge(_course, data);
-        }
-        return _course;
-    });
+// mock.onPost('/api/academy-app/course/update').reply((request) => {
+//     const data = JSON.parse(request.data);
+//     academyDB.courses = academyDB.courses.map(_course => {
+//         if ( _course.id === data.id )
+//         {
+//             return _.merge(_course, data);
+//         }
+//         return _course;
+//     });
 
-    return [200, data];
-});
+//     return [200, data];
+// });

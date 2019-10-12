@@ -153,19 +153,20 @@ const academyDB = {
     ]
 };
 
-mock.onGet('/api/academy-app/categories').reply(() => {
-    return [200, academyDB.categories];
-});
+// mock.onGet('/api/academy-app/categories').reply(() => {
+//     return [200, academyDB.categories];
+// });
 
-mock.onGet('/api/academy-app/courses').reply(() => {
-    return [200, academyDB.courses.map((_course) => _.omit(_course, ['steps']))];
-});
+// mock.onGet('/api/academy-app/courses').reply(() => {
+//     return [200, academyDB.courses.map((_course) => _.omit(_course, ['steps']))];
+// });
 
-mock.onGet('/api/academy-app/course').reply((request) => {
-    const {courseId} = request.params;
-    const response = _.find(academyDB.courses, {id: courseId});
-    return [200, response];
-});
+// mock.onGet('/api/academy-app/course').reply((request) => {
+//     const {courseId} = request.params;
+//     const response = _.find(academyDB.courses, {id: courseId});
+//     console.log(response)
+//     return [200, response];
+// });
 
 mock.onPost('/api/academy-app/course/save').reply((request) => {
     const data = JSON.parse(request.data);
