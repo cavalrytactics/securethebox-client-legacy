@@ -99,7 +99,7 @@ class Create extends Component {
         //         'softwareEngineering_level': this.state.step_softwareEngineering_level,
         //         'softwareEngineering_categories': this.state.step_softwareEngineering_level,
         //         'systemsEngineering_level': this.state.step_systemsEngineering_level,
-        //         'systemsEngineering_categories': this.state.step_systemsEngineering_categories,
+        //         'systemsEngineering_categories': this.state.step_systemsEngineering_categories,sdf
         //     }
         // }
         this.createPayloadChallenge()
