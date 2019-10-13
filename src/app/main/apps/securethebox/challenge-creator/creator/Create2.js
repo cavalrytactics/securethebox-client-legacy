@@ -89,21 +89,20 @@ class Create2 extends Component {
                                         <Grid container alignItems="flex-start" spacing={2}>
                                             <FieldArray name="steps">
                                                 {({ fields }) =>
-                                                    fields.map((name, index) => (
-                                                        <Grid item key={name} xs={12}>
-                                                            <label>Step #{index + 1}</label>
-                                                            <Field
-                                                                name={`${name}.title`}
-                                                                component="input"
-                                                                placeholder="Title"
-                                                            />
-                                                            <Field
-                                                                name={`${name}.content`}
-                                                                component={this.renderQuill}
-                                                                placeholder="Content"
-                                                            />
-                                                        </Grid>
-                                                    ))
+                                                    fields.map((name, index) => {
+                                                        console.log(fields["value"][index])
+                                                        return (
+                                                            <Grid item key={fields["value"][index]["id"]} xs={12}>
+                                                                <label >Step #{index + 1}: {fields["value"][index]["title"]} </label>
+                                                                <Field
+                                                                    name={`${name}.content`}
+                                                                    component={this.renderQuill}
+                                                                    placeholder="Content"
+                                                                />
+                                                            </Grid>
+                                                        )
+                                                    }
+                                                    )
                                                 }
                                             </FieldArray>
                                         </Grid>
