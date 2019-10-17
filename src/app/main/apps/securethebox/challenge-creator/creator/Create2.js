@@ -16,6 +16,7 @@ import {
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
 import axios from 'axios'
+import StepTabs from './StepTabs'
 
 class Create2 extends Component {
     constructor(props) {
@@ -87,24 +88,7 @@ class Create2 extends Component {
                                     <CourseFields course_fields={this.state.course_fields} />
                                     <Grid item xs={12}>
                                         <Grid container alignItems="flex-start" spacing={2}>
-                                            <FieldArray name="steps">
-                                                {({ fields }) =>
-                                                    fields.map((name, index) => {
-                                                        console.log(fields["value"][index])
-                                                        return (
-                                                            <Grid item key={fields["value"][index]["id"]} xs={12}>
-                                                                <label >Step #{index + 1}: {fields["value"][index]["title"]} </label>
-                                                                <Field
-                                                                    name={`${name}.content`}
-                                                                    component={this.renderQuill}
-                                                                    placeholder="Content"
-                                                                />
-                                                            </Grid>
-                                                        )
-                                                    }
-                                                    )
-                                                }
-                                            </FieldArray>
+                                            <StepTabs course_steps={this.state.course_steps} quill_component={this.renderQuill} />
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={6}>
@@ -120,7 +104,7 @@ class Create2 extends Component {
                                         </Button>
                                     </Grid>
                                 </Grid>
-
+                                <pre>{JSON.stringify(values, 0, 2)}</pre>
                             </form>
                         )}
                     />
