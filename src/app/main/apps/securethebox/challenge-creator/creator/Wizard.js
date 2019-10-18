@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import {
-  Paper,
   Grid,
   Button,
   Stepper,
@@ -95,11 +94,13 @@ export default class Wizard extends React.Component {
                       {activePage}
                       <div className="buttons">
                         {page > 0 && (
-                          <Button style={{margin: 10}} onClick={this.previous}>
+                          <Button style={{margin: 10, backgroundColor:'#e0e0e0'}} onClick={this.previous}>
                             Back
                           </Button>
                         )}
-                        {!isLastPage && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} type="submit">Next</Button>}
+                        {/* {!isLastPage && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} disabled={submitting || pristine} type="submit">Next</Button>} */}
+                        {!isLastPage && pristine && <Button style={{margin: 10, backgroundColor:'#e0e0e0'}} disabled={pristine} type="submit">Next</Button>}
+                        {!isLastPage && !pristine && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} disabled={submitting} type="submit">Next</Button>}
                         {isLastPage && (
                           <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} type="submit" disabled={submitting}>
                             Submit Form

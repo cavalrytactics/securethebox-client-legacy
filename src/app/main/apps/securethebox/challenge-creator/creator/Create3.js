@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 import withReducer from 'app/store/withReducer';
 import connect from 'react-redux/es/connect/connect';
 import reducer from '../../../../../auth/store/reducers';
-import { Form, Field } from 'react-final-form'
+import { Field } from 'react-final-form'
 import ReactQuill from 'react-quill';
-import CourseFields from './CourseFields'
 import './Create.css'
-import arrayMutators from "final-form-arrays";
-import { FieldArray } from "react-final-form-arrays";
 import { Checkbox } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
-    Button,
-    Stepper,
-    Step,
-    StepLabel,
-    StepContent,
     FormLabel,
     FormGroup,
     FormControl,
@@ -25,15 +17,7 @@ import {
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
 import axios from 'axios'
-import StepTabs from './StepTabs'
 import Wizard from "./Wizard";
-
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-const onSubmit = async values => {
-    await sleep(300);
-    window.alert(JSON.stringify(values, 0, 2));
-};
 
 const Error = ({ name }) => (
     <Field
@@ -44,8 +28,6 @@ const Error = ({ name }) => (
         }
     />
 );
-
-const required = value => (value ? undefined : "Required");
 
 class Create2 extends Component {
     constructor(props) {
@@ -68,6 +50,7 @@ class Create2 extends Component {
                     listApps.push({ 'name': v.name, 'category': v.category })
                     listCategories[v.category] = 0
                     listCategories[v.category] += 1
+                    return null
                 })
                 this.setState({
                     appCategories: listCategories,
@@ -99,10 +82,11 @@ class Create2 extends Component {
         axios.post('/api/challenges', this.state.course_payload)
             .then((r) => {
                 console.log(r)
+                return null
             })
     }
 
-    renderAppCategory(category,step_index) {
+    renderAppCategory(category, step_index) {
         return this.state.appList.map((value, index) => {
             if (category === value.category) {
                 return (
@@ -120,7 +104,10 @@ class Create2 extends Component {
                     />
                 )
             }
-        })
+            return null
+        }
+
+        )
     }
 
     renderWizardPages() {
@@ -140,7 +127,7 @@ class Create2 extends Component {
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">{e}</FormLabel>
                                                     <FormGroup>
-                                                        {this.renderAppCategory(e,index)}
+                                                        {this.renderAppCategory(e, index)}
                                                     </FormGroup>
                                                 </FormControl>
                                             </Grid>
