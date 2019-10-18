@@ -106,7 +106,7 @@
         "webpack-bundle-analyzer": "3.5.2"
     },
     "scripts": {
-        "commit": "git add --all && git cz && git push",
+        "commit": "git add --all && git cz && export CURRENTBRANCH=$(git branch | grep \\* | cut -d ' ' -f2) && git push --set-upstream origin $CURRENTBRANCH",
         "sync": "git checkout master ; git pull",
         "start": "yarn run tailwind && react-app-rewired start",
         "build": "yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-app-rewired build",

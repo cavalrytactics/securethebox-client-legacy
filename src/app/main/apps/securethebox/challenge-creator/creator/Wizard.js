@@ -81,7 +81,7 @@ export default class Wizard extends React.Component {
         validate={this.validate}
         onSubmit={this.handleSubmit}
       >
-        {({ handleSubmit, submitting, values }) => (
+        {({ handleSubmit, submitting, values, form, pristine }) => (
           <form onSubmit={handleSubmit}>
             <Grid container alignItems="flex-start" spacing={2}>
               <CourseFields course_fields={this.state.course_fields} />
@@ -95,15 +95,15 @@ export default class Wizard extends React.Component {
                       {activePage}
                       <div className="buttons">
                         {page > 0 && (
-                          <Button onClick={this.previous}>
-                            Previous
+                          <Button style={{margin: 10}} onClick={this.previous}>
+                            Back
                           </Button>
                         )}
-                        {!isLastPage && <Button type="submit">Next</Button>}
+                        {!isLastPage && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} type="submit">Next</Button>}
                         {isLastPage && (
-                          <Button type="submit" disabled={submitting}>
-                            Submit
-                        </Button>
+                          <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} type="submit" disabled={submitting}>
+                            Submit Form
+                          </Button>
                         )}
                       </div>
                     </StepContent>
@@ -111,6 +111,14 @@ export default class Wizard extends React.Component {
                 )
               })}
             </Stepper>
+            <Button
+              type="button"
+              onClick={form.reset}
+              disabled={submitting}
+              style={{margin: 10, backgroundColor:'#f44336', color:'white'}}
+            >
+              Reset Form
+            </Button>
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
