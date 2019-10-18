@@ -8,6 +8,7 @@ import CourseFields from './CourseFields'
 import './Create.css'
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
+import { Checkbox } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
@@ -15,7 +16,11 @@ import {
     Stepper,
     Step,
     StepLabel,
-    StepContent
+    StepContent,
+    FormLabel,
+    FormGroup,
+    FormControl,
+    FormControlLabel,
 } from '@material-ui/core';
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
@@ -48,11 +53,27 @@ class Create2 extends Component {
         this.state = {
             loading: false,
             course_fields: CourseFieldsJson,
-            course_steps: CourseStepsJson
+            course_steps: CourseStepsJson,
+            appList: [],
+            appCategories: {}
         };
     }
 
     componentDidMount() {
+        axios.get('/api/applications')
+            .then((r) => {
+                var listApps = []
+                var listCategories = {}
+                r.data.map((v, i) => {
+                    listApps.push({ 'name': v.name, 'category': v.category })
+                    listCategories[v.category] = 0
+                    listCategories[v.category] += 1
+                })
+                this.setState({
+                    appCategories: listCategories,
+                    appList: listApps
+                })
+            })
         this.setState({
             loading: true
         })
@@ -81,9 +102,65 @@ class Create2 extends Component {
             })
     }
 
+    renderAppCategory(category,step_index) {
+        return this.state.appList.map((value, index) => {
+            if (category === value.category) {
+                return (
+                    <FormControlLabel
+                        key={value + index}
+                        label={value.name}
+                        control={
+                            <Field
+                                name={`steps[${step_index}].apps`}
+                                component={Checkbox}
+                                type="checkbox"
+                                value={value.name}
+                            />
+                        }
+                    />
+                )
+            }
+        })
+    }
+
     renderWizardPages() {
         return (
             this.state.course_steps.map((value, index) => {
+                if (index === 2) {
+                    return (
+                        <Wizard.Page key={value.title + index} >
+                            <Grid container alignItems="flex-start" justify="center" spacing={2}>
+                                <Grid item xs={12}>
+                                    <h1>Select Modules to Enable for this Challenge</h1>
+                                </Grid>
+                                {
+                                    Object.keys(this.state.appCategories).map((e, i) => {
+                                        return (
+                                            <Grid key={e} item xs>
+                                                <FormControl component="fieldset">
+                                                    <FormLabel component="legend">{e}</FormLabel>
+                                                    <FormGroup>
+                                                        {this.renderAppCategory(e,index)}
+                                                    </FormGroup>
+                                                </FormControl>
+                                            </Grid>
+                                        )
+                                    }
+                                    )
+                                }
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[${index}].content`}
+                                        component={this.renderQuill}
+                                        placeholder="Content"
+                                    />
+
+                                    <Error name={`steps[${this.state.page}].content`} />
+                                </Grid>
+                            </Grid>
+                        </Wizard.Page>
+                    )
+                }
                 return (
                     <Wizard.Page key={value.title + index} >
                         <div>
