@@ -7,8 +7,15 @@ import Box from '@material-ui/core/Box';
 import { Field } from 'react-final-form'
 import {
     Grid,
+    FormLabel,
+    FormGroup,
+    FormControl,
+    FormControlLabel,
 } from '@material-ui/core';
 import ReactQuill from 'react-quill';
+import STBAppSelect from '../../../../../../@stb-components/STBAppSelect/STBAppSelect';
+import axios from 'axios'
+import { Checkbox } from 'final-form-material-ui'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -32,13 +39,28 @@ class StepTabs extends Component {
         super(props);
         this.state = {
             value: 0,
-            availableTabs: [{ "label": "1" }, { "label": "2" }],
+            appList: [],
+            appCategories: {},
             loading: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
+        axios.get('/api/applications')
+            .then((r) => {
+                var listApps = []
+                var listCategories = {}
+                r.data.map((v, i) => {
+                    listApps.push({ 'name': v.name, 'category': v.category })
+                    listCategories[v.category] = 0
+                    listCategories[v.category] += 1
+                })
+                this.setState({
+                    appCategories: listCategories,
+                    appList: listApps
+                })
+            })
         this.setState({
             loading: true
         })
@@ -74,19 +96,64 @@ class StepTabs extends Component {
         )
     }
 
-    getIndex(step_fields, this_value) {
-        return step_fields.findIndex(obj => obj.index === this_value);
+    renderAppCategory(category) {
+        return this.state.appList.map((value, index) => {
+            if (category === value.category) {
+                return (
+                    <FormControlLabel
+                        key={value + index}
+                        label={value.name}
+                        control={
+                            <Field
+                                name={`steps[${this.state.value}].apps`}
+                                component={Checkbox}
+                                type="checkbox"
+                                value={value.name}
+                            />
+                        }
+                    />
+                )
+            }
+        })
     }
 
-    renderTab(quillComponent) {
-        console.log(`steps[${this.state.value}].content`)
+    renderStepModule(){
+        if (this.state.value === 2){
+            return (
+                <Grid container alignItems="flex-start" justify="center" spacing={2}>
+                    <Grid item xs={12}>
+                        <h1>Select Modules to Enable for this Challenge</h1>
+                    </Grid>
+                    {
+                        Object.keys(this.state.appCategories).map((e, i) => {
+                            return (
+                                <Grid key={e} item xs>
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend">{e}</FormLabel>
+                                        <FormGroup>
+                                            {this.renderAppCategory(e)}
+                                        </FormGroup>
+                                    </FormControl>
+                                </Grid>
+                            )
+                        }
+                        )
+                    }
+                </Grid>
+            )
+        }
+    }
+
+
+    renderTab() {
         return (
             <TabPanel key={`steps[${this.state.value}].content`} >
                 <Field
                     name={`steps[${this.state.value}].content`}
-                    component={quillComponent}
+                    component={this.renderQuill}
                     placeholder="Content"
                 />
+                {this.renderStepModule()}
             </TabPanel>
         )
     }
@@ -118,7 +185,7 @@ class StepTabs extends Component {
                     </Tabs>
                 </AppBar>
                 {this.state.loading ?
-                    this.renderTab(this.props.quill_component)
+                    this.renderTab()
                     :
                     <div>loading</div>
                 }

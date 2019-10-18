@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import withReducer from 'app/store/withReducer';
 import connect from 'react-redux/es/connect/connect';
 import reducer from '../../../../../auth/store/reducers';
-import { Form, Field } from 'react-final-form'
-import ReactQuill from 'react-quill';
+import { Form } from 'react-final-form'
 import CourseFields from './CourseFields'
 import './Create.css'
 import arrayMutators from "final-form-arrays";
-import { FieldArray } from "react-final-form-arrays";
 import {
     Paper,
     Grid,
@@ -32,22 +30,6 @@ class Create2 extends Component {
         this.setState({
             loading: true
         })
-    }
-
-    renderQuill({ input }) {
-        return (
-            <ReactQuill
-                {...input}
-                onChange={(newValue, delta, source) => {
-                    if (source === 'user') {
-                        input.onChange(newValue);
-                    }
-                }}
-                onBlur={(range, source, quill) => {
-                    input.onBlur(quill.getHTML());
-                }}
-            />
-        )
     }
 
     submitChallengePayload() {
@@ -88,7 +70,7 @@ class Create2 extends Component {
                                     <CourseFields course_fields={this.state.course_fields} />
                                     <Grid item xs={12}>
                                         <Grid container alignItems="flex-start" spacing={2}>
-                                            <StepTabs course_steps={this.state.course_steps} quill_component={this.renderQuill} />
+                                            <StepTabs course_steps={this.state.course_steps} />
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={6}>
