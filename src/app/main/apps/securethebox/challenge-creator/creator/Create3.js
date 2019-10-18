@@ -12,11 +12,35 @@ import {
     Paper,
     Grid,
     Button,
+    Stepper,
+    Step,
+    StepLabel,
+    StepContent
 } from '@material-ui/core';
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
 import axios from 'axios'
 import StepTabs from './StepTabs'
+import Wizard from "./Wizard";
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const onSubmit = async values => {
+    await sleep(300);
+    window.alert(JSON.stringify(values, 0, 2));
+};
+
+const Error = ({ name }) => (
+    <Field
+        name={name}
+        subscribe={{ touched: true, error: true }}
+        render={({ meta: { touched, error } }) =>
+            touched && error ? <span>{error}</span> : null
+        }
+    />
+);
+
+const required = value => (value ? undefined : "Required");
 
 class Create2 extends Component {
     constructor(props) {
@@ -57,6 +81,26 @@ class Create2 extends Component {
             })
     }
 
+    renderWizardPages() {
+        return (
+            this.state.course_steps.map((value, index) => {
+                return (
+                    <Wizard.Page key={value.title + index} >
+                        <div>
+                            <Field
+                                name={`steps[${index}].content`}
+                                component={this.renderQuill}
+                                placeholder="Content"
+                            />
+
+                            <Error name={`steps[${this.state.page}].content`} />
+                        </div>
+                    </Wizard.Page>
+                )
+            })
+        )
+    }
+
     render() {
         const onSubmit = async values => {
             let challengeDict = {}
@@ -70,11 +114,7 @@ class Create2 extends Component {
         return (
             <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64">
                 <Paper className="w-full rounded-8 p-16 md:p-24" elevation={1}>
-                    <Form
-                        onSubmit={onSubmit}
-                        mutators={{
-                            ...arrayMutators
-                        }}
+                    <Wizard
                         initialValues={{
                             category: 'web',
                             length: 0,
@@ -82,32 +122,11 @@ class Create2 extends Component {
                             activeStep: 0,
                             steps: this.state.course_steps
                         }}
-                        render={({ handleSubmit, form: { mutators: { push, pop } }, form, submitting, pristine, values }) => (
-                            <form onSubmit={handleSubmit}>
-                                <Grid container alignItems="flex-start" spacing={2}>
-                                    <CourseFields course_fields={this.state.course_fields} />
-                                    <Grid item xs={12}>
-                                        <Grid container alignItems="flex-start" spacing={2}>
-                                            <StepTabs course_steps={this.state.course_steps} quill_component={this.renderQuill} />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Button
-                                            type="button"
-                                            onClick={form.reset}
-                                            disabled={submitting || pristine}
-                                        >
-                                            Reset
-                                        </Button>
-                                        <Button type="submit" variant="contained" color="primary" disabled={submitting || pristine}>
-                                            Submit
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                                <pre>{JSON.stringify(values, 0, 2)}</pre>
-                            </form>
-                        )}
-                    />
+                        onSubmit={onSubmit}
+                    >
+
+                        {this.renderWizardPages()}
+                    </Wizard>
                 </Paper>
             </div>
         )
