@@ -5,12 +5,11 @@ import reducer from '../../../../../auth/store/reducers';
 import { Field } from 'react-final-form'
 import ReactQuill from 'react-quill';
 import './Create.css'
-import { Checkbox, Radio } from 'final-form-material-ui'
+import { Radio } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
     FormLabel,
-    FormGroup,
     FormControl,
     FormControlLabel,
     RadioGroup
@@ -49,8 +48,7 @@ class Create2 extends Component {
                 var listCategories = {}
                 r.data.map((v, i) => {
                     listApps.push({ 'name': v.name, 'label':v.label, 'category': v.category })
-                    listCategories[v.category] = 0
-                    listCategories[v.category] += 1
+                    listCategories[v.category] = v.label
                     return null
                 })
                 this.setState({
@@ -126,7 +124,7 @@ class Create2 extends Component {
                                         return (
                                             <Grid key={e} item xs>
                                                 <FormControl component="fieldset">
-                                                    <FormLabel component="legend">{this.state.appList[i].label}</FormLabel>
+                                                    <FormLabel component="legend">{this.state.appCategories[e]}</FormLabel>
                                                     <RadioGroup>
                                                         {this.renderAppCategory(e, index)}
                                                     </RadioGroup>
