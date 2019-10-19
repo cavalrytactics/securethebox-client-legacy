@@ -5,7 +5,7 @@ import reducer from '../../../../../auth/store/reducers';
 import { Field } from 'react-final-form'
 import ReactQuill from 'react-quill';
 import './Create.css'
-import { Checkbox } from 'final-form-material-ui'
+import { Checkbox, Radio } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
@@ -13,6 +13,7 @@ import {
     FormGroup,
     FormControl,
     FormControlLabel,
+    RadioGroup
 } from '@material-ui/core';
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
@@ -47,7 +48,7 @@ class Create2 extends Component {
                 var listApps = []
                 var listCategories = {}
                 r.data.map((v, i) => {
-                    listApps.push({ 'name': v.name, 'category': v.category })
+                    listApps.push({ 'name': v.name, 'label':v.label, 'category': v.category })
                     listCategories[v.category] = 0
                     listCategories[v.category] += 1
                     return null
@@ -95,9 +96,9 @@ class Create2 extends Component {
                         label={value.name}
                         control={
                             <Field
-                                name={`steps[${step_index}].apps`}
-                                component={Checkbox}
-                                type="checkbox"
+                                name={`steps[${step_index}].apps[${category}]`}
+                                component={Radio}
+                                type="radio"
                                 value={value.name}
                             />
                         }
@@ -118,17 +119,17 @@ class Create2 extends Component {
                         <Wizard.Page key={value.title + index} >
                             <Grid container alignItems="flex-start" justify="center" spacing={2}>
                                 <Grid item xs={12}>
-                                    <h1>Select Modules to Enable for this Challenge</h1>
+                                    <h1>Select services</h1>
                                 </Grid>
                                 {
                                     Object.keys(this.state.appCategories).map((e, i) => {
                                         return (
                                             <Grid key={e} item xs>
                                                 <FormControl component="fieldset">
-                                                    <FormLabel component="legend">{e}</FormLabel>
-                                                    <FormGroup>
+                                                    <FormLabel component="legend">{this.state.appList[i].label}</FormLabel>
+                                                    <RadioGroup>
                                                         {this.renderAppCategory(e, index)}
-                                                    </FormGroup>
+                                                    </RadioGroup>
                                                 </FormControl>
                                             </Grid>
                                         )
