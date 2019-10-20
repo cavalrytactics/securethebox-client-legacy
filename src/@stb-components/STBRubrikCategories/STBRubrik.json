@@ -419,10 +419,25 @@
                     "EXPERT": "__DEFINE_CRITERIA__"
                   }
                 },
-                "diligence_and_documentation": {
-                  "name": "Diligence And Documentation",
-                  "cn": "diligence_and_documentation",
-                  "path": "blue_team.forensics.legal.diligence_and_documentation",
+                "diligence": {
+                  "name": "Diligence",
+                  "cn": "diligence",
+                  "path": "blue_team.forensics.legal.diligence",
+                  "type": "COMPETENCY",
+                  "title": "__DEFINE_COMPETENCY_TITLE__",
+                  "description": "__DEFINE_COMPETENCY_DESCRIPTION__",
+                  "rubric": {
+                    "UNFAMILIAR": "__DEFINE_CRITERIA__",
+                    "BEGINNER": "__DEFINE_CRITERIA__",
+                    "MODERATE": "__DEFINE_CRITERIA__",
+                    "ADVANCED": "__DEFINE_CRITERIA__",
+                    "EXPERT": "__DEFINE_CRITERIA__"
+                  }
+                },
+                "documentation": {
+                  "name": "Documentation",
+                  "cn": "documentation",
+                  "path": "blue_team.forensics.legal.documentation",
                   "type": "COMPETENCY",
                   "title": "__DEFINE_COMPETENCY_TITLE__",
                   "description": "__DEFINE_COMPETENCY_DESCRIPTION__",

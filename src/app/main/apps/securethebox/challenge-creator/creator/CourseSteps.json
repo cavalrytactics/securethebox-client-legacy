@@ -7,7 +7,8 @@
     {
         "id": 1,
         "title": "Grading Criteria",
-        "content": "<p>Write details of the job expectations and requirements.<br/></br> Use the Target Individual Contributor Level measurements</p>"
+        "content": "<p>Write details of the job expectations and requirements.<br/></br> Use the Target Individual Contributor Level measurements</p>",
+        "role": "blue_team"
     },
     {
         "id": 2,

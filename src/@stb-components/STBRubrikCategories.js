@@ -38,73 +38,62 @@ class STBMaterialUiGrid extends Component {
         console.log(prevTopics)
         prevTopics[topicIndex].checked = !prevTopics[topicIndex].checked
         this.setState({ topics: prevTopics });
-      }
+    }
 
-    renderGrid(){
+    renderGrid() {
         return (
             Object.keys(this.state.rubrik).map((e, i) => {
-                return (this.renderCategory(this.state.rubrik[e]))  
+                return (this.renderCategory(this.state.rubrik[e]))
             })
         )
     }
 
-    renderCategory(item){
-        console.log("Item:",item)
+    renderCategory(item) {
         let selectedCategory = []
-        if (item.cn === "blue_team"){
+        if (item.cn === "blue_team") {
             selectedCategory = category_blue_team
-        } else if (item.cn === "red_team"){
+        } else if (item.cn === "red_team") {
             selectedCategory = category_red_team
-        } else if (item.cn === "security_engineering"){
+        } else if (item.cn === "security_engineering") {
             selectedCategory = category_security_engineering
-        } else if (item.cn === "software_engineering"){
+        } else if (item.cn === "software_engineering") {
             selectedCategory = category_software_engineering
-        } else if (item.cn === "systems_engineering"){
+        } else if (item.cn === "systems_engineering") {
             selectedCategory = category_systems_engineering
         }
 
-        return(
-            <Grid key={item.cn} item xs style={{ textTransform: 'none', width: '100%' }}>
-                <Grid container style={{ flexGrow: 1, margin: "0 auto", width: '100%' }} >
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">{item.name}</FormLabel>
-                            <FormGroup>
-                                {/* Render CheckBox Items */}
-                                <STBSliderCompetency/>
-                                <STBTreeSelect data={selectedCategory} />
-                            </FormGroup>
-                    </FormControl>
-                </Grid>
-            </Grid>
+        return (
+            <FormControl key={item.cn} component="fieldset">
+                <FormLabel component="legend">{item.name}</FormLabel>
+                <FormGroup>
+                    {/* <STBSliderCompetency /> */}
+                    <STBTreeSelect data={selectedCategory} />
+                </FormGroup>
+            </FormControl>
         )
-        
     }
 
-    renderCheckBoxItems(parentCategory){
-        return (
-            Object.keys(parentCategory.children).map((e, i) => {
-                return(
-                    <FormControlLabel
-                    key={i}
-                    control={<Checkbox checked={false} value={parentCategory.children[e].cn} />}
-                    label={parentCategory.children[e].name}
-                />
-                ) 
-            })  
-        )
-    }
+    // renderCheckBoxItems(parentCategory) {
+    //     return (
+    //         Object.keys(parentCategory.children).map((e, i) => {
+    //             return (
+    //                 <FormControlLabel
+    //                     key={i}
+    //                     control={<Checkbox checked={false} value={parentCategory.children[e].cn} />}
+    //                     label={parentCategory.children[e].name}
+    //                 />
+    //             )
+    //         })
+    //     )
+    // }
 
     render() {
         return (
-            <Grid item xs style={{ textTransform: 'none', width: '100%' }}>
-                <Grid container style={{ flexGrow: 1, margin: "0 auto", width: '100%' }} >
-                    {this.state.loading ?
-                    this.renderGrid()
-                    :
-                    <div>loading</div>
-                    }
-                </Grid>
-            </Grid>
+            this.state.loading ?
+                this.renderGrid()
+                :
+                <div>loading</div>
+
         )
     };
 }
