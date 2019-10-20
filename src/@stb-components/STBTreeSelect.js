@@ -12,6 +12,9 @@ class STBTreeSelect extends Component {
 
     onChange = (currentNode, selectedNodes) => {
         console.log("path::", currentNode.path);
+        console.log("currentNode",currentNode)
+        console.log("selectedNodes",selectedNodes)
+        return selectedNodes
     };
 
     prepareData = data => {
@@ -39,7 +42,6 @@ class STBTreeSelect extends Component {
     handleChange = ({ value, checked }) => {
       if (value === "selectAll") this.toggleAll(checked);
     };
-  
       
     assignObjectPaths = (obj, stack) => {
         Object.keys(obj).forEach(k => {
@@ -54,10 +56,7 @@ class STBTreeSelect extends Component {
     render(){
         this.assignObjectPaths(this.props.data);
         return(
-          <div style={{width:'90%', marginLeft:'auto',marginRight:'auto'}}>
-            <DropdownTreeSelect data={this.props.data} onChange={this.onChange} className="mdl-demo" keepTreeOnSearch={true} />
-            
-          </div>
+            <DropdownTreeSelect data={this.props.data} onChange={this.onChange} className="mdl-demo" mode="hierarchical" keepTreeOnSearch={true} />
         )
     }
 }

@@ -1,0 +1,180 @@
+[
+    {
+        "label": "Attack",
+        "children": [
+            {
+                "label": "Avoiding Detection"
+            },
+            {
+                "label": "Client Considerations"
+            },
+            {
+                "label": "Covering Tracks"
+            },
+            {
+                "label": "Lateral Movement"
+            },
+            {
+                "label": "Tunneling"
+            }
+        ]
+    },
+    {
+        "label": "Exploitation",
+        "children": [
+            {
+                "label": "Local Privilege Escalation"
+            },
+            {
+                "label": "Phishing"
+            },
+            {
+                "label": "Remote"
+            },
+            {
+                "label": "Web"
+            }
+        ]
+    },
+    {
+        "label": "Implants",
+        "children": [
+            {
+                "label": "Anti-RE Techniques",
+                "children": [
+                    {
+                        "label": "Packing And Encrypting"
+                    },
+                    {
+                        "label": "Process Injection",
+                        "children": [
+                            {
+                                "label": "Linux"
+                            },
+                            {
+                                "label": "Windows"
+                            },
+                            {
+                                "label": "macOS"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Command And Control",
+                "children": [
+                    {
+                        "label": "Anti-tampering"
+                    },
+                    {
+                        "label": "Avoiding Detection"
+                    },
+                    {
+                        "label": "Covert Channels"
+                    }
+                ]
+            },
+            {
+                "label": "Local vs Remote"
+            },
+            {
+                "label": "Reverse vs Bind"
+            },
+            {
+                "label": "Stagers And Droppers"
+            },
+            {
+                "label": "User-space vs Kernel-space"
+            }
+        ]
+    },
+    {
+        "label": "OSINT",
+        "children": [
+            {
+                "label": "Github"
+            },
+            {
+                "label": "AWS"
+            },
+            {
+                "label": "Social Networks"
+            },
+            {
+                "label": "IP & DNS"
+            },
+            {
+                "label": "Location"
+            }
+        ]
+    },
+    {
+        "label": "Objectives",
+        "children": [
+            {
+                "label": "Rules of Engagement"
+            },
+            {
+                "label": "Scope"
+            },
+            {
+                "label": "Statement of Work"
+            }
+        ]
+    },
+    {
+        "label": "Persist",
+        "children": [
+            {
+                "label": "Code"
+            },
+            {
+                "label": "Configs"
+            },
+            {
+                "label": "Linux"
+            },
+            {
+                "label": "Web"
+            },
+            {
+                "label": "Windows"
+            },
+            {
+                "label": "macOS"
+            }
+        ]
+    },
+    {
+        "label": "Post Exploitation",
+        "children": [
+            {
+                "label": "Application Creds"
+            },
+            {
+                "label": "Enterprise Creds"
+            },
+            {
+                "label": "Files"
+            },
+            {
+                "label": "OS Creds"
+            }
+        ]
+    },
+    {
+        "label": "Vulnerability Analysis",
+        "children": [
+            {
+                "label": "Enumerate"
+            },
+            {
+                "label": "Test"
+            },
+            {
+                "label": "Reverse Engineering"
+            }
+        ]
+    }
+]

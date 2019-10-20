@@ -89,8 +89,8 @@ export default class Wizard extends React.Component {
               {this.state.pageLabels.map((label, index) => {
                 return (
                   <Step key={label} >
-                    <StepLabel onClick={() => this.selectPage(index)}>{label}</StepLabel>
-                    <StepContent>
+                    <StepLabel onClick={() => this.selectPage(index)}><h1 style={{color:"#2196f3"}}>{label}</h1></StepLabel>
+                    <StepContent transitionDuration={0} >
                       {activePage}
                       <div className="buttons">
                         {page > 0 && (
@@ -98,7 +98,6 @@ export default class Wizard extends React.Component {
                             Back
                           </Button>
                         )}
-                        {/* {!isLastPage && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} disabled={submitting || pristine} type="submit">Next</Button>} */}
                         {!isLastPage && pristine && <Button style={{margin: 10, backgroundColor:'#e0e0e0'}} disabled={pristine} type="submit">Next</Button>}
                         {!isLastPage && !pristine && <Button style={{margin: 10, backgroundColor:'#2196f3', color:'white'}} disabled={submitting} type="submit">Next</Button>}
                         {isLastPage && (

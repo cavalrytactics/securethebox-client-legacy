@@ -5,19 +5,25 @@ import reducer from '../../../../../auth/store/reducers';
 import { Field } from 'react-final-form'
 import ReactQuill from 'react-quill';
 import './Create.css'
-import { Radio } from 'final-form-material-ui'
+import { Radio, Checkbox } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
     FormLabel,
     FormControl,
     FormControlLabel,
-    RadioGroup
+    RadioGroup,
 } from '@material-ui/core';
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
 import axios from 'axios'
 import Wizard from "./Wizard";
+import category_blue_team from './STBRubrikCategories/category_blue_team';
+import category_red_team from './STBRubrikCategories/category_red_team';
+import category_security_engineering from './STBRubrikCategories/category_security_engineering';
+import category_software_engineering from './STBRubrikCategories/category_software_engineering';
+import category_systems_engineering from './STBRubrikCategories/category_systems_engineering';
+import STBRubrik from './STBRubrikCategories/STBRubrik';
 
 const Error = ({ name }) => (
     <Field
@@ -29,7 +35,14 @@ const Error = ({ name }) => (
     />
 );
 
-class Create2 extends Component {
+const Condition = ({ when, is, children }) => (
+    <Field name={when} subscription={{ value: true }}>
+        {({ input: { value } }) => (value === is ? children : null)}
+    </Field>
+)
+
+
+class Create3 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,17 +50,33 @@ class Create2 extends Component {
             course_fields: CourseFieldsJson,
             course_steps: CourseStepsJson,
             appList: [],
-            appCategories: {}
+            appCategories: {},
+            rubrik: {},
+            rebrikList: [],
+            rubrikCategories: {},
+            roleCategories: [
+                { "value": "blue_team", "label": "Blue Team" },
+                { "value": "red_team", "label": "Red Team" },
+                { "value": "software_engineering", "label": "Software Engineering" },
+                { "value": "security_engineering", "label": "Security Engineering" },
+                { "value": "systems_engineering", "label": "Systems Engineering" }],
+            selectedCategory: "security_engineering",
+            blue_team: category_blue_team,
+            red_team: category_red_team,
+            software_engineering: category_software_engineering,
+            security_engineering: category_security_engineering,
+            systems_engineering: category_systems_engineering
         };
     }
 
     componentDidMount() {
+        // Gett All Applications
         axios.get('/api/applications')
             .then((r) => {
                 var listApps = []
                 var listCategories = {}
                 r.data.map((v, i) => {
-                    listApps.push({ 'name': v.name, 'label':v.label, 'category': v.category })
+                    listApps.push({ 'name': v.name, 'label': v.label, 'category': v.category })
                     listCategories[v.category] = v.label
                     return null
                 })
@@ -56,8 +85,29 @@ class Create2 extends Component {
                     appList: listApps
                 })
             })
+
         this.setState({
+            rubrik: STBRubrik,
             loading: true
+        }, () => {
+            var listRubrik = []
+            var dictRubrik = {}
+            Object.keys(this.state.rubrik).map((e, i) => {
+                Object.keys(this.state.rubrik[e].children).map((v, g) => {
+                    listRubrik.push({
+                        'name': v,
+                        'label': v,
+                        'category': this.state.rubrik[e].cn
+                    })
+                    return null
+                })
+                dictRubrik[this.state.rubrik[e].cn] = this.state.rubrik[e].name
+                return null
+            })
+            this.setState({
+                rubrikList: listRubrik,
+                rubrikCategories: dictRubrik
+            })
         })
     }
 
@@ -105,24 +155,109 @@ class Create2 extends Component {
             }
             return null
         }
-
         )
     }
 
     renderWizardPages() {
         return (
             this.state.course_steps.map((value, index) => {
-                if (index === 2) {
+                if (index === 1) {
                     return (
                         <Wizard.Page key={value.title + index} >
                             <Grid container alignItems="flex-start" justify="center" spacing={2}>
                                 <Grid item xs={12}>
-                                    <h1>Select services</h1>
+                                    <h2>Select role scope</h2>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl component="fieldset">
+                                        <RadioGroup row>
+                                            {
+                                                this.state.roleCategories.map((v, i) => {
+                                                    return (
+                                                        <FormControlLabel
+                                                            key={v.value + i}
+                                                            label={v.label}
+                                                            control={
+                                                                <Field
+                                                                    name={`steps[1].role`}
+                                                                    component={Radio}
+                                                                    type="radio"
+                                                                    value={v.value}
+                                                                    onChange={this.selectCategory}
+                                                                    required
+                                                                />
+                                                            }
+                                                        />
+                                                    )
+
+                                                })
+                                            }
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <h2>Select proficiency topics</h2>
+                                </Grid>
+                                {this.state.roleCategories.map((z, iiii) => {
+                                    console.log(z.value)
+                                    return (
+                                        <Condition key={z.value+iiii} when="steps[1].role" is={z.value}>
+                                            {this.state[z.value].map(
+                                                (item, index) => {
+                                                    return (
+                                                        <Grid item key={item.label + index} xs>
+                                                            <FormControl component="fieldset">
+                                                                <FormLabel component="legend">{item.label}</FormLabel>
+                                                                {
+                                                                    item.children.map((v, i) => {
+                                                                        return (
+                                                                            <div key={v.label + index}>
+                                                                                <Field
+                                                                                    name={`steps[1].topics.${z.value}.${item.label.toLowerCase().split(' ').join('_')}`}
+                                                                                    component={Checkbox}
+                                                                                    type="checkbox"
+                                                                                    value={v.label.toLowerCase().split(' ').join('_')}
+                                                                                />
+                                                                                <label>{v.label}</label>
+                                                                            </div>
+                                                                        )
+
+                                                                    })
+                                                                }
+                                                            </FormControl>
+                                                        </Grid>
+                                                    )
+                                                }
+                                            )
+                                            }
+                                        </Condition>
+                                    )
+                                })}
+
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[${index}].content`}
+                                        component={this.renderQuill}
+                                        placeholder="Content"
+                                    />
+
+                                    <Error name={`steps[${this.state.page}].content`} />
+                                </Grid>
+                            </Grid >
+                        </Wizard.Page >
+                    )
+                }
+                else if (index === 2) {
+                    return (
+                        <Wizard.Page key={value.title + index} >
+                            <Grid container alignItems="flex-start" justify="center" spacing={2}>
+                                <Grid item xs={12}>
+                                    <h2>Select services</h2>
                                 </Grid>
                                 {
                                     Object.keys(this.state.appCategories).map((e, i) => {
                                         return (
-                                            <Grid key={e} item xs>
+                                            <Grid key={e} item xs={2}>
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">{this.state.appCategories[e]}</FormLabel>
                                                     <RadioGroup>
@@ -140,7 +275,6 @@ class Create2 extends Component {
                                         component={this.renderQuill}
                                         placeholder="Content"
                                     />
-
                                     <Error name={`steps[${this.state.page}].content`} />
                                 </Grid>
                             </Grid>
@@ -155,7 +289,6 @@ class Create2 extends Component {
                                 component={this.renderQuill}
                                 placeholder="Content"
                             />
-
                             <Error name={`steps[${this.state.page}].content`} />
                         </div>
                     </Wizard.Page>
@@ -187,7 +320,6 @@ class Create2 extends Component {
                         }}
                         onSubmit={onSubmit}
                     >
-
                         {this.renderWizardPages()}
                     </Wizard>
                 </Paper>
@@ -202,4 +334,4 @@ function mapStateToProps({ auth }) {
     }
 }
 
-export default withReducer('auth', reducer)((connect(mapStateToProps)(Create2)));
+export default withReducer('auth', reducer)((connect(mapStateToProps)(Create3)));
