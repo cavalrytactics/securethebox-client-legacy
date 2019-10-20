@@ -101,7 +101,7 @@
                 "label": "Key Exchange"
             },
             {
-                "label": "PKI And CAs"
+                "label": "PKI & CAs"
             },
             {
                 "label": "RNGs and PRNGs"
@@ -118,7 +118,7 @@
         "label": "Enterprise Security",
         "children": [
             {
-                "label": "AuthN And AuthZ",
+                "label": "AuthN & AuthZ",
                 "children": [
                     {
                         "label": "Cookie vs Session"
@@ -381,7 +381,7 @@
                         "label": "DNS"
                     },
                     {
-                        "label": "Ethernet II And 802_3"
+                        "label": "Ethernet II & 802_3"
                     },
                     {
                         "label": "FTP"
@@ -444,7 +444,7 @@
                         "label": "SSH"
                     },
                     {
-                        "label": "SSL And TLS"
+                        "label": "SSL & TLS"
                     },
                     {
                         "label": "STP"
@@ -581,7 +581,7 @@
                 ]
             },
             {
-                "label": "Strengths And Weaknesses",
+                "label": "Strengths & Weaknesses",
                 "children": [
                     {
                         "label": "Linux"

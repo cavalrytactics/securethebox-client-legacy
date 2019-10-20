@@ -43,7 +43,7 @@
                 "label": "Anti-RE Techniques",
                 "children": [
                     {
-                        "label": "Packing And Encrypting"
+                        "label": "Packing & Encrypting"
                     },
                     {
                         "label": "Process Injection",
@@ -62,7 +62,7 @@
                 ]
             },
             {
-                "label": "Command And Control",
+                "label": "Command & Control",
                 "children": [
                     {
                         "label": "Anti-tampering"
@@ -82,7 +82,7 @@
                 "label": "Reverse vs Bind"
             },
             {
-                "label": "Stagers And Droppers"
+                "label": "Stagers & Droppers"
             },
             {
                 "label": "User-space vs Kernel-space"

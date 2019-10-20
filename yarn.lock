@@ -5268,6 +5268,11 @@ final-form-material-ui@^0.3.0:
   resolved "https://registry.yarnpkg.com/final-form-material-ui/-/final-form-material-ui-0.3.0.tgz#fea6d00071549c515594f50c13b3e1b080412830"
   integrity sha512-A2rjTvJTG2xD0fIEH1rK+xaxG7HxSv3IU3exT6Z5AiGBm4XQ/m/knAUmJTCQHxukaHZleWT8paKIex8VXoX4Bw==
 
+final-form-set-field-data@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/final-form-set-field-data/-/final-form-set-field-data-1.0.2.tgz#ce19095af5d607148c1e6ce3403d75d40223d848"
+  integrity sha512-gAnENimyQ5GW3OEGca5pbwm4lYshW2orzfBlPUYqzcm7ZxkQrVO8FqCAgEcCM+Rq9U1OU0q+D+UkqETvvDY6jw==
+
 final-form@^4.18.5:
   version "4.18.5"
   resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.5.tgz#e359cfaf2892ef135d92fcf22e06b475dda3a885"
@@ -10411,6 +10416,13 @@ react-final-form-arrays@^3.1.1:
   integrity sha512-e6S1x9597cvI4QPniOPmllXXandDAqCCuBo4AvXstZYgcV8whsqzk8aCrmQEy6eEfy2tEhvn6f4VI1GY+JBRsg==
   dependencies:
     "@babel/runtime" "^7.4.5"
+
+react-final-form-listeners@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-final-form-listeners/-/react-final-form-listeners-1.0.2.tgz#b52da984300281cf1f69a6412e86df6249e2bf1c"
+  integrity sha512-AaUUHcXRhD3esC80yUfYPI8FJ3TUiMu0f4hk18QL8NMCWjokg6NWS32WkRJsH3bLWDoiy7+uNVOAAyO/XoupyA==
+  dependencies:
+    "@babel/runtime" "^7.1.5"
 
 react-final-form@^6.3.0:
   version "6.3.0"
