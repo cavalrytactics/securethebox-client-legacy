@@ -6,7 +6,7 @@
                 "label": "BASH"
             },
             {
-                "label": "C And C Plus Plus"
+                "label": "C & C ++"
             },
             {
                 "label": "Go"
@@ -50,7 +50,7 @@
                         "label": "Bytecode"
                     },
                     {
-                        "label": "Runtimes And VM"
+                        "label": "Runtimes & VM"
                     }
                 ]
             },
@@ -146,7 +146,7 @@
                         "label": "At Least Once vs At Most Once"
                     },
                     {
-                        "label": "Performance And Scaling"
+                        "label": "Performance & Scaling"
                     }
                 ]
             },

@@ -13,7 +13,14 @@
     {
         "id": 2,
         "title": "Scenario",
-        "content": "Write details of the simulated scenario"
+        "content": "Write details of the simulated scenario",
+        "apps": {
+            "load_balancer": "nginx",
+            "application": "juice-shop",
+            "ids": "suricata",
+            "hids": "wazuh",
+            "siem": "splunk"
+          }
     },
     {
         "id": 3,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withReducer from 'app/store/withReducer';
 import connect from 'react-redux/es/connect/connect';
 import reducer from '../../../../../auth/store/reducers';
-import { Field } from 'react-final-form'
+import { Field, FormSpy } from 'react-final-form'
 import ReactQuill from 'react-quill';
 import './Create.css'
 import { Radio, Checkbox } from 'final-form-material-ui'
@@ -24,6 +24,29 @@ import category_security_engineering from './STBRubrikCategories/category_securi
 import category_software_engineering from './STBRubrikCategories/category_software_engineering';
 import category_systems_engineering from './STBRubrikCategories/category_systems_engineering';
 import STBRubrik from './STBRubrikCategories/STBRubrik';
+import { OnChange } from 'react-final-form-listeners'
+
+
+const WhenFieldChanges = ({ field, becomes, set, to }) => (
+    <Field name={set} subscription={{}}>
+        {(
+            // No subscription. We only use Field to get to the change function
+            { input: { onChange } }
+        ) => (
+                <FormSpy subscription={{}}>
+                    {({ form }) => (
+                        <OnChange name={field}>
+                            {value => {
+                                if (value === becomes) {
+                                    onChange(to);
+                                }
+                            }}
+                        </OnChange>
+                    )}
+                </FormSpy>
+            )}
+    </Field>
+);
 
 const Error = ({ name }) => (
     <Field
@@ -158,6 +181,10 @@ class Create3 extends Component {
         )
     }
 
+    selectCategory = (event) => {
+        console.log(event)
+    }
+
     renderWizardPages() {
         return (
             this.state.course_steps.map((value, index) => {
@@ -166,7 +193,7 @@ class Create3 extends Component {
                         <Wizard.Page key={value.title + index} >
                             <Grid container alignItems="flex-start" justify="center" spacing={2}>
                                 <Grid item xs={12}>
-                                    <h2>Select role scope</h2>
+                                    <h2>Select role scope (select 1 only)</h2>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControl component="fieldset">
@@ -174,24 +201,36 @@ class Create3 extends Component {
                                             {
                                                 this.state.roleCategories.map((v, i) => {
                                                     return (
-                                                        <FormControlLabel
-                                                            key={v.value + i}
-                                                            label={v.label}
-                                                            control={
-                                                                <Field
-                                                                    name={`steps[1].role`}
-                                                                    component={Radio}
-                                                                    type="radio"
-                                                                    value={v.value}
-                                                                    onChange={this.selectCategory}
-                                                                    required
-                                                                />
-                                                            }
-                                                        />
+                                                        <div key={v.value + i}>
+                                                            <WhenFieldChanges
+                                                                field="steps[1].role"
+                                                                becomes={v.value}
+                                                                set="steps[1].topics"
+                                                                to={{}}
+                                                            />
+                                                            <FormControlLabel
+                                                                label={v.label}
+                                                                control={
+                                                                    <Field
+                                                                        name={`steps[1].role`}
+                                                                        component={Radio}
+                                                                        type="radio"
+                                                                        value={v.value}
+                                                                        required
+                                                                    />
+                                                                }
+                                                            />
+                                                        </div>
+
                                                     )
 
                                                 })
                                             }
+                                            <OnChange name="steps[1].role">
+                                                {(value, previous) => {
+                                                    // do something
+                                                }}
+                                            </OnChange>
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -201,13 +240,13 @@ class Create3 extends Component {
                                 {this.state.roleCategories.map((z, iiii) => {
                                     console.log(z.value)
                                     return (
-                                        <Condition key={z.value+iiii} when="steps[1].role" is={z.value}>
+                                        <Condition key={z.value + iiii} when="steps[1].role" is={z.value}>
                                             {this.state[z.value].map(
                                                 (item, index) => {
                                                     return (
                                                         <Grid item key={item.label + index} xs>
                                                             <FormControl component="fieldset">
-                                                                <FormLabel component="legend">{item.label}</FormLabel>
+                                                                <FormLabel component="legend"><h3>{item.label}</h3></FormLabel>
                                                                 {
                                                                     item.children.map((v, i) => {
                                                                         return (
