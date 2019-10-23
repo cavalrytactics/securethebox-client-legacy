@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import CourseFields from './CourseFields'
 import CourseFieldsJson from './CourseFields.json'
+import arrayMutators from 'final-form-arrays'
 
 export default class Wizard extends React.Component {
   static propTypes = {
@@ -79,6 +80,9 @@ export default class Wizard extends React.Component {
         initialValues={values}
         validate={this.validate}
         onSubmit={this.handleSubmit}
+        mutators={{
+          ...arrayMutators
+        }}
       >
         {({ handleSubmit, submitting, values, form, pristine }) => (
           <form onSubmit={handleSubmit}>

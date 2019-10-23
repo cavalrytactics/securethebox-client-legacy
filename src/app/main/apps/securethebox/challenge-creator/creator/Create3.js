@@ -5,7 +5,7 @@ import reducer from '../../../../../auth/store/reducers';
 import { Field, FormSpy } from 'react-final-form'
 import ReactQuill from 'react-quill';
 import './Create.css'
-import { Radio, Checkbox } from 'final-form-material-ui'
+import { Radio, Checkbox, TextField, Select } from 'final-form-material-ui'
 import {
     Paper,
     Grid,
@@ -13,6 +13,8 @@ import {
     FormControl,
     FormControlLabel,
     RadioGroup,
+    Button,
+    MenuItem
 } from '@material-ui/core';
 import CourseFieldsJson from './CourseFields.json'
 import CourseStepsJson from './CourseSteps.json'
@@ -25,7 +27,7 @@ import category_software_engineering from './STBRubrikCategories/category_softwa
 import category_systems_engineering from './STBRubrikCategories/category_systems_engineering';
 import STBRubrik from './STBRubrikCategories/STBRubrik';
 import { OnChange } from 'react-final-form-listeners'
-
+import { FieldArray } from 'react-final-form-arrays'
 
 const WhenFieldChanges = ({ field, becomes, set, to }) => (
     <Field name={set} subscription={{}}>
@@ -83,12 +85,14 @@ class Create3 extends Component {
                 { "value": "software_engineering", "label": "Software Engineering" },
                 { "value": "security_engineering", "label": "Security Engineering" },
                 { "value": "systems_engineering", "label": "Systems Engineering" }],
-            selectedCategory: "security_engineering",
             blue_team: category_blue_team,
             red_team: category_red_team,
             software_engineering: category_software_engineering,
             security_engineering: category_security_engineering,
-            systems_engineering: category_systems_engineering
+            systems_engineering: category_systems_engineering,
+            resourceTemplate_input: ["name"],
+            resourceTemplate_multi: ["references", "tips"],
+            resourceTemplate_kv: ["credentials"]
         };
     }
 
@@ -100,7 +104,7 @@ class Create3 extends Component {
                 var listCategories = {}
                 r.data.map((v, i) => {
                     listApps.push({ 'name': v.name, 'label': v.label, 'category': v.category })
-                    listCategories[v.category] = v.label
+                    listCategories[v.category] = v.category_label
                     return null
                 })
                 this.setState({
@@ -164,7 +168,7 @@ class Create3 extends Component {
                 return (
                     <FormControlLabel
                         key={value + index}
-                        label={value.name}
+                        label={value.label}
                         control={
                             <Field
                                 name={`steps[${step_index}].apps[${category}]`}
@@ -181,8 +185,28 @@ class Create3 extends Component {
         )
     }
 
-    selectCategory = (event) => {
-        console.log(event)
+    renderResourcesSelect() {
+        return (
+            <FormControl component="fieldset">
+                <FormControlLabel
+                    label={"Select"}
+                    control={
+                        <Field
+                            name={`steps[4].resources.references`}
+                            component={Select}
+                        >
+                            {this.state.appList.map((v, i) => {
+                                return (
+                                    <MenuItem key={v + i} value={v.name}>
+                                        {v.label}
+                                    </MenuItem>
+                                )
+                            })}
+                        </Field>
+                    }
+                />
+            </FormControl>
+        )
     }
 
     renderWizardPages() {
@@ -221,16 +245,9 @@ class Create3 extends Component {
                                                                 }
                                                             />
                                                         </div>
-
                                                     )
-
                                                 })
                                             }
-                                            <OnChange name="steps[1].role">
-                                                {(value, previous) => {
-                                                    // do something
-                                                }}
-                                            </OnChange>
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -238,7 +255,6 @@ class Create3 extends Component {
                                     <h2>Select proficiency topics</h2>
                                 </Grid>
                                 {this.state.roleCategories.map((z, iiii) => {
-                                    console.log(z.value)
                                     return (
                                         <Condition key={z.value + iiii} when="steps[1].role" is={z.value}>
                                             {this.state[z.value].map(
@@ -266,8 +282,7 @@ class Create3 extends Component {
                                                             </FormControl>
                                                         </Grid>
                                                     )
-                                                }
-                                            )
+                                                })
                                             }
                                         </Condition>
                                     )
@@ -298,7 +313,7 @@ class Create3 extends Component {
                                         return (
                                             <Grid key={e} item xs={2}>
                                                 <FormControl component="fieldset">
-                                                    <FormLabel component="legend">{this.state.appCategories[e]}</FormLabel>
+                                                    <FormLabel component="legend"><h3>{this.state.appCategories[e]}</h3></FormLabel>
                                                     <RadioGroup>
                                                         {this.renderAppCategory(e, index)}
                                                     </RadioGroup>
@@ -319,19 +334,101 @@ class Create3 extends Component {
                             </Grid>
                         </Wizard.Page>
                     )
+                } else if (index === 4) {
+                    return (
+                        <Wizard.Page key={value.title + index} >
+                            <Grid container alignItems="flex-start" justify="center" spacing={2}>
+                                <Grid item xs={12}>
+                                    <h2>Add resources</h2>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[4].selected`}
+                                        label={"Select service"}
+                                        component={Select}
+                                        formControlProps={{ fullWidth: true }}>
+                                        >
+                                        {this.state.appList.map((v, i) => {
+                                            return (
+                                                <MenuItem key={v + i} value={v.name}>
+                                                    {v.label}
+                                                </MenuItem>
+                                            )
+                                        })}
+                                    </Field>
+                                    {this.state.appList.map((v, i) => {
+                                        return (
+                                            <Condition key={v.name + i} when={`steps[4].selected`} is={v.name}>
+                                                <FieldArray name={`steps[4].references.${v.name}`}>
+                                                    {({ fields }) => (
+                                                        <div>
+                                                            {fields.map((name, index) => (
+                                                                <div key={name + index}>
+                                                                    <div>
+                                                                        <Field
+                                                                            name={`${name}.title`}
+                                                                            component={TextField}
+                                                                            type="text"
+                                                                            label={"Reference title"}
+                                                                            required
+                                                                            fullWidth />
+                                                                    </div>
+                                                                    <div>
+                                                                        <Field
+                                                                            name={`${name}.url`}
+                                                                            component={TextField}
+                                                                            type="text"
+                                                                            label={"Reference URL"}
+                                                                            required
+                                                                            fullWidth />
+                                                                    </div>
+                                                                    <Button
+                                                                        size="small"
+                                                                        style={{ margin: 10, backgroundColor: '#f44336', color: 'white' }}
+                                                                        onClick={() => fields.remove(index)}>
+                                                                        Remove
+                                                                    </Button>
+                                                                </div>
+                                                            ))}
+                                                            <Button
+                                                                size="small"
+                                                                style={{ margin: 10, backgroundColor: '#2196f3', color: 'white' }}
+                                                                onClick={() => fields.push({ title: '', url: '' })}
+                                                            >
+                                                                Add reference
+                                                            </Button>
+                                                        </div>
+                                                    )}
+                                                </FieldArray>
+                                            </Condition>
+                                        )
+                                    })}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[${index}].content`}
+                                        component={this.renderQuill}
+                                        placeholder="Content"
+                                    />
+                                    <Error name={`steps[${this.state.page}].content`} />
+                                </Grid>
+                            </Grid>
+                        </Wizard.Page>
+                    )
+                } else {
+                    return (
+                        <Wizard.Page key={value.title + index} >
+                            <div>
+                                <Field
+                                    name={`steps[${index}].content`}
+                                    component={this.renderQuill}
+                                    placeholder="Content"
+                                />
+                                <Error name={`steps[${this.state.page}].content`} />
+                            </div>
+                        </Wizard.Page>
+                    )
                 }
-                return (
-                    <Wizard.Page key={value.title + index} >
-                        <div>
-                            <Field
-                                name={`steps[${index}].content`}
-                                component={this.renderQuill}
-                                placeholder="Content"
-                            />
-                            <Error name={`steps[${this.state.page}].content`} />
-                        </div>
-                    </Wizard.Page>
-                )
             })
         )
     }
