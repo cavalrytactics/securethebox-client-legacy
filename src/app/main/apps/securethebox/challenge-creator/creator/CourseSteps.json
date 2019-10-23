@@ -15,10 +15,11 @@
         "title": "Scenario",
         "content": "Write details of the simulated scenario",
         "apps": {
+            "infrastructure": "kubernetes",
             "load_balancer": "nginx",
             "application": "juice-shop",
             "ids": "suricata",
-            "hids": "wazuh",
+            "endpoint_security": "wazuh",
             "siem": "splunk"
           }
     },

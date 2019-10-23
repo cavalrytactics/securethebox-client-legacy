@@ -23,7 +23,7 @@
         "label": "Exploitation",
         "children": [
             {
-                "label": "Local Privilege Escalation"
+                "label": "Privilege Escalation"
             },
             {
                 "label": "Phishing"
