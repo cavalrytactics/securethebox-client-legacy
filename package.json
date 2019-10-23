@@ -109,7 +109,7 @@
     },
     "scripts": {
         "commit-m": "git checkout master && git add --all && git cz && export CURRENTBRANCH=$(git branch | grep \\* | cut -d ' ' -f2) && git push",
-        "commit-b": "git add --all && git cz && export CURRENTBRANCH=$(git branch | grep \\* | cut -d ' ' -f2) && git push --set-upstream origin $CURRENTBRANCH && cross-var \"open https://github.com/ncmd/securethebox-client/compare/master...ncmd:$npm_package_config_b?expand=1\" && npm run sync",
+        "commit-b": "git add --all && git cz && export CURRENTBRANCH=$(git branch | grep \\* | cut -d ' ' -f2) && git push --set-upstream origin $CURRENTBRANCH && cross-var \"open https://github.com/ncmd/securethebox-client/compare/master...ncmd:$npm_package_config_b?expand=1\"",
         "sync": "git checkout master ; git pull",
         "start": "yarn run tailwind && react-app-rewired start",
         "build": "yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-app-rewired build",
