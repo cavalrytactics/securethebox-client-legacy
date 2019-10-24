@@ -415,6 +415,87 @@ class Create3 extends Component {
                             </Grid>
                         </Wizard.Page>
                     )
+                } else if (index === 5) {
+                    return (
+                        <Wizard.Page key={value.title + index} >
+                            <Grid container alignItems="flex-start" justify="center" spacing={2}>
+                                <Grid item xs={12}>
+                                    <h2>Add questions</h2>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[5].selected`}
+                                        label={"Select topic"}
+                                        component={Select}
+                                        formControlProps={{ fullWidth: true }}>
+                                        >
+                                        {this.state.appList.map((v, i) => {
+                                            return (
+                                                <MenuItem key={v + i} value={v.name}>
+                                                    {v.label}
+                                                </MenuItem>
+                                            )
+                                        })}
+                                    </Field>
+                                    {this.state.appList.map((v, i) => {
+                                        return (
+                                            <Condition key={v.name + i} when={`steps[5].selected`} is={v.name}>
+                                                <FieldArray name={`steps[5].questions.${v.name}`}>
+                                                    {({ fields }) => (
+                                                        <div>
+                                                            {fields.map((name, index) => (
+                                                                <div key={name + index}>
+                                                                    <div>
+                                                                        <Field
+                                                                            name={`${name}.question`}
+                                                                            component={TextField}
+                                                                            type="text"
+                                                                            label={"Question"}
+                                                                            required
+                                                                            fullWidth />
+                                                                    </div>
+                                                                    <div>
+                                                                        <Field
+                                                                            name={`${name}.answer`}
+                                                                            component={TextField}
+                                                                            type="text"
+                                                                            label={"Answer"}
+                                                                            required
+                                                                            fullWidth />
+                                                                    </div>
+                                                                    <Button
+                                                                        size="small"
+                                                                        style={{ margin: 10, backgroundColor: '#f44336', color: 'white' }}
+                                                                        onClick={() => fields.remove(index)}>
+                                                                        Remove
+                                                                    </Button>
+                                                                </div>
+                                                            ))}
+                                                            <Button
+                                                                size="small"
+                                                                style={{ margin: 10, backgroundColor: '#2196f3', color: 'white' }}
+                                                                onClick={() => fields.push({ question: '', answer: '' })}
+                                                            >
+                                                                Add question
+                                                            </Button>
+                                                        </div>
+                                                    )}
+                                                </FieldArray>
+                                            </Condition>
+                                        )
+                                    })}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        name={`steps[${index}].content`}
+                                        component={this.renderQuill}
+                                        placeholder="Content"
+                                    />
+                                    <Error name={`steps[${this.state.page}].content`} />
+                                </Grid>
+                            </Grid>
+                        </Wizard.Page>
+                    )
                 } else {
                     return (
                         <Wizard.Page key={value.title + index} >
