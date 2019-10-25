@@ -30,3 +30,6 @@ github-access-token.txt
 .env
 
 /src/app/services/firebaseService/secrets/*
+keys_dev.js
+keys_prod.js
+keys_local.js
