@@ -4,9 +4,9 @@ import {darken} from '@material-ui/core/styles/colorManipulator';
 import {FuseAnimate} from '@fuse';
 import {Link} from 'react-router-dom';
 import clsx from 'clsx';
-import JWTLoginTab from './tabs/JWTLoginTab';
+// import JWTLoginTab from './tabs/JWTLoginTab';
 import FirebaseLoginTab from './tabs/FirebaseLoginTab';
-import Auth0LoginTab from './tabs/Auth0LoginTab';
+// import Auth0LoginTab from './tabs/Auth0LoginTab';
 import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -63,26 +63,26 @@ function Login()
                             variant="fullWidth"
                             className="w-full mb-32"
                         >
-                            <Tab
+                            {/* <Tab
                                 icon={<img className="h-40 p-4 bg-black rounded-12" src="assets/images/logos/jwt.svg" alt="firebase"/>}
                                 className="min-w-0"
                                 label="JWT"
-                            />
+                            /> */}
                             <Tab
                                 icon={<img className="h-40" src="assets/images/logos/firebase.svg" alt="firebase"/>}
                                 className="min-w-0"
                                 label="Firebase"
                             />
-                            <Tab
+                            {/* <Tab
                                 icon={<img className="h-40" src="assets/images/logos/auth0.svg" alt="auth0"/>}
                                 className="min-w-0"
                                 label="Auth0"
-                            />
+                            /> */}
                         </Tabs>
 
-                        {selectedTab === 0 && <JWTLoginTab/>}
-                        {selectedTab === 1 && <FirebaseLoginTab/>}
-                        {selectedTab === 2 && <Auth0LoginTab/>}
+                        {selectedTab === 0 && <FirebaseLoginTab/>}
+                        {/* {selectedTab === 1 && <FirebaseLoginTab/>}
+                        {selectedTab === 2 && <Auth0LoginTab/>} */}
 
                         <div className="flex flex-col items-center justify-center pt-32">
                             <span className="font-medium">Don't have an account?</span>
