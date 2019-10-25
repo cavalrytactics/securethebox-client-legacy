@@ -28,3 +28,5 @@ yarn-error.log*
 /fuse-react/updater/github-access-token.txt
 github-access-token.txt
 .env
+
+/src/app/services/firebaseService/secrets/*

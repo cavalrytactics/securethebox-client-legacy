@@ -97,8 +97,7 @@
         "date-arithmetic": "3.1.0"
     },
     "devDependencies": {
-<<<<<<< HEAD
-        "@babel/core": "7.6.4",
+        "@babel/core": "7.6.3",
         "@babel/node": "7.6.3",
         "@babel/preset-env": "7.6.3",
         "cross-env": "6.0.3",
@@ -107,19 +106,8 @@
         "marked": "0.7.0",
         "purgecss": "1.4.0",
         "react-app-rewired": "^2.1.3",
-        "tailwindcss": "1.1.2",
-        "webpack-bundle-analyzer": "3.5.2"
-=======
-        "@babel/core": "7.6.3",
-        "@babel/node": "7.6.3",
-        "@babel/preset-env": "7.6.3",
-        "cross-env": "6.0.3",
-        "js-beautify": "1.10.2",
-        "marked": "0.7.0",
-        "purgecss": "1.4.0",
         "tailwindcss": "1.1.3",
         "webpack-bundle-analyzer": "3.6.0"
->>>>>>> 0fe4ff9dfdae1efdbfbb8cc34ece7f7ef8c25bdc
     },
     "scripts": {
         "commit-m": "git checkout master && git add --all && git cz && export CURRENTBRANCH=$(git branch | grep \\* | cut -d ' ' -f2) && git push",
