@@ -1,4 +1,4 @@
-import config from '../securethebox/firebaseService/firebaseServiceConfig';
+import config from './firebaseServiceConfig';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
