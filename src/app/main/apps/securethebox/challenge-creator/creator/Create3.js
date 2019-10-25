@@ -66,7 +66,6 @@ const Condition = ({ when, is, children }) => (
     </Field>
 )
 
-
 class Create3 extends Component {
     constructor(props) {
         super(props);
@@ -393,7 +392,7 @@ class Create3 extends Component {
                                                             <Button
                                                                 size="small"
                                                                 style={{ margin: 10, backgroundColor: '#2196f3', color: 'white' }}
-                                                                onClick={() => fields.push({ title: '', url: '' })}
+                                                                onClick={() => fields.push({ title: '', url: 'https://' })}
                                                             >
                                                                 Add reference
                                                             </Button>

@@ -28,3 +28,9 @@ yarn-error.log*
 /fuse-react/updater/github-access-token.txt
 github-access-token.txt
 .env
+
+
+/src/app/services/securethebox/secrets
+keys_dev.js
+keys_prod.js
+keys_local.js

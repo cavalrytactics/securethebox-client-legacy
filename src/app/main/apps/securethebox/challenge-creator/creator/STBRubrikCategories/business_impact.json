@@ -1,0 +1,61 @@
+[
+    {
+        "label": "Financial",
+        "children": [
+            {
+                "label": "Revenue Impact"
+            },
+            {
+                "label": "Service Uptime"
+            },
+            {
+                "label": "Operational Cost"
+            },
+            {
+                "label": "Bankruptcy"
+            }
+        ]
+    },{
+        "label": "Reputation",
+        "children": [
+            {
+                "label": "B2B Customers"
+            },
+            {
+                "label": "B2C Customers"
+            },
+            {
+                "label": "Brand"
+            }
+        ]
+    },{
+        "label": "Non-Compliance",
+        "children": [
+            {
+                "label": "Data Integrity"
+            },
+            {
+                "label": "Audit"
+            },
+            {
+                "label": "Violation"
+            }
+        ]
+    },{
+        "label": "Privacy Violation",
+        "children": [
+            {
+                "label": "PII exposure"
+            },
+            {
+                "label": "millions"
+            },
+            {
+                "label": "thousands"
+            },
+            {
+                "label": "hundreds"
+            }
+        ]
+    },
+]
