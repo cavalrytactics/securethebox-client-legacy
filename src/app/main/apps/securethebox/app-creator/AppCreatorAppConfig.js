@@ -6,7 +6,7 @@ export const AppCreatorAppConfig = {
         layout: {
             config: {
                 navbar        : {
-                    display: false
+                    display: true
                 },
                 toolbar       : {
                     display: true
@@ -15,7 +15,7 @@ export const AppCreatorAppConfig = {
                     display: false
                 },
                 leftSidePanel : {
-                    display: false
+                    display: true
                 },
                 rightSidePanel: {
                     display: false
@@ -27,7 +27,7 @@ export const AppCreatorAppConfig = {
     routes  : [
         {
             path     : '/apps/app-creator/create',
-            component: React.lazy(() => import('./creator/Create'))
+            component: React.lazy(() => import('./creator/Create2'))
         }
     ]
 };
