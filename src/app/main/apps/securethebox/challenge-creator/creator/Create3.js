@@ -184,30 +184,6 @@ class Create3 extends Component {
         )
     }
 
-    renderResourcesSelect() {
-        return (
-            <FormControl component="fieldset">
-                <FormControlLabel
-                    label={"Select"}
-                    control={
-                        <Field
-                            name={`steps[4].resources.references`}
-                            component={Select}
-                        >
-                            {this.state.appList.map((v, i) => {
-                                return (
-                                    <MenuItem key={v + i} value={v.name}>
-                                        {v.label}
-                                    </MenuItem>
-                                )
-                            })}
-                        </Field>
-                    }
-                />
-            </FormControl>
-        )
-    }
-
     renderWizardPages() {
         return (
             this.state.course_steps.map((value, index) => {

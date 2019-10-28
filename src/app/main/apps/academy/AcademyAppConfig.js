@@ -6,7 +6,7 @@ export const AcademyAppConfig = {
         layout: {
             config: {
                 navbar        : {
-                    display: false
+                    display: true
                 },
                 toolbar       : {
                     display: true
@@ -15,7 +15,7 @@ export const AcademyAppConfig = {
                     display: false
                 },
                 leftSidePanel : {
-                    display: false
+                    display: true
                 },
                 rightSidePanel: {
                     display: false
