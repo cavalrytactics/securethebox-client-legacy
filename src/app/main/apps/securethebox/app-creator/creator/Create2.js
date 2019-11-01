@@ -13,7 +13,7 @@ import connect from 'react-redux/es/connect/connect';
 import reducer from '../../../../../auth/store/reducers';
 import MonacoEditor from 'react-monaco-editor';
 import { Form, Field } from 'react-final-form'
-import { TextField, Select} from 'final-form-material-ui'
+import { TextField, Select } from 'final-form-material-ui'
 
 class Create extends Component {
 
@@ -23,7 +23,6 @@ class Create extends Component {
             loading: true,
             values_yaml: "",
             appCategories: [],
-
         };
     }
 
@@ -46,7 +45,6 @@ class Create extends Component {
                     appCategories: prevAppCategories
                 })
             })
-
     }
 
     saveHelmChartValuesYaml(values) {
@@ -198,7 +196,6 @@ class Create extends Component {
                             <Grid item xs={12}>
                                 {this.renderMonacoEditor(this.state.values_yaml)}
                             </Grid>
-
                         </Grid>
                         :
                         <div>loading</div>

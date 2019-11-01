@@ -26,7 +26,7 @@ export const AcademyAppConfig = {
     routes  : [
         {
             path     : '/apps/academy/courses/:courseId/:courseHandle?',
-            component: React.lazy(() => import('./course/Course'))
+            component: React.lazy(() => import('./securethebox/course/Course'))
         },
         {
             path     : '/apps/academy/courses',
