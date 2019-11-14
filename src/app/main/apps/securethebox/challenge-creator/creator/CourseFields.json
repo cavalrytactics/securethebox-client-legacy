@@ -31,6 +31,14 @@
             {
                 "value": "vulnerability_management",
                 "label": "Vulnerability Management"
+            },
+            {
+                "value": "security_analyst",
+                "label": "Security Analyst"
+            },
+            {
+                "value": "security_engineer",
+                "label": "Security Engineer"
             }
         ]
     },

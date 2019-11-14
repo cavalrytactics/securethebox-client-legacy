@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Paper, Hidden, Icon, IconButton, Fab, Typography, Stepper, Step, StepLabel} from '@material-ui/core';
+import {Paper, Hidden, Icon, IconButton, Fab, Typography, Stepper, Step, StepLabel, Button} from '@material-ui/core';
 import {FusePageSimple, FuseScrollbars} from '@fuse';
 import {useDispatch, useSelector} from 'react-redux';
 import withReducer from 'app/store/withReducer';
@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import reducer from '../../store/reducers';
 import * as Actions from '../../store/actions';
 import {makeStyles} from '@material-ui/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     stepLabel : {
@@ -62,6 +63,13 @@ function Course(props)
     }
 
     const activeStep = course && course.activeStep !== 0 ? course.activeStep : 1;
+
+
+    function manageChallenge(clusterName, userName, action) {
+        let data = { clusterName: clusterName, userName: userName, action: action }
+        axios.post('http://localhost:5000/api/v1/kubernetes/challenges/1', data);
+    }
+
 
     return (
         <FusePageSimple
@@ -135,7 +143,10 @@ function Course(props)
                                             <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
-                                                    <div>This challenge will be grading you based on your {step.role} skills.</div>
+                                                    <div>
+                                                        <Button onClick={() => manageChallenge('us-west1-a', "testuser", 'apply')}>Start Challenge!</Button>
+                                                        <Button onClick={() => manageChallenge('us-west1-a', "testuser", 'delete')}>Delete Challenge!</Button>
+                                                    </div>
                                                 </Paper>
                                             </div>
                                         )

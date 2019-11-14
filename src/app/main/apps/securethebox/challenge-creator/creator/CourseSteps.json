@@ -2,7 +2,7 @@
     {
         "id": 0,
         "title": "Overview",
-        "content": "<p>Write a high-level overview about this challenge at the perspective of the company/interview process</p>"
+        "content": "<h1>Overview</h1></br>This is a technical challenge to assess your skills and submit results to the organization that sent you this challenge.</br></br><h2>Please read and accept the following rules to continue this assessment.</h2></br><ul><li>You will not share these questions and answers to anyone to ensure the integrity of these challenges.</li><li>You will not attack the infrastructure outside scope of the challenge.</li><li>You will not cheat or plagiarize from other sources when submitting answers.</li><ul>"
     },
     {
         "id": 1,

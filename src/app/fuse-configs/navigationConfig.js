@@ -29,6 +29,12 @@ const navigationConfig = [
         ]
     },
     {
+        'id'      : 'subscription',
+        'title'   : 'Subscription',
+        'type'    : 'item',
+        'url'     : '/subscription'
+    },
+    {
         'id'      : 'applications',
         'title'   : 'Applications',
         'type'    : 'group',

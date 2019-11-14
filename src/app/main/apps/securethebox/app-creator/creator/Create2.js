@@ -14,6 +14,7 @@ import reducer from '../../../../../auth/store/reducers';
 import MonacoEditor from 'react-monaco-editor';
 import { Form, Field } from 'react-final-form'
 import { TextField, Select } from 'final-form-material-ui'
+import YAML from 'yaml'
 
 class Create extends Component {
 
@@ -31,7 +32,7 @@ class Create extends Component {
             loading: true
         })
 
-        axios.get("/api/applications/categories")
+        axios.get("/api/v1/applications/categories")
             .then((r) => {
                 console.log(r.data)
                 let prevAppCategories = this.state.appCategories
@@ -58,7 +59,7 @@ class Create extends Component {
                 }
             ]
         }
-        axios.post("/api/applications/save", saveData)
+        axios.post("/api/v1/helm/save", saveData)
             .then((r) => {
                 console.log(r.data)
             })
@@ -102,10 +103,10 @@ class Create extends Component {
                 ]
             }
             console.log(queryData)
-            axios.post("/api/applications/query", queryData)
+            axios.post("/api/v1/helm/query", queryData)
                 .then((r) => {
                     console.log(r.data)
-                    this.handleMonacoEditorChange(r.data)
+                    this.handleMonacoEditorChange(YAML.stringify(r.data))
                 })
         }
         return (

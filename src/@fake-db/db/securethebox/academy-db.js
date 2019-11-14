@@ -168,7 +168,7 @@ const academyDB = {
 //     return [200, response];
 // });
 
-mock.onPost('/api/academy-app/course/save').reply((request) => {
+mock.onPost('/api/v1/academy/course/save').reply((request) => {
     const data = JSON.parse(request.data);
     let course = null;
 
@@ -193,15 +193,17 @@ mock.onPost('/api/academy-app/course/save').reply((request) => {
     return [200, course];
 });
 
-mock.onPost('/api/academy-app/course/update').reply((request) => {
-    const data = JSON.parse(request.data);
-    academyDB.courses = academyDB.courses.map(_course => {
-        if ( _course.id === data.id )
-        {
-            return _.merge(_course, data);
-        }
-        return _course;
-    });
+// mock.onPost('/api/v1/academy/course/update').reply((request) => {
+//     const data = JSON.parse(request.data);
+//     academyDB.courses = academyDB.courses.map(_course => {
+//         if ( _course.id === data.id )
+//         {
+//             console.log(_.merge(_course, data))
+//             return _.merge(_course, data);
+//         }
+//         console.log(_course)
+//         return _course;
+//     });
 
-    return [200, data];
-});
+//     return [200, data];
+// });

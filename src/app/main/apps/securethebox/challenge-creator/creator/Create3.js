@@ -97,7 +97,7 @@ class Create3 extends Component {
 
     componentDidMount() {
         // Gett All Applications
-        axios.get('/api/applications')
+        axios.get('/api/v1/applications')
             .then((r) => {
                 var listApps = []
                 var listCategories = {}
@@ -154,7 +154,7 @@ class Create3 extends Component {
     }
 
     submitChallengePayload() {
-        axios.post('/api/challenges', this.state.course_payload)
+        axios.post('/api/v1/challenges', this.state.course_payload)
             .then((r) => {
                 console.log(r)
                 return null
@@ -493,7 +493,7 @@ class Create3 extends Component {
         const onSubmit = async values => {
             let challengeDict = {}
             challengeDict["challenge"] = values
-            axios.post('/api/challenges', challengeDict)
+            axios.post('/api/v1/challenges', challengeDict)
                 .then((r) => {
                     console.log(r)
                 })

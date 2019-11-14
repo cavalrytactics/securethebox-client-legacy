@@ -5,7 +5,7 @@ export const GET_CATEGORIES = '[ACADEMY APP] GET CATEGORIES';
 
 export function getCourses()
 {
-    const request = axios.get('/api/academy-app/courses');
+    const request = axios.get('/api/v1/academy/courses');
     request.then((response) => 
             console.log(response)
         );
@@ -21,7 +21,7 @@ export function getCourses()
 
 export function getCategories()
 {
-    const request = axios.get('/api/academy-app/categories');
+    const request = axios.get('/api/v1/academy/categories');
 
     return (dispatch) =>
         request.then((response) =>
