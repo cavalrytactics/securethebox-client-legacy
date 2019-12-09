@@ -1,30 +1,29 @@
-import React, {useEffect, useRef} from 'react';
-import {Paper, Hidden, Icon, IconButton, Fab, Typography, Stepper, Step, StepLabel, Button} from '@material-ui/core';
-import {FusePageSimple, FuseScrollbars} from '@fuse';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import { Paper, Hidden, Icon, IconButton, Fab, Typography, Stepper, Step, StepLabel, Button } from '@material-ui/core';
+import { FusePageSimple, FuseScrollbars } from '@fuse';
+import { useDispatch, useSelector } from 'react-redux';
 import withReducer from 'app/store/withReducer';
 import SwipeableViews from 'react-swipeable-views';
-import {green} from '@material-ui/core/colors';
-import {Link} from 'react-router-dom';
+import { green } from '@material-ui/core/colors';
+import { Link } from 'react-router-dom';
 import reducer from '../../store/reducers';
 import * as Actions from '../../store/actions';
-import {makeStyles} from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
-    stepLabel : {
+    stepLabel: {
         cursor: 'pointer!important'
     },
     successFab: {
         background: green[500] + '!important',
-        color     : 'white!important'
+        color: 'white!important'
     }
 }));
 
-function Course(props)
-{
+function Course(props) {
     const dispatch = useDispatch();
-    const course = useSelector(({academyApp}) => academyApp.course);
+    const course = useSelector(({ academyApp }) => academyApp.course);
 
     const classes = useStyles(props);
     const pageLayout = useRef(null);
@@ -41,25 +40,21 @@ function Course(props)
          * If the course is opened for the first time
          * Change ActiveStep to 1
          */
-        if ( course && course.activeStep === 0 )
-        {
-            dispatch(Actions.updateCourse({activeStep: 1}));
+        if (course && course.activeStep === 0) {
+            dispatch(Actions.updateCourse({ activeStep: 1 }));
         }
     }, [dispatch, course]);
 
-    function handleChangeActiveStep(index)
-    {
-        dispatch(Actions.updateCourse({activeStep: index + 1}));
+    function handleChangeActiveStep(index) {
+        dispatch(Actions.updateCourse({ activeStep: index + 1 }));
     }
 
-    function handleNext()
-    {
-        dispatch(Actions.updateCourse({activeStep: course.activeStep + 1}));
+    function handleNext() {
+        dispatch(Actions.updateCourse({ activeStep: course.activeStep + 1 }));
     }
 
-    function handleBack()
-    {
-        dispatch(Actions.updateCourse({activeStep: course.activeStep - 1}));
+    function handleBack() {
+        dispatch(Actions.updateCourse({ activeStep: course.activeStep - 1 }));
     }
 
     const activeStep = course && course.activeStep !== 0 ? course.activeStep : 1;
@@ -75,7 +70,7 @@ function Course(props)
         <FusePageSimple
             classes={{
                 content: "flex flex-col flex-auto overflow-hidden",
-                header : "h-72 min-h-72"
+                header: "h-72 min-h-72"
             }}
             header={
                 <div className="flex flex-1 items-center px-16 lg:px-24">
@@ -110,28 +105,47 @@ function Course(props)
                                 onChangeIndex={handleChangeActiveStep}
                             >
                                 {course.steps.map((step, index) => {
-                                    console.log(step)
                                     if (index === 0) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
-                                                    <div>This challenge will be grading you based on your {step.role} skills.</div>
                                                 </Paper>
                                             </div>
                                         )
                                     } else if (index === 1) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
-                                                    <div dangerouslySetInnerHTML={{ __html: step.content }} />
+                                                    <h1>Grading Criteria</h1>
                                                     <div>This challenge will be grading you based on your {step.role} skills.</div>
+                                                    <br/>
+                                                    {
+                                                        Object.keys(step.topics[step.role]).map((e, i) => {
+                                                            return (
+                                                                <div key={e}>
+                                                                    <h2>{e}</h2>
+                                                                    <ul>
+                                                                    {step.topics[step.role][e].map((f, i) => {
+                                                                        return (
+                                                                            <div key={f}>
+                                                                                <li>
+                                                                                {f}
+                                                                                </li>
+                                                                            </div>
+                                                                        )
+                                                                    })}
+                                                                    </ul>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
                                                 </Paper>
                                             </div>
                                         )
                                     } else if (index === 2) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                     <div>This challenge will be grading you based on your {step.role} skills.</div>
@@ -140,7 +154,7 @@ function Course(props)
                                         )
                                     } else if (index === 3) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                     <div>
@@ -152,7 +166,7 @@ function Course(props)
                                         )
                                     } else if (index === 4) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                     <div>This challenge will be grading you based on your {step.role} skills.</div>
@@ -161,7 +175,7 @@ function Course(props)
                                         )
                                     } else if (index === 5) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                 </Paper>
@@ -169,7 +183,7 @@ function Course(props)
                                         )
                                     } else if (index === 6) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                     <div>No need to wait. Here are your results!</div>
@@ -178,7 +192,7 @@ function Course(props)
                                         )
                                     } else {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id+index}>
+                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                 </Paper>
@@ -202,10 +216,10 @@ function Course(props)
                                 </div>
                                 <div>
                                     {activeStep < course.steps.length ? (
-                                            <Fab className="" color="secondary" onClick={handleNext}>
-                                                <Icon>chevron_right</Icon>
-                                            </Fab>
-                                        ) :
+                                        <Fab className="" color="secondary" onClick={handleNext}>
+                                            <Icon>chevron_right</Icon>
+                                        </Fab>
+                                    ) :
                                         (
                                             <Fab
                                                 className={classes.successFab}
@@ -224,7 +238,7 @@ function Course(props)
             leftSidebarContent={
                 course && (
                     <Stepper
-                        classes={{root: "bg-transparent"}}
+                        classes={{ root: "bg-transparent" }}
                         activeStep={activeStep - 1}
                         orientation="vertical"
                     >
@@ -234,7 +248,7 @@ function Course(props)
                                     key={step.id}
                                     onClick={() => handleChangeActiveStep(index)}
                                 >
-                                    <StepLabel classes={{root: classes.stepLabel}}>{step.title}</StepLabel>
+                                    <StepLabel classes={{ root: classes.stepLabel }}>{step.title}</StepLabel>
                                 </Step>
                             );
                         })}

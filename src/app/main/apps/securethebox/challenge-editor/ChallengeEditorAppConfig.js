@@ -1,6 +1,7 @@
 import React from 'react';
+import {authRoles} from 'app/auth';
 
-export const SubscriptionConfig = {
+export const ChallengeCreatorAppConfig = {
     settings: {
         layout: {
             config: {
@@ -22,10 +23,11 @@ export const SubscriptionConfig = {
             }
         }
     },
+    auth   : authRoles.user,
     routes  : [
         {
-            path     : '/subscription',
-            component: React.lazy(() => import('./Subscription'))
+            path     : '/apps/challenge-editor/edit',
+            component: React.lazy(() => import('./creator/Edit'))
         }
     ]
 };

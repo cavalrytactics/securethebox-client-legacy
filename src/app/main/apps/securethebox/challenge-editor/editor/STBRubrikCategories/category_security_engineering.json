@@ -1,0 +1,632 @@
+[
+    {
+        "label": "Application Security",
+        "children": [
+            {
+                "label": "Application DoS"
+            },
+            {
+                "label": "Automation",
+                "children": [
+                    {
+                        "label": "Revision Control Techniques"
+                    },
+                    {
+                        "label": "Static Analysis"
+                    },
+                    {
+                        "label": "Testing Tools"
+                    }
+                ]
+            },
+            {
+                "label": "Buffer Overflows"
+            },
+            {
+                "label": "Command Injection"
+            },
+            {
+                "label": "Cross Site Request Forgery"
+            },
+            {
+                "label": "Cross Site Scripting"
+            },
+            {
+                "label": "Input Sanitization"
+            },
+            {
+                "label": "Output Encoding"
+            },
+            {
+                "label": "Local File Inclusion"
+            },
+            {
+                "label": "Remote File Inclusion"
+            },
+            {
+                "label": "SQL Injection",
+                "children": [
+                    {
+                        "label": "Blind SQLi"
+                    },
+                    {
+                        "label": "Tools"
+                    }
+                ]
+            },
+            {
+                "label": "Shell code",
+                "children": [
+                    {
+                        "label": "registers"
+                    },
+                    {
+                        "label": "stack structure"
+                    },
+                    {
+                        "label": "x64 vs x86"
+                    }
+                ]
+            },
+            {
+                "label": "User uploaded content processing"
+            }
+        ]
+    },
+    {
+        "label": "Cryptography",
+        "children": [
+            {
+                "label": "Asymmetric Cryptography"
+            },
+            {
+                "label": "Cryptographic Attacks"
+            },
+            {
+                "label": "Distance Based Hashing"
+            },
+            {
+                "label": "File Formats"
+            },
+            {
+                "label": "Forward Secrecy"
+            },
+            {
+                "label": "Hashing"
+            },
+            {
+                "label": "Key Derivation"
+            },
+            {
+                "label": "Key Exchange"
+            },
+            {
+                "label": "PKI & CAs"
+            },
+            {
+                "label": "RNGs and PRNGs"
+            },
+            {
+                "label": "Steganography"
+            },
+            {
+                "label": "Symmetric Cryptography"
+            }
+        ]
+    },
+    {
+        "label": "Enterprise Security",
+        "children": [
+            {
+                "label": "AuthN & AuthZ",
+                "children": [
+                    {
+                        "label": "Cookie vs Session"
+                    },
+                    {
+                        "label": "Federation"
+                    },
+                    {
+                        "label": "MFA",
+                        "children": [
+                            {
+                                "label": "Biometric"
+                            },
+                            {
+                                "label": "SMS"
+                            },
+                            {
+                                "label": "TOTP"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "PAM"
+                    },
+                    {
+                        "label": "PKI Integration"
+                    },
+                    {
+                        "label": "SSO",
+                        "children": [
+                            {
+                                "label": "OAUTH2"
+                            },
+                            {
+                                "label": "SAML"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Directory Services",
+                "children": [
+                    {
+                        "label": "Account Types",
+                        "children": [
+                            {
+                                "label": "Domain Administrator"
+                            },
+                            {
+                                "label": "Domain User"
+                            },
+                            {
+                                "label": "Local Administrator"
+                            },
+                            {
+                                "label": "Local User"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Structure",
+                        "children": [
+                            {
+                                "label": "Common Name"
+                            },
+                            {
+                                "label": "Distinguished Name"
+                            },
+                            {
+                                "label": "Domain"
+                            },
+                            {
+                                "label": "Forest"
+                            },
+                            {
+                                "label": "OU"
+                            },
+                            {
+                                "label": "Object"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Trust Types",
+                        "children": [
+                            {
+                                "label": "Non-Transitive"
+                            },
+                            {
+                                "label": "One Way"
+                            },
+                            {
+                                "label": "Transitive"
+                            },
+                            {
+                                "label": "Two Way"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Trusts",
+                        "children": [
+                            {
+                                "label": "External"
+                            },
+                            {
+                                "label": "Forest"
+                            },
+                            {
+                                "label": "Parent-Child"
+                            },
+                            {
+                                "label": "Realm"
+                            },
+                            {
+                                "label": "Shortcut"
+                            },
+                            {
+                                "label": "Tree-Root"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Remote Access",
+                "children": [
+                    {
+                        "label": "Bastion"
+                    },
+                    {
+                        "label": "Mutual TLS Authentication"
+                    },
+                    {
+                        "label": "VPNs",
+                        "children": [
+                            {
+                                "label": "IPSec"
+                            },
+                            {
+                                "label": "Layer 2 Tunnel Protocol"
+                            },
+                            {
+                                "label": "PPTP"
+                            },
+                            {
+                                "label": "Split Horizon DNS"
+                            },
+                            {
+                                "label": "Split Tunnel vs Full Tunnel"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Networking",
+        "children": [
+            {
+                "label": "Analysis",
+                "children": [
+                    {
+                        "label": "Flow Analysis"
+                    },
+                    {
+                        "label": "IDS"
+                    },
+                    {
+                        "label": "IPS"
+                    }
+                ]
+            },
+            {
+                "label": "DDoS",
+                "children": [
+                    {
+                        "label": "Amplification Attacks"
+                    },
+                    {
+                        "label": "Mitigations"
+                    },
+                    {
+                        "label": "Network Saturation"
+                    },
+                    {
+                        "label": "Standard Flood"
+                    }
+                ]
+            },
+            {
+                "label": "Email Security",
+                "children": [
+                    {
+                        "label": "Blocking"
+                    },
+                    {
+                        "label": "Purging"
+                    },
+                    {
+                        "label": "Spoofing",
+                        "children": [
+                            {
+                                "label": "DKIM"
+                            },
+                            {
+                                "label": "DMARC"
+                            },
+                            {
+                                "label": "SPF"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Firewalls",
+                "children": [
+                    {
+                        "label": "DLP"
+                    },
+                    {
+                        "label": "DPI"
+                    },
+                    {
+                        "label": "Stateful vs Stateless"
+                    }
+                ]
+            },
+            {
+                "label": "Important Protocols",
+                "children": [
+                    {
+                        "label": "802_11"
+                    },
+                    {
+                        "label": "802_1X"
+                    },
+                    {
+                        "label": "AFP"
+                    },
+                    {
+                        "label": "ARP"
+                    },
+                    {
+                        "label": "BGP"
+                    },
+                    {
+                        "label": "CSMA CA"
+                    },
+                    {
+                        "label": "CSMA CD"
+                    },
+                    {
+                        "label": "DHCP"
+                    },
+                    {
+                        "label": "DNS"
+                    },
+                    {
+                        "label": "Ethernet II & 802_3"
+                    },
+                    {
+                        "label": "FTP"
+                    },
+                    {
+                        "label": "HTTP"
+                    },
+                    {
+                        "label": "HTTP2"
+                    },
+                    {
+                        "label": "HTTPS"
+                    },
+                    {
+                        "label": "ICMP"
+                    },
+                    {
+                        "label": "IMAP"
+                    },
+                    {
+                        "label": "IP"
+                    },
+                    {
+                        "label": "IPSec"
+                    },
+                    {
+                        "label": "Kerberos"
+                    },
+                    {
+                        "label": "NFS"
+                    },
+                    {
+                        "label": "OSPF"
+                    },
+                    {
+                        "label": "POP3"
+                    },
+                    {
+                        "label": "RDP"
+                    },
+                    {
+                        "label": "RIP"
+                    },
+                    {
+                        "label": "RTMP"
+                    },
+                    {
+                        "label": "SMB"
+                    },
+                    {
+                        "label": "SMTP"
+                    },
+                    {
+                        "label": "SNMP"
+                    },
+                    {
+                        "label": "SOCKS"
+                    },
+                    {
+                        "label": "SSH"
+                    },
+                    {
+                        "label": "SSL & TLS"
+                    },
+                    {
+                        "label": "STP"
+                    },
+                    {
+                        "label": "TCP"
+                    },
+                    {
+                        "label": "UDP"
+                    },
+                    {
+                        "label": "mDNS"
+                    }
+                ]
+            },
+            {
+                "label": "OSI Model"
+            },
+            {
+                "label": "Stateful vs Stateless"
+            }
+        ]
+    },
+    {
+        "label": "Operating Systems",
+        "children": [
+            {
+                "label": "Computer Architecture",
+                "children": [
+                    {
+                        "label": "BIOS"
+                    },
+                    {
+                        "label": "Boot Loader"
+                    },
+                    {
+                        "label": "NVRAM"
+                    }
+                ]
+            },
+            {
+                "label": "Hardware",
+                "children": [
+                    {
+                        "label": "CPU"
+                    },
+                    {
+                        "label": "NIC"
+                    },
+                    {
+                        "label": "PCI"
+                    },
+                    {
+                        "label": "RAM"
+                    },
+                    {
+                        "label": "Storage"
+                    },
+                    {
+                        "label": "USB"
+                    }
+                ]
+            },
+            {
+                "label": "Init Systems",
+                "children": [
+                    {
+                        "label": "Windows"
+                    },
+                    {
+                        "label": "launchd"
+                    },
+                    {
+                        "label": "systemd"
+                    },
+                    {
+                        "label": "sysvinit"
+                    },
+                    {
+                        "label": "upstart"
+                    }
+                ]
+            },
+            {
+                "label": "Kernel",
+                "children": [
+                    {
+                        "label": "Drivers"
+                    },
+                    {
+                        "label": "Memory Protection"
+                    },
+                    {
+                        "label": "Network IO"
+                    },
+                    {
+                        "label": "Syscalls"
+                    }
+                ]
+            },
+            {
+                "label": "Permissions"
+            },
+            {
+                "label": "Run Levels"
+            },
+            {
+                "label": "Security Features",
+                "children": [
+                    {
+                        "label": "Code Signing"
+                    },
+                    {
+                        "label": "Trusted Boot"
+                    },
+                    {
+                        "label": "Windows Security Policy"
+                    },
+                    {
+                        "label": "chroot"
+                    },
+                    {
+                        "label": "jails"
+                    },
+                    {
+                        "label": "mandatory access controls"
+                    },
+                    {
+                        "label": "selinux and apparmor"
+                    },
+                    {
+                        "label": "sudo"
+                    }
+                ]
+            },
+            {
+                "label": "Strengths & Weaknesses",
+                "children": [
+                    {
+                        "label": "Linux"
+                    },
+                    {
+                        "label": "Windows"
+                    },
+                    {
+                        "label": "macOS"
+                    }
+                ]
+            },
+            {
+                "label": "Virtualization",
+                "children": [
+                    {
+                        "label": "Containers",
+                        "children": [
+                            {
+                                "label": "CGroups"
+                            },
+                            {
+                                "label": "Docker"
+                            },
+                            {
+                                "label": "Kubernetes"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Full",
+                        "children": [
+                            {
+                                "label": "HyperV"
+                            },
+                            {
+                                "label": "VMWare"
+                            },
+                            {
+                                "label": "VirtualBox"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

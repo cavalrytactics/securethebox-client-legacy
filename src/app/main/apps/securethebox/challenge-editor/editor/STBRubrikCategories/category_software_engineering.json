@@ -1,0 +1,262 @@
+[
+    {
+        "label": "Common Languages",
+        "children": [
+            {
+                "label": "BASH"
+            },
+            {
+                "label": "C & C ++"
+            },
+            {
+                "label": "Go"
+            },
+            {
+                "label": "Java"
+            },
+            {
+                "label": "Javascript"
+            },
+            {
+                "label": "NodeJS"
+            },
+            {
+                "label": "Powershell"
+            },
+            {
+                "label": "Python"
+            },
+            {
+                "label": "Ruby"
+            },
+            {
+                "label": "SQL"
+            }
+        ]
+    },
+    {
+        "label": "Compilers",
+        "children": [
+            {
+                "label": "Backend"
+            },
+            {
+                "label": "Frontend"
+            },
+            {
+                "label": "Intermediate Representation",
+                "children": [
+                    {
+                        "label": "Bytecode"
+                    },
+                    {
+                        "label": "Runtimes & VM"
+                    }
+                ]
+            },
+            {
+                "label": "Optimization",
+                "children": [
+                    {
+                        "label": "Inlining"
+                    },
+                    {
+                        "label": "Memory"
+                    }
+                ]
+            },
+            {
+                "label": "Type Safety"
+            }
+        ]
+    },
+    {
+        "label": "Concurrency",
+        "children": [
+            {
+                "label": "Fiber"
+            },
+            {
+                "label": "Process"
+            },
+            {
+                "label": "Semaphores"
+            },
+            {
+                "label": "Thread"
+            }
+        ]
+    },
+    {
+        "label": "Data Types",
+        "children": [
+            {
+                "label": "Arrays"
+            },
+            {
+                "label": "Encoding",
+                "children": [
+                    {
+                        "label": "ASCII"
+                    },
+                    {
+                        "label": "Base32"
+                    },
+                    {
+                        "label": "Base64"
+                    },
+                    {
+                        "label": "CSV"
+                    },
+                    {
+                        "label": "JSON"
+                    },
+                    {
+                        "label": "UTF-8"
+                    }
+                ]
+            },
+            {
+                "label": "Int Size"
+            },
+            {
+                "label": "Maps"
+            },
+            {
+                "label": "Primatives"
+            },
+            {
+                "label": "Signed vs Unsigned"
+            },
+            {
+                "label": "Strings"
+            },
+            {
+                "label": "Trees"
+            }
+        ]
+    },
+    {
+        "label": "Distributed",
+        "children": [
+            {
+                "label": "Shared Queues",
+                "children": [
+                    {
+                        "label": "At Least Once vs At Most Once"
+                    },
+                    {
+                        "label": "Performance & Scaling"
+                    }
+                ]
+            },
+            {
+                "label": "Shared State",
+                "children": [
+                    {
+                        "label": "Consistency"
+                    },
+                    {
+                        "label": "Distributed Storage Engines"
+                    },
+                    {
+                        "label": "Locks"
+                    },
+                    {
+                        "label": "Race Conditions"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Interpreters",
+        "children": [
+            {
+                "label": "Types",
+                "children": [
+                    {
+                        "label": "Abstract Syntax Tree"
+                    },
+                    {
+                        "label": "Bytecode"
+                    },
+                    {
+                        "label": "JIT"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Modeling",
+        "children": [
+            {
+                "label": "Inheritance"
+            },
+            {
+                "label": "Interfaces"
+            },
+            {
+                "label": "Object Orientation"
+            },
+            {
+                "label": "Polymorphism"
+            },
+            {
+                "label": "Recursion"
+            },
+            {
+                "label": "Reflection"
+            },
+            {
+                "label": "Serialization"
+            }
+        ]
+    },
+    {
+        "label": "Pointers",
+        "children": [
+            {
+                "label": "Function Pointers"
+            },
+            {
+                "label": "Garbage Collection Implications"
+            },
+            {
+                "label": "Pass By Value vs Pass By Reference"
+            }
+        ]
+    },
+    {
+        "label": "Processing",
+        "children": [
+            {
+                "label": "Buffered IO"
+            },
+            {
+                "label": "Regular Expressions"
+            },
+            {
+                "label": "Sync vs Async"
+            }
+        ]
+    },
+    {
+        "label": "Testing",
+        "children": [
+            {
+                "label": "BigO Complexity"
+            },
+            {
+                "label": "Integration Tests"
+            },
+            {
+                "label": "Negative Test Cases"
+            },
+            {
+                "label": "Unit Tests"
+            }
+        ]
+    }
+]

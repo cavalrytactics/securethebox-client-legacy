@@ -1,0 +1,282 @@
+[
+    {
+        "label": "Detection",
+        "children": [
+            {
+                "label": "Automation",
+                "children": [
+                    {
+                        "label": "APIs"
+                    },
+                    {
+                        "label": "Scripting"
+                    }
+                ]
+            },
+            {
+                "label": "Scalability"
+            },
+            {
+                "label": "Techniques",
+                "children": [
+                    {
+                        "label": "Anomaly based"
+                    },
+                    {
+                        "label": "Behavioral"
+                    },
+                    {
+                        "label": "Machine Learning"
+                    },
+                    {
+                        "label": "Static Signature"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Forensics",
+        "children": [
+            {
+                "label": "Analysis",
+                "children": [
+                    {
+                        "label": "Data Carving"
+                    },
+                    {
+                        "label": "Deobfuscation"
+                    },
+                    {
+                        "label": "File Systems",
+                        "children": [
+                            {
+                                "label": "Boot Records"
+                            },
+                            {
+                                "label": "Encrypted Volumes"
+                            },
+                            {
+                                "label": "File Tables"
+                            },
+                            {
+                                "label": "Inodes"
+                            },
+                            {
+                                "label": "Slack Space"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Memory"
+                    },
+                    {
+                        "label": "Steganography"
+                    },
+                    {
+                        "label": "Temporal Analysis"
+                    }
+                ]
+            },
+            {
+                "label": "Collection",
+                "children": [
+                    {
+                        "label": "Desktop OSes"
+                    },
+                    {
+                        "label": "Encryption"
+                    },
+                    {
+                        "label": "Memory"
+                    },
+                    {
+                        "label": "Mobile OSes"
+                    },
+                    {
+                        "label": "Network"
+                    }
+                ]
+            },
+            {
+                "label": "Legal",
+                "children": [
+                    {
+                        "label": "Chain of Custody"
+                    },
+                    {
+                        "label": "Diligence"
+                    },
+                    {
+                        "label": "Documentation"
+                    },
+                    {
+                        "label": "Privilege"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Monitoring",
+        "children": [
+            {
+                "label": "Application",
+                "children": [
+                    {
+                        "label": "Enterprise"
+                    },
+                    {
+                        "label": "Remote Access"
+                    },
+                    {
+                        "label": "Web"
+                    }
+                ]
+            },
+            {
+                "label": "Host",
+                "children": [
+                    {
+                        "label": "Linux"
+                    },
+                    {
+                        "label": "Windows"
+                    },
+                    {
+                        "label": "macOS"
+                    }
+                ]
+            },
+            {
+                "label": "Logging",
+                "children": [
+                    {
+                        "label": "Architecture"
+                    },
+                    {
+                        "label": "Formatting"
+                    },
+                    {
+                        "label": "Processing"
+                    },
+                    {
+                        "label": "Searching"
+                    },
+                    {
+                        "label": "Storage"
+                    }
+                ]
+            },
+            {
+                "label": "Network",
+                "children": [
+                    {
+                        "label": "Packet Capture",
+                        "children": [
+                            {
+                                "label": "Common Tools"
+                            },
+                            {
+                                "label": "HA & Scalability"
+                            },
+                            {
+                                "label": "Source Spoofing"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Valuable Protocols"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Response",
+        "children": [
+            {
+                "label": "Crisis",
+                "children": [
+                    {
+                        "label": "Communication"
+                    },
+                    {
+                        "label": "Documentation"
+                    },
+                    {
+                        "label": "Priority"
+                    }
+                ]
+            },
+            {
+                "label": "Remediation",
+                "children": [
+                    {
+                        "label": "Containment Techniques"
+                    },
+                    {
+                        "label": "Eradication Principles"
+                    },
+                    {
+                        "label": "IR Life-cycle"
+                    },
+                    {
+                        "label": "Pyramid of Pain"
+                    }
+                ]
+            },
+            {
+                "label": "Reverse Engineering",
+                "children": [
+                    {
+                        "label": "Dynamic Analysis"
+                    },
+                    {
+                        "label": "Evasion"
+                    },
+                    {
+                        "label": "Protocol Analysis"
+                    },
+                    {
+                        "label": "Static Analysis"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Threat Intel",
+        "children": [
+            {
+                "label": "IOC Sharing"
+            },
+            {
+                "label": "OPSEC",
+                "children": [
+                    {
+                        "label": "Fingerprinting"
+                    },
+                    {
+                        "label": "Geographic Considerations"
+                    },
+                    {
+                        "label": "Host"
+                    },
+                    {
+                        "label": "Network"
+                    },
+                    {
+                        "label": "Persona Management"
+                    }
+                ]
+            },
+            {
+                "label": "Severities vs Impact"
+            },
+            {
+                "label": "Traffic Light Protocol"
+            }
+        ]
+    }
+]

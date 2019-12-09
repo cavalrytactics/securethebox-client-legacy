@@ -1,0 +1,266 @@
+[
+    {
+        "label": "Cloud",
+        "children": [
+            {
+                "label": "Apps",
+                "children": [
+                    {
+                        "label": "GSuite",
+                        "children": [
+                            {
+                                "label": "GMail"
+                            },
+                            {
+                                "label": "Google Drive"
+                            },
+                            {
+                                "label": "Google Sheets"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Storage",
+                        "children": [
+                            {
+                                "label": "Box"
+                            },
+                            {
+                                "label": "Dropbox"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Infrastructure",
+                "children": [
+                    {
+                        "label": "Providers",
+                        "children": [
+                            {
+                                "label": "AWS"
+                            },
+                            {
+                                "label": "Azure"
+                            },
+                            {
+                                "label": "GCP"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Technologies",
+                        "children": [
+                            {
+                                "label": "Compute Resources"
+                            },
+                            {
+                                "label": "Elastic IPs"
+                            },
+                            {
+                                "label": "Host-based ACLs"
+                            },
+                            {
+                                "label": "IAM"
+                            },
+                            {
+                                "label": "Lambda Functions"
+                            },
+                            {
+                                "label": "Load Balancers"
+                            },
+                            {
+                                "label": "Network ACLs"
+                            },
+                            {
+                                "label": "Object Storage"
+                            },
+                            {
+                                "label": "Virtual Private Clouds"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Configuration Management",
+        "children": [
+            {
+                "label": "State Management",
+                "children": [
+                    {
+                        "label": "Ansible"
+                    },
+                    {
+                        "label": "Chef"
+                    },
+                    {
+                        "label": "Puppet"
+                    },
+                    {
+                        "label": "SCCM"
+                    },
+                    {
+                        "label": "Salt"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Databases",
+        "children": [
+            {
+                "label": "ACID",
+                "children": [
+                    {
+                        "label": "Atomicity"
+                    },
+                    {
+                        "label": "Consistency"
+                    },
+                    {
+                        "label": "Durability"
+                    },
+                    {
+                        "label": "Isolation"
+                    }
+                ]
+            },
+            {
+                "label": "High Availability",
+                "children": [
+                    {
+                        "label": "Master-Slave"
+                    },
+                    {
+                        "label": "Multi Master"
+                    },
+                    {
+                        "label": "Multi-Slave Single Master"
+                    }
+                ]
+            },
+            {
+                "label": "NoSQL",
+                "children": [
+                    {
+                        "label": "Cassandra"
+                    },
+                    {
+                        "label": "MongoDB"
+                    },
+                    {
+                        "label": "Redis"
+                    }
+                ]
+            },
+            {
+                "label": "RDBS",
+                "children": [
+                    {
+                        "label": "Authentication"
+                    },
+                    {
+                        "label": "Data Security"
+                    },
+                    {
+                        "label": "MSSQL"
+                    },
+                    {
+                        "label": "MySQL"
+                    },
+                    {
+                        "label": "Normalization"
+                    },
+                    {
+                        "label": "PostgreSQL"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Endpoint Management",
+        "children": [
+            {
+                "label": "Mac",
+                "children": [
+                    {
+                        "label": "Apple MDM"
+                    },
+                    {
+                        "label": "JAMF"
+                    }
+                ]
+            },
+            {
+                "label": "Mobile",
+                "children": [
+                    {
+                        "label": "MDM"
+                    },
+                    {
+                        "label": "Provisioning"
+                    }
+                ]
+            },
+            {
+                "label": "Windows",
+                "children": [
+                    {
+                        "label": "GPO"
+                    },
+                    {
+                        "label": "SCCM"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Infrastructure Automation",
+        "children": [
+            {
+                "label": "Ansible"
+            },
+            {
+                "label": "Terraform"
+            }
+        ]
+    },
+    {
+        "label": "Revision Control",
+        "children": [
+            {
+                "label": "Code Review"
+            },
+            {
+                "label": "Continuous Integration"
+            },
+            {
+                "label": "Git",
+                "children": [
+                    {
+                        "label": "Add"
+                    },
+                    {
+                        "label": "Commit"
+                    },
+                    {
+                        "label": "Diff"
+                    },
+                    {
+                        "label": "Pull"
+                    },
+                    {
+                        "label": "Push"
+                    }
+                ]
+            }
+        ]
+    }
+]
