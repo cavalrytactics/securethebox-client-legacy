@@ -4,8 +4,8 @@ import {
     Paper,
     Grid,
     Button,
-    FormLabel,
-    FormControl,
+    // FormLabel,
+    // FormControl,
     MenuItem,
 } from '@material-ui/core';
 import withReducer from 'app/store/withReducer';
@@ -41,6 +41,7 @@ class Create extends Component {
                         "name": e,
                         "label": r.data[e]
                     })
+                    return null
                 })
                 this.setState({
                     appCategories: prevAppCategories

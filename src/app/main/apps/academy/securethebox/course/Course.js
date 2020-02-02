@@ -10,6 +10,12 @@ import reducer from '../../store/reducers';
 import * as Actions from '../../store/actions';
 import { makeStyles } from '@material-ui/styles';
 import axios from 'axios';
+// import CourseSubmission from './CourseSubmission';
+// import CourseStart from './CourseStart';
+// import CourseResources from './CourseResources';
+// import CourseScenario from './CourseScenario';
+// import CourseScoring from './CourseScoring';
+import CourseGradingCriteria from './CourseGradingCriteria';
 
 const useStyles = makeStyles(theme => ({
     stepLabel: {
@@ -59,10 +65,23 @@ function Course(props) {
 
     const activeStep = course && course.activeStep !== 0 ? course.activeStep : 1;
 
-
-    function manageChallenge(clusterName, userName, action) {
-        let data = { clusterName: clusterName, userName: userName, action: action }
-        axios.post('http://localhost:5000/api/v1/kubernetes/challenges/1', data);
+    function manageChallenge(clusterName, userName, action, emailAddress) {
+        console.log(clusterName, userName, action)
+        let data = JSON.stringify({"challenge": { "clusterName": clusterName, "userName": userName, "action": action, "emailAddress": emailAddress }})
+        axios.post('http://localhost:5000/api/v1/kubernetes/challenges/1', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+    }
+    function manageChallengeAirflow(clusterName, userName, action, emailAddress) {
+        console.log(clusterName, userName, action)
+        let data = JSON.stringify({"challenge": { "clusterName": clusterName, "userName": userName, "action": action, "emailAddress": emailAddress }})
+        axios.post('http://localhost:5000/api/v1/airflow/challenges/1', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
     }
 
 
@@ -115,34 +134,37 @@ function Course(props) {
                                         )
                                     } else if (index === 1) {
                                         return (
-                                            <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
-                                                <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
-                                                    <h1>Grading Criteria</h1>
-                                                    <div>This challenge will be grading you based on your {step.role} skills.</div>
-                                                    <br/>
-                                                    {
-                                                        Object.keys(step.topics[step.role]).map((e, i) => {
-                                                            return (
-                                                                <div key={e}>
-                                                                    <h2>{e}</h2>
-                                                                    <ul>
-                                                                    {step.topics[step.role][e].map((f, i) => {
-                                                                        return (
-                                                                            <div key={f}>
-                                                                                <li>
-                                                                                {f}
-                                                                                </li>
-                                                                            </div>
-                                                                        )
-                                                                    })}
-                                                                    </ul>
-                                                                </div>
-                                                            )
-                                                        })
-                                                    }
-                                                </Paper>
-                                            </div>
+                                            <CourseGradingCriteria key={step.id} data={step}/>
                                         )
+                                        // return (
+                                        //     <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
+                                        //         <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
+                                        //             <h1>Grading Criteria</h1>
+                                        //             <div>This challenge will be grading you based on your {step.role} skills.</div>
+                                        //             <br/>
+                                        //             {
+                                        //                 Object.keys(step.topics[step.role]).map((e, i) => {
+                                        //                     return (
+                                        //                         <div key={e}>
+                                        //                             <h2>{e}</h2>
+                                        //                             <ul>
+                                        //                             {step.topics[step.role][e].map((f, i) => {
+                                        //                                 return (
+                                        //                                     <div key={f}>
+                                        //                                         <li>
+                                        //                                         {f}
+                                        //                                         </li>
+                                        //                                     </div>
+                                        //                                 )
+                                        //                             })}
+                                        //                             </ul>
+                                        //                         </div>
+                                        //                     )
+                                        //                 })
+                                        //             }
+                                        //         </Paper>
+                                        //     </div>
+                                        // )
                                     } else if (index === 2) {
                                         return (
                                             <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
@@ -158,8 +180,11 @@ function Course(props) {
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
                                                     <div>
-                                                        <Button onClick={() => manageChallenge('us-west1-a', "testuser", 'apply')}>Start Challenge!</Button>
-                                                        <Button onClick={() => manageChallenge('us-west1-a', "testuser", 'delete')}>Delete Challenge!</Button>
+                                                        <Button onClick={() => manageChallenge('us-west1-a', 'charles', 'apply','jidokaus@gmail.com')}>Start Challenge!</Button>
+                                                        <Button onClick={() => manageChallenge('us-west1-a', 'charles', 'delete', 'jidokaus@gmail.com')}>Delete Challenge!</Button>
+                                                        <br/>
+                                                        <Button onClick={() => manageChallengeAirflow('us-west1-a', 'charles', 'apply', 'jidokaus@gmail.com')}>Airflow Start Challenge!</Button>
+                                                        <Button onClick={() => manageChallengeAirflow('us-west1-a', 'charles', 'delete', 'jidokaus@gmail.com')}>Airflow Delete Challenge!</Button>
                                                     </div>
                                                 </Paper>
                                             </div>
@@ -169,7 +194,6 @@ function Course(props) {
                                             <div className="flex justify-center p-16 pb-64 sm:p-24 sm:pb-64 md:p-48 md:pb-64" key={step.id + index}>
                                                 <Paper className="w-full max-w-lg rounded-8 p-16 md:p-24" elevation={1}>
                                                     <div dangerouslySetInnerHTML={{ __html: step.content }} />
-                                                    <div>This challenge will be grading you based on your {step.role} skills.</div>
                                                 </Paper>
                                             </div>
                                         )
