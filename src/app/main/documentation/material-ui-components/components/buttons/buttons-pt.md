@@ -3,7 +3,7 @@ title: Componente React para Botão
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Botões
+# Button (botão)
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
@@ -23,9 +23,13 @@ O último exemplo desta demonstração mostra como usar um botão de upload.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Botões de Texto
 
-[Botões de Texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos-pronunciadas, incluindo aquelas localizadas em:
+[Botões de texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos-pronunciadas, incluindo aquelas localizadas em:
 
 - Caixas de diálogo
 - Cartões
@@ -36,9 +40,7 @@ Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cart�
 
 ## Botões Delineados
 
-[Botões Delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
-
-### Alternativas
+[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
 
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 
@@ -46,11 +48,19 @@ Botões delineados são uma alternativa de menor ênfase comparado com botões c
 
 ## Botões Agrupados
 
-O componente ButtonGroup pode ser usado para agrupar os botões delineados (o padrão) ou contidos.
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Botão Dividido
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Botão Dividido
 
 O ButtonGroup também pode ser usado para criar um botão dividido. A lista suspensa pode alterar a ação do botão (como neste exemplo), ou ser usada para acionar imediatamente uma ação relacionada.
 
@@ -72,7 +82,11 @@ Um botão de ação flutuante que abranja várias telas laterais (como telas com
 
 A transição de zoom pode ser usada para conseguir isso. Observe que, como as animações de entrada e saída são acionadas ao mesmo tempo, usamos `enterDelay` para permitir que a animação do botão de ação flutuante de saída termine antes que a nova seja inserida.
 
-{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
+
+## Upload button
+
+{{"demo": "pages/components/buttons/UploadButtons.js"}}
 
 ## Tamanhos
 
@@ -80,13 +94,13 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Botões com ícones e rótulo
+## Botões com ícones e "Label"
 
 Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Botões de Icone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -98,7 +112,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/button).
 
@@ -118,18 +132,18 @@ Aqui está um [exemplo de integração com react-router](/guides/composition/#bu
 
 ### Cursor não permitido
 
-O componente "ButtonBase" configura `pointer-events: none;` para botões desabilitados. o que evita a aparência de cursor desabilitado.
+O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
 Se você deseja usar `not-allowed`, você tem duas opções:
 
 1. ** apenas CSS**. Você pode remover o estilo dos eventos do ponteiro no estado "desabilitado" do elemento `<button>` :
 
-```css
-.MuiButtonBase-root:disabled {
-  cursor: not-allowed;
-  pointer-events: auto;
-}
-```
+  ```css
+  .MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  ```
 
 Então:
 
@@ -139,10 +153,12 @@ Então:
     
     2. ** Alteração no DOM** Você pode encapsular o botão:
     
-    ```jsx
-    <span style={{ cursor: "not-allowed" }}>
-      <Button component={Link} disabled>disabled</Button>
-    </span>
-    ```
+      ```jsx
+      <span style={{ cursor: 'not-allowed' }}>
+        <Button component={Link} disabled>
+          disabled
+        </Button>
+      </span>
+      ```
     
-    This has the advantage of supporting any element, for instance, a link `<a>` element.
+    Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.

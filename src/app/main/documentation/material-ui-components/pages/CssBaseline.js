@@ -42,8 +42,8 @@ function CssBaselineDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -59,7 +59,7 @@ function CssBaselineDoc(props)
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -67,8 +67,6 @@ function MyApp() {
     </React.Fragment>
   );
 }
-
-export default MyApp;
 `}
                     </FuseHighlight>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Approach</Typography>
@@ -77,7 +75,7 @@ export default MyApp;
                     <ul>
                         <li>The margin in all browsers is removed.</li>
                         <li>The default Material Design background color is applied.
-                            It&#39;s using <a href="/customization/default-theme/?expend-path=$.palette.background"><code>{`theme.palette.background.default`}</code></a> for standard devices and a white background for print devices.
+                            It&#39;s using <a href="/customization/default-theme/?expand-path=$.palette.background"><code>{`theme.palette.background.default`}</code></a> for standard devices and a white background for print devices.
                         </li>
                     </ul>
                     <Typography className="text-24 mt-32 mb-8" component="h3">Layout</Typography>

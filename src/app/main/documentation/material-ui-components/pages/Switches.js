@@ -32,7 +32,7 @@ function SwitchesDoc(props)
                             <Icon className="text-16" color="action">chevron_right</Icon>
                             <Typography color="textSecondary">Material UI Components</Typography>
                         </div>
-                        <Typography variant="h6">Switches</Typography>
+                        <Typography variant="h6">Switch</Typography>
                     </div>
                     <Button
                         className="normal-case"
@@ -42,14 +42,14 @@ function SwitchesDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
             content={
                 <div className="p-24 max-w-2xl">
-                    <Typography className="text-44 mt-32 mb-8" component="h1">Switches</Typography>
+                    <Typography className="text-44 mt-32 mb-8" component="h1">Switch</Typography>
                     <Typography className="description">Switches toggle the state of a single setting on or off.</Typography>
 
                     <Typography className="mb-16" component="div"><a href="https://material.io/design/components/selection-controls.html#switches">Switches</a> are the preferred way to adjust settings on mobile.
@@ -109,6 +109,10 @@ function SwitchesDoc(props)
                     </ul>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Accessibility</Typography>
                     <ul>
+                        <li>It will render an element with the <code>{`checkbox`}</code> role not <code>{`switch`}</code> role since this
+                            role isn&#39;t widely supported yet. Please test first if assistive technology of your
+                            target audience supports this role properly. Then you can change the role with
+                            <code>{`<Switch inputProps={{ role: 'switch' }}>`}</code></li>
                         <li>All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the <code>{`<label>`}</code> element (<a href="/api/form-control-label/">FormControlLabel</a>).</li>
                         <li>When a label can&#39;t be used, it&#39;s necessary to add an attribute directly to the input component.
                             In this case, you can apply the additional attribute (e.g. <code>{`aria-label`}</code>, <code>{`aria-labelledby`}</code>, <code>{`title`}</code>) via the <code>{`inputProps`}</code> property.
@@ -117,10 +121,7 @@ function SwitchesDoc(props)
 
                     <FuseHighlight component="pre" className="language-jsx">
                         {` 
-<Switch
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' 
-/>
+<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 `}
                     </FuseHighlight>
 

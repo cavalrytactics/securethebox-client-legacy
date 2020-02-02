@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {Typography, Select, Paper, Divider} from '@material-ui/core';
 import {Line} from 'react-chartjs-2';
 import _ from 'lodash';
+import {useTheme} from '@material-ui/styles';
 
 function Widget9(props)
 {
     const [currentRange, setCurrentRange] = useState(props.widget.currentRange);
     const widget = _.merge({}, props.widget);
+    const theme = useTheme();
 
     function handleChangeRange(ev)
     {
@@ -41,10 +43,10 @@ function Widget9(props)
                             {widget[id].title}
                         </Typography>
                         <div className="flex items-center">
-                            <Typography className="text-32 mr-4" color="textSecondary">
+                            <Typography className="text-32" color="textSecondary">
                                 $
                             </Typography>
-                            <Typography className="text-32">
+                            <Typography className="text-32 mx-4">
                                 {widget[id].count[currentRange]}
                             </Typography>
                         </div>
@@ -54,7 +56,18 @@ function Widget9(props)
                             <Line
                                 data={{
                                     labels  : widget[id].chart[currentRange].labels,
-                                    datasets: widget[id].chart[currentRange].datasets
+                                    datasets: widget[id].chart[currentRange].datasets.map((obj, index) => {
+                                        const palette = theme.palette['secondary'];
+                                        return {
+                                            ...obj,
+                                            borderColor              : palette.main,
+                                            backgroundColor          : palette.main,
+                                            pointBackgroundColor     : palette.dark,
+                                            pointHoverBackgroundColor: palette.main,
+                                            pointBorderColor         : palette.contrastText,
+                                            pointHoverBorderColor    : palette.contrastText
+                                        }
+                                    })
                                 }}
                                 options={widget[id].chart.options}
                             />
@@ -68,10 +81,10 @@ function Widget9(props)
                     {widget.totalBudget.title}
                 </Typography>
                 <div className="flex items-center">
-                    <Typography className="text-32 mr-4" color="textSecondary">
+                    <Typography className="text-32" color="textSecondary">
                         $
                     </Typography>
-                    <Typography className="text-32">
+                    <Typography className="text-32 mx-4">
                         {widget.totalBudget.count}
                     </Typography>
                 </div>

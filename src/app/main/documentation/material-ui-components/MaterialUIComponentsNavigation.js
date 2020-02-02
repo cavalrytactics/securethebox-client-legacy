@@ -1,4 +1,9 @@
 export const MaterialUIComponentsNavigation = [{
+    'id': 'alert',
+    'title': 'Alert',
+    'type': 'item',
+    'url': '/documentation/material-ui-components/alert'
+}, {
     'id': 'appBar',
     'title': 'App Bar',
     'type': 'item',
@@ -13,6 +18,11 @@ export const MaterialUIComponentsNavigation = [{
     'title': 'Avatars',
     'type': 'item',
     'url': '/documentation/material-ui-components/avatars'
+}, {
+    'id': 'backdrop',
+    'title': 'Backdrop',
+    'type': 'item',
+    'url': '/documentation/material-ui-components/backdrop'
 }, {
     'id': 'badges',
     'title': 'Badges',

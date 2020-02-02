@@ -54,25 +54,37 @@ React [não suporta](https://github.com/facebook/react/issues/13097) a API [`cre
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
+## Limitações
+
+### Focus trap
+
+The modal moves the focus back to the body of the component if the focus tries to escape it.
+
+This is done for accessibility purposes, however, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+
+```jsx
+<Modal disableEnforceFocus />
+```
+
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
-
-```jsx
-<Modal
-  aria-labelledby="modal-titulo"
-  aria-describedby="modal-descricao"
->
-  <h2 id="modal-titulo">
-    Meu Título
-  </h2>
-  <p id="modal-descricao">
-    Minha Descrição
-  </p>
-</Modal>
-```
+    
+    ```jsx
+    <Modal
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    >
+    <h2 id="modal-title">
+      My Title
+    </h2>
+    <p id="modal-description">
+      My Description
+    </p>
+    </Modal>
+    ```
 
 - O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
 - Uma janela modal sobrepõe a janela principal ou outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa.

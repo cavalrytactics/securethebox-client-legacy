@@ -42,8 +42,8 @@ function ClickAwayListenerDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -64,7 +64,7 @@ function ClickAwayListenerDoc(props)
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/click-away-listener/ClickAway.js')}
                     /></Typography>
                     <Typography className="mb-16" component="div">Notice that the component only accepts one child element.
-                        You can find a more advanced demo on the <a href="/components/menus/#menulist-composition">menu documentation section</a>.</Typography>
+                        You can find a more advanced demo on the <a href="/components/menus/#menulist-composition">Menu documentation section</a>.</Typography>
 
                 </div>
             }

@@ -42,8 +42,8 @@ function TypographyDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -91,7 +91,7 @@ import 'typeface-roboto';
                     /></Typography>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Theme</Typography>
                     <Typography className="mb-16" component="div">In some situations you might not be able to use the <code>{`Typography`}</code> component.
-                        Hopefully, you might be able to take advantage of the <a href="/customization/default-theme/?expend-path=$.typography"><code>{`typography`}</code></a> keys of the theme.</Typography>
+                        Hopefully, you might be able to take advantage of the <a href="/customization/default-theme/?expand-path=$.typography"><code>{`typography`}</code></a> keys of the theme.</Typography>
                     <Typography className="mb-16" component="div"><FuseExample
                         className="my-24"
                         iframe={false}

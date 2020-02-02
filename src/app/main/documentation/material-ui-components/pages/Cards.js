@@ -32,7 +32,7 @@ function CardsDoc(props)
                             <Icon className="text-16" color="action">chevron_right</Icon>
                             <Typography color="textSecondary">Material UI Components</Typography>
                         </div>
-                        <Typography variant="h6">Cards</Typography>
+                        <Typography variant="h6">Card</Typography>
                     </div>
                     <Button
                         className="normal-case"
@@ -42,14 +42,14 @@ function CardsDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
             content={
                 <div className="p-24 max-w-2xl">
-                    <Typography className="text-44 mt-32 mb-8" component="h1">Cards</Typography>
+                    <Typography className="text-44 mt-32 mb-8" component="h1">Card</Typography>
                     <Typography className="description">Cards contain content and actions about a single subject.</Typography>
 
                     <Typography className="mb-16" component="div"><a href="https://material.io/design/components/cards.html">Cards</a> are surfaces that display content and actions on a single topic.</Typography>
@@ -61,6 +61,14 @@ function CardsDoc(props)
                         iframe={false}
                         component={require('app/main/documentation/material-ui-components/components/cards/SimpleCard.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/cards/SimpleCard.js')}
+                    /></Typography>
+                    <Typography className="text-24 mt-32 mb-8" component="h3">Outlined Card</Typography>
+                    <Typography className="mb-16" component="div">Set <code>{`variant="outlined`}</code> to render an outlined card.</Typography>
+                    <Typography className="mb-16" component="div"><FuseExample
+                        className="my-24"
+                        iframe={false}
+                        component={require('app/main/documentation/material-ui-components/components/cards/OutlinedCard.js').default}
+                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/cards/OutlinedCard.js')}
                     /></Typography>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Complex Interaction</Typography>
                     <Typography className="mb-16" component="div">On desktop, card content can expand.</Typography>

@@ -3,7 +3,7 @@ title: Tooltip React component
 components: Tooltip
 ---
 
-# Tooltips
+# Tooltip
 
 <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
 
@@ -27,16 +27,22 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
+
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element.
 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 
@@ -74,6 +80,8 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 ## Disabled Elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 

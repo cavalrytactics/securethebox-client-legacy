@@ -32,7 +32,7 @@ function TablesDoc(props)
                             <Icon className="text-16" color="action">chevron_right</Icon>
                             <Typography color="textSecondary">Material UI Components</Typography>
                         </div>
-                        <Typography variant="h6">Tables</Typography>
+                        <Typography variant="h6">Table</Typography>
                     </div>
                     <Button
                         className="normal-case"
@@ -42,18 +42,18 @@ function TablesDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
             content={
                 <div className="p-24 max-w-2xl">
-                    <Typography className="text-44 mt-32 mb-8" component="h1">Tables</Typography>
-                    <Typography className="description">Data tables display sets of data. They can be fully customized.</Typography>
+                    <Typography className="text-44 mt-32 mb-8" component="h1">Table</Typography>
+                    <Typography className="description">Tables display sets of data. They can be fully customized.</Typography>
 
-                    <Typography className="mb-16" component="div"><a href="https://material.io/design/components/data-tables.html">Data tables</a> display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.</Typography>
-                    <Typography className="mb-16" component="div">Data tables can include:</Typography>
+                    <Typography className="mb-16" component="div"><a href="https://material.io/design/components/data-tables.html">Tables</a> display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.</Typography>
+                    <Typography className="mb-16" component="div">Tables can include:</Typography>
                     <ul>
                         <li>A corresponding visualization</li>
                         <li>Navigation</li>
@@ -98,7 +98,28 @@ function TablesDoc(props)
                         component={require('app/main/documentation/material-ui-components/components/tables/CustomizedTables.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/tables/CustomizedTables.js')}
                     /></Typography>
-                    <Typography className="text-32 mt-32 mb-8" component="h2">Custom Table Pagination Action</Typography>
+                    <Typography className="text-24 mt-32 mb-8" component="h3">Custom pagination options</Typography>
+                    <Typography className="mb-16" component="div">It&#39;s possible to customise the options shown in the &quot;Rows per page&quot; select using the <code>{`rowsPerPageOptions`}</code> prop.
+                        You should either provide an array of:</Typography>
+                    <ul>
+                        <li><Typography className="mb-16" component="div"><strong>numbers</strong>, each number will be used for the option&#39;s label and value.</Typography>
+
+                            <FuseHighlight component="pre" className="language-jsx">
+                                {` 
+<TablePagination rowsPerPageOptions={[10, 50]} />
+`}
+                            </FuseHighlight>
+                        </li>
+                        <li><Typography className="mb-16" component="div"><strong>objects</strong>, the <code>{`value`}</code> and <code>{`label`}</code> keys will be used respectively for the value and label of the option (useful for language strings such as &#39;All&#39;).</Typography>
+
+                            <FuseHighlight component="pre" className="language-jsx">
+                                {` 
+<TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+`}
+                            </FuseHighlight>
+                        </li>
+                    </ul>
+                    <Typography className="text-24 mt-32 mb-8" component="h3">Custom pagination actions</Typography>
                     <Typography className="mb-16" component="div">The <code>{`Action`}</code> property of the <code>{`TablePagination`}</code> component allows the implementation of
                         custom actions.</Typography>
                     <Typography className="mb-16" component="div"><FuseExample

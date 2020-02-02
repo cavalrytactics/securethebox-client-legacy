@@ -1,6 +1,9 @@
 import React from 'react';
 
 export const MaterialUIComponentsRoutes = [{
+    path: '/documentation/material-ui-components/alert',
+    component: React.lazy(() => import('app/main/documentation/material-ui-components/pages/Alert'))
+}, {
     path: '/documentation/material-ui-components/app-bar',
     component: React.lazy(() => import('app/main/documentation/material-ui-components/pages/AppBar'))
 }, {
@@ -9,6 +12,9 @@ export const MaterialUIComponentsRoutes = [{
 }, {
     path: '/documentation/material-ui-components/avatars',
     component: React.lazy(() => import('app/main/documentation/material-ui-components/pages/Avatars'))
+}, {
+    path: '/documentation/material-ui-components/backdrop',
+    component: React.lazy(() => import('app/main/documentation/material-ui-components/pages/Backdrop'))
 }, {
     path: '/documentation/material-ui-components/badges',
     component: React.lazy(() => import('app/main/documentation/material-ui-components/pages/Badges'))

@@ -42,8 +42,8 @@ function ModalDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -119,29 +119,43 @@ function ModalDoc(props)
                         component={require('app/main/documentation/material-ui-components/components/modal/ServerModal.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/modal/ServerModal.js')}
                     /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Limitations</Typography>
+                    <Typography className="text-24 mt-32 mb-8" component="h3">Focus trap</Typography>
+                    <Typography className="mb-16" component="div">The modal moves the focus back to the body of the component if the focus tries to escape it.</Typography>
+                    <Typography className="mb-16" component="div">This is done for accessibility purposes, however, it might create issues.
+                        In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:</Typography>
+
+                    <FuseHighlight component="pre" className="language-jsx">
+                        {` 
+<Modal disableEnforceFocus />
+`}
+                    </FuseHighlight>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Accessibility</Typography>
                     <Typography className="mb-16" component="div">(WAI-ARIA: <a href="https://www.w3.org/TR/wai-aria-practices/#dialog_modal">https://www.w3.org/TR/wai-aria-practices/#dialog_modal</a>)</Typography>
                     <ul>
-                        <li>Be sure to add <code>{`aria-labelledby="id..."`}</code>, referencing the modal title, to the <code>{`Modal`}</code>.
-                            Additionally, you may give a description of your modal with the <code>{`aria-describedby="id..."`}</code> prop on the <code>{`Modal`}</code>.
+                        <li><Typography className="mb-16" component="div">Be sure to add <code>{`aria-labelledby="id..."`}</code>, referencing the modal title, to the <code>{`Modal`}</code>.
+                            Additionally, you may give a description of your modal with the <code>{`aria-describedby="id..."`}</code> prop on the <code>{`Modal`}</code>.</Typography>
+
                             <FuseHighlight component="pre" className="language-jsx">
                                 {` 
 <Modal
-aria-labelledby="modal-title"
-aria-describedby="modal-description"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
 >
-<h2 id="modal-title">
-  My Title
-</h2>
-<Typography id="modal-description">
-  My Description
-</Typography>
+  <h2 id="modal-title">
+    My Title
+  </h2>
+  <Typography id="modal-description">
+    My Description
+  </Typography>
 </Modal>
 `}
                             </FuseHighlight>
                         </li>
-                        <li>The <a href="https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html">WAI-ARIA authoring practices</a> can help you set the initial focus on the most relevant element, based on your modal content.</li>
-                        <li>A modal window overlys on either the primary window or another modal window. Windows under a modal are <strong>inert</strong>. That is, users cannot interact with content outside an active modal window.</li>
+                        <li><Typography className="mb-16" component="div">The <a href="https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html">WAI-ARIA authoring practices</a> can help you set the initial focus on the most relevant element, based on your modal content.</Typography>
+                        </li>
+                        <li><Typography className="mb-16" component="div">A modal window overlys on either the primary window or another modal window. Windows under a modal are <strong>inert</strong>. That is, users cannot interact with content outside an active modal window.</Typography>
+                        </li>
                     </ul>
 
                 </div>

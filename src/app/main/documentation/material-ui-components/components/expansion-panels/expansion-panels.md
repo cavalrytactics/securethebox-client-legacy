@@ -3,7 +3,7 @@ title: Expansion Panel React component
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panels
+# Expansion Panel
 
 <p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
 
@@ -13,13 +13,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## Simple Expansion Panel
 
-{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
 ## Controlled Accordion
 
 Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
-{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
 ## Customized expansion panels
 
@@ -27,6 +27,15 @@ Here is an example of customizing the component. You can learn more about this i
 [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
+
+## Additional actions
+
+In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from
+expanding/collapsing when using the action.
+You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in
+the label of the parent button that controls the panel expansion.
+
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
 ## Performance
 
@@ -47,7 +56,7 @@ bottlenecks first and then try out these optimization strategies.
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
 ## Accessibility
 

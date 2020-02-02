@@ -3,7 +3,7 @@ title: Componente React Caixa de Seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Caixas de Seleção
+# Checkbox (Caixa de Seleção)
 
 <p class="description">Caixas de Seleção permitem o usuário selecionar um ou mais itens de um conjunto.</p>
 
@@ -31,9 +31,9 @@ Você pode alterar o posicionamento do rótulo:
 
 ## Caixa de seleção customizada
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
 ## Quando usar
 

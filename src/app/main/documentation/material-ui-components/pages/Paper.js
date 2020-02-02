@@ -42,8 +42,8 @@ function PaperDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -56,8 +56,16 @@ function PaperDoc(props)
                     <Typography className="mb-16" component="div"><FuseExample
                         className="my-24"
                         iframe={false}
-                        component={require('app/main/documentation/material-ui-components/components/paper/PaperSheet.js').default}
-                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/paper/PaperSheet.js')}
+                        component={require('app/main/documentation/material-ui-components/components/paper/SimplePaper.js').default}
+                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/paper/SimplePaper.js')}
+                    /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Variants</Typography>
+                    <Typography className="mb-16" component="div">If you need an outlined surface, use the <code>{`variant`}</code> prop.</Typography>
+                    <Typography className="mb-16" component="div"><FuseExample
+                        className="my-24"
+                        iframe={false}
+                        component={require('app/main/documentation/material-ui-components/components/paper/Variants.js').default}
+                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/paper/Variants.js')}
                     /></Typography>
 
                 </div>

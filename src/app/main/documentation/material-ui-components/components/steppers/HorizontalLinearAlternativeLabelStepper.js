@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '90%',
+    width: '100%',
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -32,7 +32,7 @@ function getStepContent(stepIndex) {
     case 2:
       return 'This is the bit I really care about!';
     default:
-      return 'Uknown stepIndex';
+      return 'Unknown stepIndex';
   }
 }
 

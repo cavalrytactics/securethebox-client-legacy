@@ -7,7 +7,7 @@ components: ClickAwayListener
 
 <p class="description">クリックイベントが要素の外部で発生したかどうかを検出します。 ドキュメント内のどこかで発生したクリックを受信します。</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
+- [1.5 kB gzipped](/size-snapshot).
 
 ## 例
 
@@ -15,4 +15,4 @@ components: ClickAwayListener
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Notice that the component only accepts one child element. You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).
+Notice that the component only accepts one child element. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).

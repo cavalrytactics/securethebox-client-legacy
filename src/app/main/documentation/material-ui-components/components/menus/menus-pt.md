@@ -21,8 +21,7 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 ## Menus Selecionados
 
-Se usado para a seleção de itens, quando abertos, menus simples tentam alinhar verticalmente o item de menu atualmente selecionado com o elemento de âncora, e o foco inicial será colocado no item de menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade</code>selected`(de <a href="/api/list-item/">ListItem</a>).
-Para usar um item de menu selecionado sem afetar o foco inicial ou o posicionamento vertical do menu, defina a propriedade <code>variant` como `menu`.
+Se usado para a seleção de itens, quando abertos, menus simples tentam alinhar verticalmente o item de menu atualmente selecionado com o elemento de âncora, e o foco inicial será colocado no item de menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item de menu selecionado sem afetar o foco inicial ou o posicionamento vertical do menu, defina a propriedade `variant` como `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
@@ -32,7 +31,7 @@ O componente `Menu` usa o componente `Popover` internamente. No entanto, você p
 
 A principal responsabilidade do componente `MenuList` é manipular o foco.
 
-{{"demo": "pages/components/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
 ## Menus Customizados
 
@@ -52,7 +51,7 @@ Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu 
 
 Existe [um erro com flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que impede `text-overflow: ellipsis` de funcionar em um leiaute flexbox. Você pode usar o componente `Typography` com `noWrap` para solucionar esse problema:
 
-{{"demo": "pages/components/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
 ## Trocar transição
 
@@ -60,9 +59,15 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
+## Context menu
+
+Here is an example of a context menu. (Right click to open.)
+
+{{"demo": "pages/components/menus/ContextMenu.js"}}
+
 ## Projetos Complementares
 
-Para caso de usos mais avançados, você é capaz de aproveitar de:
+Para usos mais avançados, você pode tirar vantagem com:
 
 ### PopupState helper
 

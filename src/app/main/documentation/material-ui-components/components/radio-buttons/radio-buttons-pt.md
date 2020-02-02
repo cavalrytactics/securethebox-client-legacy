@@ -3,7 +3,7 @@ title: Componente React para Botões de Opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# Botões de opção
+# Radio
 
 <p class="description">Botões de opção permitem o usuário selecionar uma das opções de um conjunto.</p>
 
@@ -29,7 +29,7 @@ Você pode alterar o posicionamento do rótulo:
 
 ## Opções customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 

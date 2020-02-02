@@ -32,7 +32,7 @@ function SnackbarsDoc(props)
                             <Icon className="text-16" color="action">chevron_right</Icon>
                             <Typography color="textSecondary">Material UI Components</Typography>
                         </div>
-                        <Typography variant="h6">Snackbars</Typography>
+                        <Typography variant="h6">Snackbar</Typography>
                     </div>
                     <Button
                         className="normal-case"
@@ -42,14 +42,14 @@ function SnackbarsDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
             content={
                 <div className="p-24 max-w-2xl">
-                    <Typography className="text-44 mt-32 mb-8" component="h1">Snackbars</Typography>
+                    <Typography className="text-44 mt-32 mb-8" component="h1">Snackbar</Typography>
                     <Typography className="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</Typography>
 
                     <Typography className="mb-16" component="div"><a href="https://material.io/design/components/snackbars.html">Snackbars</a> inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.</Typography>
@@ -128,15 +128,20 @@ function SnackbarsDoc(props)
                     <Typography className="text-24 mt-32 mb-8" component="h3">notistack</Typography>
                     <Typography className="mb-16" component="div"> src="https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars" alt="stars/>
                         src="https://img.shields.io/npm/dm/notistack.svg" alt="npm downloads/></Typography>
-                    <Typography className="mb-16" component="div">In the following example, we demonstrate how to use <a href="https://github.com/iamhosseindhv/notistack">notistack</a>.
-                        notistack makes it easy to display snackbars (so you don&#39;t have to deal with open/close state of them).
-                        It also enables you to stack them on top of one another (although this is discouraged by the specification).</Typography>
+                    <Typography className="mb-16" component="div">This example demonstrates how to use <a href="https://github.com/iamhosseindhv/notistack">notistack</a>.
+                        notistack has an <strong>imperative API</strong> that makes it easy to display snackbars, without having to handle their open/close state.
+                        It also enables you to <strong>stack</strong> them on top of one another (although this is discouraged by the Material Design specification).</Typography>
                     <Typography className="mb-16" component="div"><FuseExample
                         className="my-24"
                         iframe={false}
                         component={require('app/main/documentation/material-ui-components/components/snackbars/IntegrationNotistack.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/snackbars/IntegrationNotistack.js')}
                     /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Accessibility</Typography>
+                    <Typography className="mb-16" component="div">(WAI-ARIA: <a href="https://www.w3.org/TR/wai-aria-1.1/#alert">https://www.w3.org/TR/wai-aria-1.1/#alert</a>)</Typography>
+                    <ul>
+                        <li>By default, the snackbar won&#39;t auto-hide. However, if you decide to use the <code>{`autoHideDuration`}</code> prop, it&#39;s recommended to give the user <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html">sufficient time</a> to respond.</li>
+                    </ul>
 
                 </div>
             }

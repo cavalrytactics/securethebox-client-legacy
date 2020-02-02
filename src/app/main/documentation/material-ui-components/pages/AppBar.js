@@ -42,8 +42,8 @@ function AppBarDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
@@ -53,7 +53,7 @@ function AppBarDoc(props)
                     <Typography className="description">The App Bar displays information and actions relating to the current screen.</Typography>
 
                     <Typography className="mb-16" component="div">The <a href="https://material.io/design/components/app-bars-top.html">top App Bar</a> provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.</Typography>
-                    <Typography className="mb-16" component="div">It can transform into a contextual action bar or used as a navbar.</Typography>
+                    <Typography className="mb-16" component="div">It can transform into a contextual action bar or be used as a navbar.</Typography>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Simple App Bar</Typography>
                     <Typography className="mb-16" component="div"><FuseExample
                         className="my-24"
@@ -91,6 +91,14 @@ function AppBarDoc(props)
                         component={require('app/main/documentation/material-ui-components/components/app-bar/DenseAppBar.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/app-bar/DenseAppBar.js')}
                     /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Prominent</Typography>
+                    <Typography className="mb-16" component="div">A prominent app bar.</Typography>
+                    <Typography className="mb-16" component="div"><FuseExample
+                        className="my-24"
+                        iframe={false}
+                        component={require('app/main/documentation/material-ui-components/components/app-bar/ProminentAppBar.js').default}
+                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/app-bar/ProminentAppBar.js')}
+                    /></Typography>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Bottom App Bar</Typography>
                     <Typography className="mb-16" component="div"><FuseExample
                         className="my-24"
@@ -98,6 +106,50 @@ function AppBarDoc(props)
                         component={require('app/main/documentation/material-ui-components/components/app-bar/BottomAppBar.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/app-bar/BottomAppBar.js')}
                     /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Fixed placement</Typography>
+                    <Typography className="mb-16" component="div">When you render the app bar position fixed, the dimension of the element doesn&#39;t impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:</Typography>
+                    <ol>
+                        <li>You can use <code>{`position="sticky"`}</code> instead of fixed. ⚠️ sticky is not supported by IE 11.</li>
+                        <li>You can render a second <code>{`<Toolbar />`}</code> component:</li>
+                    </ol>
+
+                    <FuseHighlight component="pre" className="language-jsx">
+                        {` 
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+`}
+                    </FuseHighlight>
+                    <ol start="3">
+                        <li>You can use <code>{`theme.mixins.toolbar`}</code> CSS:</li>
+                    </ol>
+
+                    <FuseHighlight component="pre" className="language-jsx">
+                        {` 
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+`}
+                    </FuseHighlight>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Scrolling</Typography>
                     <Typography className="mb-16" component="div">You can use the <code>{`useScrollTrigger()`}</code> hook to respond to user scroll actions.</Typography>
                     <Typography className="text-24 mt-32 mb-8" component="h3">Hide App Bar</Typography>

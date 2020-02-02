@@ -11,6 +11,12 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
+## Active last breadcrumb
+
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
 ## Пользовательский разделитель
 
 В следующих примерах мы используем два строковых разделителя и SVG иконку.
@@ -33,7 +39,7 @@ components: Breadcrumbs, Link, Typography
 
 ## Интеграция с react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
 ## Доступность
 

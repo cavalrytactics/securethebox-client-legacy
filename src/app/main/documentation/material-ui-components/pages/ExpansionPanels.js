@@ -32,7 +32,7 @@ function ExpansionPanelsDoc(props)
                             <Icon className="text-16" color="action">chevron_right</Icon>
                             <Typography color="textSecondary">Material UI Components</Typography>
                         </div>
-                        <Typography variant="h6">Expansion Panels</Typography>
+                        <Typography variant="h6">Expansion Panel</Typography>
                     </div>
                     <Button
                         className="normal-case"
@@ -42,14 +42,14 @@ function ExpansionPanelsDoc(props)
                         target="_blank"
                         role="button"
                     >
-                        <Icon className="mr-4">link</Icon>
-                        Reference
+                        <Icon>link</Icon>
+                        <span className="mx-4">Reference</span>
                     </Button>
                 </div>
             }
             content={
                 <div className="p-24 max-w-2xl">
-                    <Typography className="text-44 mt-32 mb-8" component="h1">Expansion Panels</Typography>
+                    <Typography className="text-44 mt-32 mb-8" component="h1">Expansion Panel</Typography>
                     <Typography className="description">Expansion panels contain creation flows and allow lightweight editing of an element.</Typography>
 
                     <Typography className="mb-16" component="div"><a href="https://material.io/archive/guidelines/components/expansion-panels.html">An expansion panel</a> is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.</Typography>
@@ -79,6 +79,17 @@ function ExpansionPanelsDoc(props)
                         iframe={false}
                         component={require('app/main/documentation/material-ui-components/components/expansion-panels/CustomizedExpansionPanels.js').default}
                         raw={require('!raw-loader!app/main/documentation/material-ui-components/components/expansion-panels/CustomizedExpansionPanels.js')}
+                    /></Typography>
+                    <Typography className="text-32 mt-32 mb-8" component="h2">Additional actions</Typography>
+                    <Typography className="mb-16" component="div">In order to put an action such as a <code>{`Checkbox`}</code> or a button inside of the <code>{`ExpansionPanelSummary`}</code>, you need to stop the propagation of the focus and click events to prevent the panel from
+                        expanding/collapsing when using the action.
+                        You should also provide an <code>{`aria-label`}</code> for the action, otherwise the label of the nested action will be included in
+                        the label of the parent button that controls the panel expansion.</Typography>
+                    <Typography className="mb-16" component="div"><FuseExample
+                        className="my-24"
+                        iframe={false}
+                        component={require('app/main/documentation/material-ui-components/components/expansion-panels/ActionsInExpansionPanelSummary.js').default}
+                        raw={require('!raw-loader!app/main/documentation/material-ui-components/components/expansion-panels/ActionsInExpansionPanelSummary.js')}
                     /></Typography>
                     <Typography className="text-32 mt-32 mb-8" component="h2">Performance</Typography>
                     <Typography className="mb-16" component="div">The content of ExpansionPanels is mounted by default even if the panel is not expanded.

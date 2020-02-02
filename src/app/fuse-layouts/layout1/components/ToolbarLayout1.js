@@ -7,6 +7,7 @@ import QuickPanelToggleButton from 'app/fuse-layouts/shared-components/quickPane
 import ChatPanelToggleButton from 'app/fuse-layouts/shared-components/chatPanel/ChatPanelToggleButton';
 import UserMenu from 'app/fuse-layouts/shared-components/UserMenu';
 import {useSelector} from 'react-redux';
+import LanguageSwitcher from '../../shared-components/LanguageSwitcher';
 
 const useStyles = makeStyles(theme => ({
     separator: {
@@ -25,7 +26,7 @@ function ToolbarLayout1(props)
 
     return (
         <ThemeProvider theme={toolbarTheme}>
-            <AppBar id="fuse-toolbar" className="flex relative z-10" color="default">
+            <AppBar id="fuse-toolbar" className="flex relative z-10" color="default" style={{backgroundColor: toolbarTheme.palette.background.default}}>
                 <Toolbar className="p-0">
 
                     {config.navbar.display && config.navbar.position === 'left' && (
@@ -55,6 +56,10 @@ function ToolbarLayout1(props)
 
                             <ChatPanelToggleButton/>
                         </Hidden>
+
+                        <div className={classes.separator}/>
+
+                        <LanguageSwitcher/>
 
                         <div className={classes.separator}/>
 
